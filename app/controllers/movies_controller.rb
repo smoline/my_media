@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!
   # GET /movies
   def index
     @movies = Movie.all

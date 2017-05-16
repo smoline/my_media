@@ -31,6 +31,17 @@ gem 'jquery-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Authentication via Omniauth
+gem 'omniauth', '~> 1.6', '>= 1.6.1'
+gem 'omniauth-github', '~> 1.2', '>= 1.2.3'
+gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-twitter', '~> 1.4'
+gem 'omniauth-linkedin', '~> 0.2.0'
+gem 'omniauth-google-oauth2', '~> 0.4.1'
+
+# Authentication via Devise
+gem 'devise', '~> 4.3'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
