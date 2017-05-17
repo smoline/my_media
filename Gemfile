@@ -18,6 +18,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+gem 'turbolinks', '~> 5.0.0'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -25,6 +26,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'httparty', '~> 0.15.2'
+gem 'json', '~> 2.1'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

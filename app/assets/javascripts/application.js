@@ -15,3 +15,7 @@
 
 //= require 'cable'
 //= require bootstrap
+
+//= require quagga
+//= require turbolinks
+//= require 'movies'

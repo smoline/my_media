@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516204914) do
+ActiveRecord::Schema.define(version: 20170516233821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170516204914) do
     t.integer  "tmdb_id"
     t.string   "description"
     t.string   "release_date"
-    t.integer  "upc"
+    t.bigint   "upc"
     t.integer  "runtime"
     t.string   "tagline"
     t.datetime "created_at",   null: false
