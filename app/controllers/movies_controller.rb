@@ -15,6 +15,12 @@ class MoviesController < ApplicationController
     @movie = Movie.new
     @movie.upc = params[:upc]
     @movie.title = params[:title]
+    @movie.description = params[:description]
+    @movie.release_date = params[:release_date]
+    @movie.tmdb_id = params[:tmdb_id]
+    @movie.runtime = params[:runtime]
+    @movie.tagline = params[:tagline]
+    @movie.movie_image_url = params[:movie_image_url]
   end
 
   # GET /movies/1/edit
@@ -54,24 +60,43 @@ class MoviesController < ApplicationController
     upc = params[:upc]
     @movie = Movie.find_or_initialize_by(upc: params[:upc])
     if @movie.new_record?
-      title = find_movie_title(upc)
-      redirect_to new_movie_path(upc: params[:upc], title: title)
+      title = @movie.find_movie_title(upc)
+      movie_info = @movie.find_initial_movie_info(title)
+      # if movie_info.size > 1
+      #   choose_correct_movie(movie_info)
+      # else
+      #   tmdb_id = movie_info["id"]
+      #   description = movie_info["overview"]
+      #   release_date = movie_info["release_date"]
+      #   more_movie_info = @movie.find_other_movie_info(tmdb_id)
+      #   runtime = more_movie_info["runtime"]
+      #   tagline = more_movie_info["tagline"]
+      # end
+
+      tmdb_id = movie_info.first["id"]
+      description = movie_info.first["overview"]
+      release_date = movie_info.first["release_date"]
+      more_movie_info = @movie.find_other_movie_info(tmdb_id)
+      runtime = more_movie_info["runtime"]
+      tagline = more_movie_info["tagline"]
+      poster_path = more_movie_info["poster_path"]
+      p poster_path
+      movie_image_url = "http://image.tmdb.org/t/p/w185/#{poster_path}"
+
+      redirect_to new_movie_path(upc: params[:upc], title: title, description: description, release_date: release_date, tmdb_id: tmdb_id, runtime: runtime, tagline: tagline, movie_image_url: movie_image_url)
     else
       redirect_to @movie
     end
   end
 
-  def find_movie_title(upc)
-    response = HTTParty.get("http://www.searchupc.com/handlers/upcsearch.ashx?request_type=3&access_token=38EB43B6-3A6F-4840-9A10-150E79A0983A&upc=#{upc}")
-    title = JSON.parse(response.body)["0"]["productname"]
-    p title
-    return title
+  def choose_correct_movie(movie_info)
+    @movies_to_choose_from = movie_info
   end
 
   private
 
   # Only allow a trusted parameter "white list" through.
   def movie_params
-    params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :upc, :runtime, :tagline)
+    params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :upc, :runtime, :tagline, :movie_image_url)
   end
 end
