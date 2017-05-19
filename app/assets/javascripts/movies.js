@@ -15,6 +15,20 @@ function order_by_occurrence(arr) {
   });
 }
 
+function process_barcode(upc) {
+  $.ajax({
+    type: "POST",
+    url: '/movies/get_barcode',
+    data: { upc: upc }
+  }).then(function(data) {
+    $('#movies-info').html('')
+    data.forEach(function(movie) {
+      console.log(movie)
+      $('#movies-info').append(`<li data-upc="${upc}" data-tmdb-id="${movie.id}">${movie.title} - ${movie.release_date}</li>`)
+    })
+  });
+}
+
 function load_quagga(){
   if ($('#barcode-scanner').length > 0 && navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
 
@@ -27,11 +41,7 @@ function load_quagga(){
           code = order_by_occurrence(last_result)[0];
           last_result = [];
           Quagga.stop();
-          $.ajax({
-            type: "POST",
-            url: '/movies/get_barcode',
-            data: { upc: last_code }
-          });
+          process_barcode(last_code)
         }
       });
     }
@@ -55,3 +65,22 @@ function load_quagga(){
   }
 };
 $(document).on('turbolinks:load', load_quagga);
+
+$(document).on('turbolinks:load', function() {
+  $('.barcode-scanner-title').on('click', function() {
+    process_barcode('741952654698')
+  })
+
+  $('#movies-info').on('click', 'li', function() {
+    let tmdb_id = $(this).data('tmdb-id')
+    let upc = $(this).data('upc')
+    console.log('you clicked on', $(this).html())
+
+    console.log(`The tmdb id is ${tmdb_id}`)
+    $.ajax({
+      type: "POST",
+      url: '/movies/get_movie_info',
+      data: { tmdb_id: tmdb_id, upc: upc }
+    })
+  })
+});

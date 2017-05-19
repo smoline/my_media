@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
 
-  def find_movie_title(upc)
+  def self.find_movie_title(upc)
     response = HTTParty.get("http://www.searchupc.com/handlers/upcsearch.ashx", query: {
             request_type: 3,
             access_token: ENV['SEARCHUPC_TOKEN'],
@@ -10,7 +10,7 @@ class Movie < ApplicationRecord
     return title
   end
 
-  def find_initial_movie_info(title)
+  def self.find_initial_movie_info(title)
     title_new = title[/^[A-Za-z0-9\s\p.]+/i]
     p title_new
 
@@ -26,7 +26,7 @@ class Movie < ApplicationRecord
     return movie_info
   end
 
-  def find_other_movie_info(tmdb_id)
+  def self.find_more_movie_info(tmdb_id)
     response = HTTParty.get("https://api.themoviedb.org/3/movie/#{tmdb_id}", query:
     {
       api_key: ENV['TMDB_API_KEY'],

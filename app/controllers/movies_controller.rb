@@ -60,37 +60,24 @@ class MoviesController < ApplicationController
     upc = params[:upc]
     @movie = Movie.find_or_initialize_by(upc: params[:upc])
     if @movie.new_record?
-      title = @movie.find_movie_title(upc)
-      movie_info = @movie.find_initial_movie_info(title)
-      # if movie_info.size > 1
-      #   choose_correct_movie(movie_info)
-      # else
-      #   tmdb_id = movie_info["id"]
-      #   description = movie_info["overview"]
-      #   release_date = movie_info["release_date"]
-      #   more_movie_info = @movie.find_other_movie_info(tmdb_id)
-      #   runtime = more_movie_info["runtime"]
-      #   tagline = more_movie_info["tagline"]
-      # end
-
-      tmdb_id = movie_info.first["id"]
-      description = movie_info.first["overview"]
-      release_date = movie_info.first["release_date"]
-      more_movie_info = @movie.find_other_movie_info(tmdb_id)
-      runtime = more_movie_info["runtime"]
-      tagline = more_movie_info["tagline"]
-      poster_path = more_movie_info["poster_path"]
-      p poster_path
-      movie_image_url = "http://image.tmdb.org/t/p/w185/#{poster_path}"
-
-      redirect_to new_movie_path(upc: params[:upc], title: title, description: description, release_date: release_date, tmdb_id: tmdb_id, runtime: runtime, tagline: tagline, movie_image_url: movie_image_url)
+      title = Movie.find_movie_title(upc)
+      @movie_info = Movie.find_initial_movie_info(title)
+      render json: @movie_info
     else
       redirect_to @movie
     end
   end
 
-  def choose_correct_movie(movie_info)
-    @movies_to_choose_from = movie_info
+  def get_movie_info
+    more_movie_info = Movie.find_more_movie_info(params[:tmdb_id])
+
+    movie_params = more_movie_info.merge(
+                    upc: params[:upc],
+                    tmdb_id: params[:tmdb_id],
+                    description: more_movie_info["overview"],
+                    movie_image_url: "http://image.tmdb.org/t/p/w185/#{more_movie_info["poster_path"]}")
+
+    redirect_to new_movie_path(movie_params)
   end
 
   private

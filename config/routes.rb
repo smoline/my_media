@@ -8,11 +8,17 @@ Rails.application.routes.draw do
     get "/auth/github/callback" => "users/omniauth_callbacks#github"
   end
 
+  post 'movies/get_movie_info' => 'movies#get_movie_info'
+
   get 'pages/landing'
   root 'pages#landing'
 
   resources :movies do
-    post :get_barcode, on: :collection
+    collection do
+      post :get_barcode
+      post :get_movie_info
+    end
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
