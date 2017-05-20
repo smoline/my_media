@@ -6,15 +6,11 @@
 
   <button type="button" class="btn btn-default" id='btn-scanner' remote='true'><span class="glyphicon glyphicon-barcode"></span> Search by UPC</button>
 
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#scanner-modal">
-    Modal by UPC</button>
-
   <h1>New movie</h1>
 </div>
 
 <%= render 'form' %>
 
-<div class="show-scanner" id='show-scanner'>
   <div class='scanner-flexbox' id='scanner-flexbox'>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -25,7 +21,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <div class="modal fade" id="choose-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

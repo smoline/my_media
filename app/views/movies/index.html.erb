@@ -13,7 +13,7 @@
     <li class="box">
       <% if movie.image.present? %>
         <%= link_to movie do %>
-          <%= image_tag movie.image_url(:medium), class:'mainimage' %>
+          <%= image_tag movie.image_url(:small) %>
         <% end %>
       <%else %>
         <%= link_to movie do %>
