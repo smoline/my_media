@@ -3,8 +3,8 @@
 
 $(document).ready(function() {
 
-// Favoriting
-  $('.s-ul').on('click', '.fav-heart', function(event) {
+ // Favoriting
+  $('.custom-body-js').on('click', '.fav-heart', function(event) {
     let movieId = $(this).data("movieid")
     $(this).removeClass('fav-heart')
     $(this).addClass('faved-heart')
@@ -16,7 +16,7 @@ $(document).ready(function() {
   })
 
   // Unfavoriting
-  $('.s-ul').on('click', '.faved-heart', function(event) {
+  $('.custom-body-js').on('click', '.faved-heart', function(event) {
     let movieId = $(this).data("movieid")
     $(this).removeClass('faved-heart')
     $(this).addClass('fav-heart')

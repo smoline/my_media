@@ -6,10 +6,6 @@
   justify-content: center;
 }
 
-.s-ul p {
-  color: #c2cdcd;
-}
-
 .box {
   border-bottom: 1px solid #cacaca;
   margin: 1em;
@@ -24,19 +20,32 @@
 }
 
 .textline {
-  margin: 5px 5px 0;
   display: flex;
   justify-content: space-between;
   font-size: 16px;
 }
 
 .fav-heart {
+  vertical-align: top;
   font-size: 30px;
 }
 
 .faved-heart {
   font-size: 30px;
   color: red;
+}
+
+.s-text {
+  color: #c2cdcd;
+}
+
+.firsttextline {
+  padding-top: 11px;
+}
+
+.secondtextline {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .custom-choice li {

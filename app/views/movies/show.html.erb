@@ -20,17 +20,17 @@
       <%= image_tag @movie.movie_image_url %>
     </a>
   </div>
-  <div class="media-body custom-media">
+  <div class="media-body">
     <h3 class="media-heading custom-media-heading"><%= @movie.title %></h3>
     <% if user_signed_in? && favorited(@movie.id) == true %>
       <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"> &hearts;</p>
     <% elsif user_signed_in? && favorited(@movie.id) == false %>
       <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"> &hearts;</p>
     <% end %>
-    <p><%= @movie.tagline %></p>
-    <p><strong>Release date: </strong><%= @movie.release_date %></p>
-    <p><strong>Runtime: </strong><%= @movie.runtime %></p>
-    <p><%= @movie.description %></p>
-    <p>Tmdb: <%= @movie.tmdb_id %> Upc: <%= @movie.upc %></p>
+    <p class="custom-media"><%= @movie.tagline %></p>
+    <p class="custom-media"><strong>Release date: </strong><%= @movie.release_date %></p>
+    <p class="custom-media"><strong>Runtime: </strong><%= @movie.runtime %></p>
+    <p class="custom-media"><%= @movie.description %></p>
+    <p class="custom-media">Tmdb: <%= @movie.tmdb_id %> Upc: <%= @movie.upc %></p>
   </div>
 </div>

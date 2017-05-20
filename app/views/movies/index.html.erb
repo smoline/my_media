@@ -18,7 +18,7 @@
         <%= image_tag movie.movie_image_url %>
       <% end %>
       <div class="textline">
-        <p><%= movie.title %></p>
+        <p class="s-text firsttextline"><%= movie.title %></p>
         <% if user_signed_in? && favorited(movie.id) == true %>
           <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"> &hearts;</p>
         <% elsif user_signed_in? && favorited(movie.id) == false %>
@@ -26,8 +26,8 @@
         <% end %>
       </div>
       <div class="textline">
-        <p><%= movie.release_date %></p>
-        <p><%= movie.runtime %> Mins.</p>
+        <p class="s-text secondtextline"><%= movie.release_date %></p>
+        <p class="s-text secondtextline"><%= movie.runtime %> Mins.</p>
       </div>
     </li>
     <% end %>
@@ -52,9 +52,6 @@
 
     <tbody class="table-body">
       <%- @movies.each do |movie| %>
-      <%= link_to movie do %>
-        <%= image_tag movie.movie_image_url %>
-      <% end %>
       <tr>
         <td><%= movie.title %></td>
         <td><%= movie.tmdb_id %></td>
