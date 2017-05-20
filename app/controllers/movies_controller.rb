@@ -31,6 +31,7 @@ class MoviesController < ApplicationController
   # POST /movies
   def create
     @movie = Movie.new(movie_params)
+    @movie.created_by_id = current_user.id
 
     if @movie.save
       redirect_to @movie, notice: 'Movie was successfully created.'

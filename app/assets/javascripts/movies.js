@@ -69,7 +69,11 @@ $(document).on('turbolinks:load', load_quagga);
 
 $(document).on('turbolinks:load', function() {
   $('.barcode-scanner-title').on('click', function() {
-    process_barcode('741952654698')
+    process_barcode('97360563849')
+  })
+
+  $('#btn-scanner').on('click', function() {
+  $('#show-scanner').show()
   })
 
   $('#movies-info').on('click', 'li', function() {

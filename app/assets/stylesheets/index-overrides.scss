@@ -26,7 +26,6 @@
 }
 
 .fav-heart {
-  vertical-align: top;
   font-size: 30px;
 }
 
@@ -52,4 +51,8 @@
   color: #c2cdcd;
   font-size: 14px;
   font-weight: bold;
+}
+
+.show-scanner {
+  display: none;
 }

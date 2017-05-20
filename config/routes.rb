@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'favorites/create'
-
-  get 'favorites/destroy'
 
   devise_for :users
 
@@ -14,8 +11,6 @@ Rails.application.routes.draw do
 
   post 'favorites/:movieId'           =>  'favorites#create'
   delete 'favorites/destroy/:movieId' =>  'favorites#destroy'
-
-
 
   post 'movies/get_movie_info' => 'movies#get_movie_info'
 
