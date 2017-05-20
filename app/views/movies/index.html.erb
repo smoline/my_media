@@ -11,8 +11,14 @@
     <%- @movies.each do |movie| %>
     <% if movie.created_by_id == current_user.id %>
     <li class="box">
-      <%= link_to movie do %>
-        <%= image_tag movie.movie_image_url %>
+      <% if movie.image.present? %>
+        <%= link_to movie do %>
+          <%= image_tag movie.image_url(:medium), class:'mainimage' %>
+        <% end %>
+      <%else %>
+        <%= link_to movie do %>
+          <%= image_tag movie.movie_image_url %>
+        <% end %>
       <% end %>
       <div class="textline">
         <p class="s-text firsttextline"><%= movie.title %></p>

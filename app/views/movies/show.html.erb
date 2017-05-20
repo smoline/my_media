@@ -16,9 +16,15 @@
 
 <div class="media">
   <div class="media-left">
-    <a href="#">
-      <%= image_tag @movie.movie_image_url %>
-    </a>
+      <% if @movie.image.present? %>
+        <%= link_to @movie do %>
+          <%= image_tag @movie.image_url(:medium), class:'mainimage' %>
+        <% end %>
+      <%else %>
+        <%= link_to @movie do %>
+          <%= image_tag @movie.movie_image_url %>
+        <% end %>
+      <% end %>
   </div>
   <div class="media-body">
     <h3 class="media-heading custom-media-heading"><%= @movie.title %></h3>
