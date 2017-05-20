@@ -19,3 +19,4 @@
 //= require quagga
 //= require turbolinks
 //= require 'movies'
+//= require 'favorites'

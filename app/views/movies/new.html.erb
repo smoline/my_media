@@ -1,4 +1,4 @@
-<div class="page-header">
+<div class="page-header custom-header">
   <%= link_to movies_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
@@ -8,8 +8,7 @@
 
 <%= render 'form' %>
 
-<div class='row'>
-  <div class='col-md-8'>
+  <div class='scanner-flexbox'>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title barcode-scanner-title">Barcode Scanner</h3>
@@ -19,7 +18,21 @@
       </div>
     </div>
   </div>
-</div>
 
-<ul id='movies-info'>
-</ul>
+<div class="modal fade" id="choose-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Click on the correct Item</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="custom-choice" id='movies-info'>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

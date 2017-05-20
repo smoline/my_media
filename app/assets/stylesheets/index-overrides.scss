@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
+.s-ul p {
+  color: #c2cdcd;
+}
+
 .box {
   border-bottom: 1px solid #cacaca;
   margin: 1em;
@@ -13,9 +17,6 @@
 }
 
 .mainimage {
-  /*max-width: 424px;*/
-  // height: 300px;
-  width: 50px;
   padding: 10px;
   border: 1px solid #cacaca;
   border-radius: 2px;
@@ -26,27 +27,20 @@
   margin: 5px 5px 0;
   display: flex;
   justify-content: space-between;
-}
-
-.firstleftline {
-  color: #9aa6f5;
   font-size: 16px;
+}
+
+.fav-heart {
+  font-size: 30px;
+}
+
+.faved-heart {
+  font-size: 30px;
+  color: red;
+}
+
+.custom-choice li {
+  color: #c2cdcd;
+  font-size: 14px;
   font-weight: bold;
-}
-
-.secondleftline {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.textline2 {
-  margin: 0px 5px;
-  display: flex;
-  justify-content: center;
-}
-
-.textline3 {
-  margin: 0px 5px 50px;
-  display: flex;
-  justify-content: center;
 }

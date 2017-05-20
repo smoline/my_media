@@ -1,8 +1,15 @@
 #barcode-scanner canvas.drawingBuffer, video.drawingBuffer {
   display: none;
+
 }
 
 #barcode-scanner video, canvas {
   width: 100%;
   height: auto;
+}
+
+.scanner-flexbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

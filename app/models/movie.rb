@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  has_many :favorites, dependent: :destroy
 
   def self.find_movie_title(upc)
     response = HTTParty.get("http://www.searchupc.com/handlers/upcsearch.ashx", query: {

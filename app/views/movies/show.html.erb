@@ -1,4 +1,4 @@
-<div class="page-header">
+<div class="page-header custom-header">
   <%= link_to movies_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
@@ -11,31 +11,26 @@
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>Show movie</h1>
+  <h1>Movie Details</h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dd><%= image_tag @movie.movie_image_url %></dd>
-
-  <dt>Title:</dt>
-  <dd><%= @movie.title %></dd>
-
-  <dt>Tmdb:</dt>
-  <dd><%= @movie.tmdb_id %></dd>
-
-  <dt>Release date:</dt>
-  <dd><%= @movie.release_date %></dd>
-
-  <dt>Upc:</dt>
-  <dd><%= @movie.upc %></dd>
-
-  <dt>Runtime:</dt>
-  <dd><%= @movie.runtime %></dd>
-
-  <dt>Tagline:</dt>
-  <dd><%= @movie.tagline %></dd>
-
-  <dt>Description:</dt>
-  <dd><%= @movie.description %></dd>
-
-</dl>
+<div class="media">
+  <div class="media-left">
+    <a href="#">
+      <%= image_tag @movie.movie_image_url %>
+    </a>
+  </div>
+  <div class="media-body custom-media">
+    <h3 class="media-heading custom-media-heading"><%= @movie.title %></h3>
+    <% if user_signed_in? && favorited(@movie.id) == true %>
+      <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"> &hearts;</p>
+    <% elsif user_signed_in? && favorited(@movie.id) == false %>
+      <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"> &hearts;</p>
+    <% end %>
+    <p><%= @movie.tagline %></p>
+    <p><strong>Release date: </strong><%= @movie.release_date %></p>
+    <p><strong>Runtime: </strong><%= @movie.runtime %></p>
+    <p><%= @movie.description %></p>
+    <p>Tmdb: <%= @movie.tmdb_id %> Upc: <%= @movie.upc %></p>
+  </div>
+</div>

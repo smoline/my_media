@@ -24,6 +24,7 @@ function process_barcode(upc) {
     $('#movies-info').html('')
     data.forEach(function(movie) {
       console.log(movie)
+      $('#choose-modal').modal('show')
       $('#movies-info').append(`<li data-upc="${upc}" data-tmdb-id="${movie.id}">${movie.title} - ${movie.release_date}</li>`)
     })
   });

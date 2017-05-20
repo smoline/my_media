@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+
+  get 'favorites/destroy'
+
   devise_for :users
 
   devise_scope :user do
     get "/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
-    get "/auth/google/callback" => "users/omniauth_callbacks#google"
+    get "/auth/google/callback"   => "users/omniauth_callbacks#google"
     get "/auth/linkedin/callback" => "users/omniauth_callbacks#linkedin"
-    get "/auth/github/callback" => "users/omniauth_callbacks#github"
+    get "/auth/github/callback"   => "users/omniauth_callbacks#github"
   end
+
+  post 'favorites/:movieId'           =>  'favorites#create'
+  delete 'favorites/destroy/:movieId' =>  'favorites#destroy'
+
+
 
   post 'movies/get_movie_info' => 'movies#get_movie_info'
 

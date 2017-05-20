@@ -1,9 +1,13 @@
-<div class="page-header">
+<div class="page-header custom-header">
   <%= link_to new_movie_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-plus"></span>
-    New Movie
+    Add Movie by UPC
   <% end %>
-  <h1 Listing>movies</h1>
+  <%= link_to new_movie_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Add Movie by Title
+  <% end %>
+  <h1 Listing>My Movies</h1>
 </div>
 
 <div class="container-fluid">
@@ -15,6 +19,11 @@
       <% end %>
       <div class="textline">
         <p><%= movie.title %></p>
+        <% if user_signed_in? && favorited(movie.id) == true %>
+          <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"> &hearts;</p>
+        <% elsif user_signed_in? && favorited(movie.id) == false %>
+          <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"> &hearts;</p>
+        <% end %>
       </div>
       <div class="textline">
         <p><%= movie.release_date %></p>
