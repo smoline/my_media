@@ -6,9 +6,6 @@
 
   <button type="button" class="btn btn-default" id='btn-scanner' remote='true'><span class="glyphicon glyphicon-barcode"></span> Search by UPC</button>
 
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#scanner-modal">
-    Search by UPC</button>
-
   <h1>New movie</h1>
 </div>
 
@@ -16,25 +13,6 @@
 <div class="show-scanner" id='show-scanner'>
   <%= render 'scanner' %>
 </div>
-
-  <div class="modal fade" id="scanner-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Click on the correct Item</h4>
-        </div>
-        <div class="modal-body">
-          <%= render 'scanner' %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div>
-
 
 <div class="modal fade" id="choose-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
