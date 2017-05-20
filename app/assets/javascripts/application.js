@@ -13,10 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require 'cable'
-//= require bootstrap
-
 //= require quagga
 //= require turbolinks
 //= require 'movies'
 //= require 'favorites'
+
+//= require 'cable'
+//= require bootstrap
