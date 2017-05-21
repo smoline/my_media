@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521161902) do
+ActiveRecord::Schema.define(version: 20170521204150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 20170521161902) do
   create_table "files", force: :cascade do |t|
     t.binary "content"
     t.text   "metadata"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.bigint   "upc"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "created_by_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "game_image_url"
+    t.string   "console_type"
+    t.string   "brand"
+    t.text     "image_data"
   end
 
   create_table "movies", force: :cascade do |t|

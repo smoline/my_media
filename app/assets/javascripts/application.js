@@ -16,6 +16,7 @@
 
 //= require quagga
 //= require 'movies'
+//= require 'games'
 //= require 'favorites'
 
 //= require 'cable'

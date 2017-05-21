@@ -7,6 +7,15 @@
   height: auto;
 }
 
+#barcode-scanner-game canvas.drawingBuffer, video.drawingBuffer {
+  display: none;
+}
+
+#barcode-scanner-game video, canvas {
+  width: 100%;
+  height: auto;
+}
+
 .scanner-flexbox {
   display: flex;
   justify-content: center;

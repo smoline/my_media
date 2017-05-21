@@ -2,7 +2,11 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!
   # GET /movies
   def index
-    @movies = Movie.all
+    if params[:search]
+      @movies = Movie.search(params[:search]).order("title DESC")
+    else
+      @movies = Movie.all
+    end
   end
 
   # GET /movies/1

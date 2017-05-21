@@ -44,14 +44,14 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TV Shows<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Sort by Title</a></li>
+              <li><a href="#"><%= link_to "Sort by Title", movies_path %></a></li>
               <li><a href="#">Sort by Release Date</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video Games<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Sort by Title</a></li>
+              <li><a href="#"><%= link_to "Sort by Title", games_path %></a></li>
               <li><a href="#">Sort by Release Date</a></li>
             </ul>
           </li>
@@ -61,15 +61,26 @@
              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %></li>
           <% end %>
         </ul>
-        <ul>
-          <% if action_name == "index" %>
+        <% if controller_name == "movies" && action_name == "index" %>
+          <ul>
             <%= form_tag(movies_path, :method => "get", id: "search-form", class: "navbar-form navbar-right form-inline") do %>
             <div class="form-group">
-              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title, Actor, Year", style: 'width: 300px', id: 'query' %>
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title or Year", style: 'width: 300px' %>
+              <%= submit_tag "Search", class: "btn btn-default" %>
             </div>
             <% end %>
-          <% end %>
-        </ul>
+          </ul>
+        <% end %>
+        <% if controller_name == "games" && action_name == "index" %>
+          <ul>
+            <%= form_tag(games_path, :method => "get", id: "search-form", class: "navbar-form navbar-right form-inline") do %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Name", style: 'width: 300px' %>
+              <%= submit_tag "Search", class: "btn btn-default" %>
+            </div>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
     </div>
   </nav>
@@ -82,7 +93,7 @@
       <% end %>
     <% end %>
 
-    <%= yield %>
   </div>
+  <%= yield %>
 </body>
 </html>

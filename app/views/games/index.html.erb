@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="page-header">
+    <%= link_to new_game_path, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Game
+    <% end %>
+    <h1 Listing>My Video Games</h1>
+  </div>
+</div>
+
+  <ul class="s-ul">
+    <%- @games.each do |game| %>
+    <% if game.created_by_id == current_user.id %>
+    <li class="box">
+      <% if game.image.present? %>
+        <%= link_to game do %>
+          <%= image_tag game.image_url(:small) %>
+        <% end %>
+      <%else %>
+        <%= link_to game do %>
+          <%= image_tag game.game_image_url, class:'gameimage' %>
+        <% end %>
+      <% end %>
+      <div class="textline">
+        <p class="s-text firsttextline"><%= game.title %></p>
+        <p class="fav-heart" data-remote=true data-type=script data-gameid="<%= game.id %>"> &hearts;</p>
+      </div>
+      <div class="textline">
+        <p class="s-text secondtextline"><%= game.brand %></p>
+        <p class="s-text secondtextline"><%= game.console_type %></p>
+      </div>
+    </li>
+    <% end %>
+    <% end %>
+  </ul>
