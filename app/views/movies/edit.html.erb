@@ -1,13 +1,17 @@
-<div class="page-header custom-header">
-  <%= link_to movies_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to @movie, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-info-sign"></span>
-    Show
-  <% end %>
-  <h1>Editing movie</h1>
+<div class="container">
+  <div class="page-header custom-header">
+    <%= link_to movies_path, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>
+    <%= link_to @movie, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-info-sign"></span>
+      Show
+    <% end %>
+    <h1>Editing movie</h1>
+  </div>
 </div>
 
-<%= render 'form' %>
+<div class="container">
+  <%= render 'form' %>
+</div>
