@@ -15,6 +15,7 @@
 
 //= require quagga
 //= require turbolinks
+//= require jquery.turbolinks
 //= require 'movies'
 //= require 'favorites'
 

@@ -6,21 +6,34 @@
 
   <button type="button" class="btn btn-default" id='btn-scanner' remote='true'><span class="glyphicon glyphicon-barcode"></span> Search by UPC</button>
 
+  <button type="button" class="btn btn-default" id='btn-title-search' remote='true'><span class="glyphicon glyphicon-th"></span> Search by Title</button>
+
   <h1>New movie</h1>
 </div>
 
-<%= render 'form' %>
-
-  <div class='scanner-flexbox' id='scanner-flexbox'>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title barcode-scanner-title">Barcode Scanner</h3>
+<div id='title-search'>
+  <div class="search-flexbox">
+    <%= form_tag(get_movies_path, :method => "get", id: "get-movies", class: "form-inline") do %>
+      <div class="form-group">
+        <%= text_field_tag :title, params[:title], class: "form-control", placeholder: "Please type the Title of the Movie Here", style: 'width: 400px' %>
       </div>
-      <div class="panel-body">
-        <div id='barcode-scanner'></div>
-      </div>
-    </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
+    <% end %>
   </div>
+</div>
+
+<div class="container">
+  <%= render 'form' %>
+</div>
+
+<div class="panel panel-default scanner-flexbox" id='show-scanner'>
+  <div class="panel-heading">
+    <h3 class="panel-title barcode-scanner-title">Barcode Scanner</h3>
+  </div>
+  <div class="panel-body">
+    <div id='barcode-scanner'></div>
+  </div>
+</div>
 
 <div class="modal fade" id="choose-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

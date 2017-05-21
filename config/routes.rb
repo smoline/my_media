@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   post 'favorites/:movieId'           =>  'favorites#create'
   delete 'favorites/destroy/:movieId' =>  'favorites#destroy'
 
-  post 'movies/get_movie_info' => 'movies#get_movie_info'
-
   get 'pages/landing'
   root 'pages#landing'
+
+  get '/get_movies'  =>  'movies#get_movies'
 
   resources :movies do
     collection do

@@ -10,11 +10,11 @@ class Movie < ApplicationRecord
             upc: upc
             })
     title = JSON.parse(response.body)["0"]["productname"]
-    return title
+    return title[/^[A-Za-z0-9\s\p.]+/i]
   end
 
   def self.find_initial_movie_info(title)
-    title_new = title[/^[A-Za-z0-9\s\p.]+/i]
+    title_new = title
     p title_new
 
     response = HTTParty.get("https://api.themoviedb.org/3/search/movie", query: {

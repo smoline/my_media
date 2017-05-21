@@ -69,6 +69,12 @@ class MoviesController < ApplicationController
     end
   end
 
+  def get_movies
+    title = params[:title]
+    @movie_info = Movie.find_initial_movie_info(title)
+    render json: @movie_info
+  end
+
   def get_movie_info
     more_movie_info = Movie.find_more_movie_info(params[:tmdb_id])
 
