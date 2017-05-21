@@ -70,11 +70,11 @@ $(document).on('turbolinks:load', load_quagga);
 $(document).on('turbolinks:load', function() {
 
   $('#btn-scanner').on('click', function() {
-  $('#show-scanner').show()
+    $('#show-scanner').show()
   })
 
   $('#btn-title-search').on('click', function() {
-  $('#title-search').show()
+    $('#title-search').show()
   })
 
   $('#movies-info').on('click', 'li', function() {

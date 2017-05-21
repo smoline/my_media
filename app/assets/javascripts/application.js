@@ -11,11 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require turbolinks
 //= require jquery_ujs
 
 //= require quagga
-//= require turbolinks
-//= require jquery.turbolinks
 //= require 'movies'
 //= require 'favorites'
 

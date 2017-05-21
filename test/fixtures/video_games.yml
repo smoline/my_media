@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  upc: 1
+  game_title: MyString
+  description: MyString
+  created_by_id: 1
+
+two:
+  upc: 1
+  game_title: MyString
+  description: MyString
+  created_by_id: 1
