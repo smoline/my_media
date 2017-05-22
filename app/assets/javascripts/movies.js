@@ -88,7 +88,6 @@ $(document).on('turbolinks:load', function() {
 
   $('#search-title').on('click', function() {
     let title = $('#movie-title').val()
-    console.log('you are searching for', $(this).html())
     console.log(`the title is ${title}`)
 
     $.ajax({
