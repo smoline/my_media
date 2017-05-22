@@ -4,6 +4,12 @@
       <span class="glyphicon glyphicon-plus"></span>
       New Game
     <% end %>
+    <div class="well well-lg custom-well text-center">
+      <h5>Share what you are playing with your friends!</h5>
+      <div class="text-center">
+        <%= social_share_button_tag(@games.last.title, :url => "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+      </div>
+    </div>
     <h1 Listing>My Video Games</h1>
   </div>
 </div>
