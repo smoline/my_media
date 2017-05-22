@@ -12,6 +12,13 @@
       <span class="glyphicon glyphicon-pencil"></span>
       Edit
     <% end %>
+    <div class="well well-lg custom-well text-center">
+      <h5>Share what you are watching with your friends!</h5>
+      <div class="text-center">
+        <%= social_share_button_tag(@movie.title, :url => "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+      </div>
+    </div>
+
     <h1>Movie Details</h1>
   </div>
 </div>

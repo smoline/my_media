@@ -18,6 +18,8 @@
 //= require 'movies'
 //= require 'games'
 //= require 'favorites'
+//= require social-share-button
+
 
 //= require 'cable'
 //= require bootstrap

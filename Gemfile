@@ -20,6 +20,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'turbolinks', '~> 5.0.0'
 
+gem 'social-share-button', '~> 0.10.0'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

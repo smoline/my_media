@@ -26,3 +26,17 @@
 .gameimage {
   width: 300px;
 }
+
+$size: 35px;
+
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
+}
+
+.custom-well {
+  max-width: 225px;
+}
