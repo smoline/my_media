@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
     if params[:search]
       @movies = Movie.search(params[:search]).order("title DESC")
     else
-      @movies = Movie.all
+      @movies = Movie.all.order("title")
     end
   end
 
@@ -75,8 +75,13 @@ class MoviesController < ApplicationController
 
   def get_movies
     title = params[:title]
-    @movie_info = Movie.find_initial_movie_info(title)
-    render json: @movie_info
+    @movie = Movie.find_or_initialize_by(title: params[:title])
+    if @movie.new_record?
+      @movie_info = Movie.find_initial_movie_info(title)
+      render json: @movie_info
+    else
+      redirect_to @movie
+    end
   end
 
   def get_movie_info

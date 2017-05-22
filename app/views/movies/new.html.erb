@@ -19,7 +19,9 @@
       <div class="form-group">
         <%= text_field_tag :movie_title, params[:movie_title], id: 'movie-title', class: "form-control", placeholder: "Please type the Title of the Movie Here", style: 'width: 400px' %>
       </div>
-        <button type="submit" class="btn btn-default" id='search-title' remote='true'><span class="glyphicon glyphicon-search"></span> Search</button>
+      <div class="btn btn-default" id='search-title'>
+        <span class="glyphicon glyphicon-search"></span> Search
+      </div>
     <% end %>
   </div>
 </div>

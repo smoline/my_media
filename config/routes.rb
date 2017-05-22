@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     collection do
       post :get_barcode
       post :get_movie_info
+      post :get_movies
     end
   end
 

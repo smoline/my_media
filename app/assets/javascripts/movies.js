@@ -20,14 +20,23 @@ function process_barcode(upc) {
     type: "POST",
     url: '/movies/get_barcode',
     data: { upc: upc }
-  }).then(function(data) {
+  }).then(function(movieInfo) {
     $('#movies-info').html('')
-    data.forEach(function(movie) {
+    movieInfo.forEach(function(movie) {
       console.log(movie)
       $('#choose-modal').modal('show')
       $('#movies-info').append(`<li data-upc="${upc}" data-tmdb-id="${movie.id}">${movie.title} - ${movie.release_date}</li>`)
     })
   });
+}
+
+function process_movie_choices(movieInfo) {
+  $('#movies-info').html('')
+  movieInfo.forEach(function(movie) {
+    console.log(movie)
+    $('#choose-modal').modal('show')
+    $('#movies-info').append(`<li data-tmdb-id="${movie.id}">${movie.title} - ${movie.release_date}</li>`)
+  })
 }
 
 function load_quagga(){
@@ -70,11 +79,25 @@ $(document).on('turbolinks:load', load_quagga);
 $(document).on('turbolinks:load', function() {
 
   $('#btn-scanner').on('click', function() {
-    $('#show-scanner').show()
+    $('#show-scanner').toggle()
   })
 
   $('#btn-title-search').on('click', function() {
-    $('#title-search').show()
+    $('#title-search').toggle()
+  })
+
+  $('#search-title').on('click', function() {
+    let title = $('#movie-title').val()
+    console.log('you are searching for', $(this).html())
+    console.log(`the title is ${title}`)
+
+    $.ajax({
+      type: "POST",
+      url: '/movies/get_movies',
+      data: { title: title }
+    }).then(function(movieInfo) {
+      process_movie_choices(movieInfo)
+    });
   })
 
   $('#movies-info').on('click', 'li', function() {

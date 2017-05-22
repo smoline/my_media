@@ -4,7 +4,7 @@ class GamesController < ApplicationController
     if params[:search]
       @games = Game.search(params[:search]).order("title DESC")
     else
-      @games = Game.all
+      @games = Game.all.order("title")
     end
   end
 
