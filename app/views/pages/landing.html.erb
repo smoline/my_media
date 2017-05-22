@@ -18,6 +18,36 @@
 <body class="custom-body">
   <div class="custom-brand">My Media Library</div>
   <div class="custom-address-bar">For All Your Media Collections</div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default s-navbar-default s-navbar" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header s-navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav s-nav s-navbar-nav">
+          <li><%= link_to "Home", movies_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <% else %>
+            <li><%= link_to "Login", new_user_session_path %></li>
+            <li><%= link_to "Signup", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
     <!-- Full Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->
@@ -38,7 +68,7 @@
             </div>
             <div class="item">
                 <!-- Set the second background image using inline CSS below. -->
-                <div class="fill"><%= image_tag("movies.jpg") %></div>
+                <div class="fill"><%= image_tag("scanningbarcodewithsmartphone.jpg") %></div>
                 <div class="carousel-caption">
                     <h2>More Movies!</h2>
                 </div>
@@ -62,35 +92,6 @@
 
     </header>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">My Media Library</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><%= link_to "Home", movies_path %></li>
-            <% if user_signed_in? %>
-              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-            <% else %>
-              <li><%= link_to "Login", new_user_session_path %></li>
-              <li><%= link_to "Signup", new_user_registration_path %></li>
-            <% end %>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-      </div>
-      <!-- /.container -->
-    </nav>
     <!-- Page Content -->
     <div class="container custom-text">
 
@@ -106,9 +107,11 @@
         <!-- Footer -->
         <footer>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <p>Copyright &copy; My Media Library 2017</p>
-                    <a href="https://www.themoviedb.org/?language=en" src="408x161-powered-by-rectangle-green.png"></a>
+                </div>
+                <div class="pull-right">
+                    <a href="https://www.themoviedb.org/?language=en" height="50px"><%= image_tag("408x161-powered-by-rectangle-green sm.png") %></a>
                 </div>
             </div>
             <!-- /.row -->
