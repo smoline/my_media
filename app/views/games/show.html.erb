@@ -1,24 +1,32 @@
 <div class="container">
-  <div class="page-header">
-    <%= link_to games_path, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-list-alt"></span>
-      Back
-    <% end %>
-    <%= link_to @game, class:'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } do %>
-      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      Delete
-    <% end %>
-    <%= link_to edit_game_path(@game), class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-pencil"></span>
-      Edit
-    <% end %>
-    <div class="well well-lg custom-well text-center">
-      <h5>Share what you are playing with your friends!</h5>
-      <div class="text-center">
-        <%= social_share_button_tag(@game.title, :url => "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+  <div class="page-header custom-header">
+    <div class="header-flexbox">
+      <div class="flextitle">
+        <h1 Listing>Video Game Details </h1>
+      </div>
+      <div class="social-flexbox">
+        <div class="well well-sm custom-well text-center">
+          <h5>Share what you are playing with your friends!</h5>
+          <div class="text-center">
+            <%= social_share_button_tag(@game.title, :url => "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <%= link_to games_path, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-list-alt"></span>
+          Back
+        <% end %>
+        <%= link_to @game, class:'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          Delete
+        <% end %>
+        <%= link_to edit_game_path(@game), class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-pencil"></span>
+          Edit
+        <% end %>
       </div>
     </div>
-    <h1>Show game</h1>
   </div>
 </div>
 

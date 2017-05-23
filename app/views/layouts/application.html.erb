@@ -34,8 +34,7 @@
             <ul class="dropdown-menu">
               <li><a href="#"><%= link_to "Sort by Title", movies_path %></a></li>
               <li><a href="#">Sort by Release Date</a></li>
-              <li><a href="#">Sort by Favorites</a></li>
-              <li role="separator" class="divider"></li>
+              <li><a href="#">Favorites First</a></li>
               <li><a href="#">Sort By When Added</a></li>
             </ul>
           </li>
@@ -55,6 +54,8 @@
               <li><a href="#">Sort by Release Date</a></li>
               <li><a href="#">Favorites First</a></li>
               <li><a href="#">Sort by When Added</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Sort by Console</a></li>
             </ul>
           </li>
         </ul>
@@ -77,7 +78,7 @@
           <ul>
             <%= form_tag(games_path, :method => "get", id: "search-form", class: "navbar-form navbar-right form-inline") do %>
             <div class="form-group">
-              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Name", style: 'width: 300px' %>
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title or Description", style: 'width: 300px' %>
               <%= submit_tag "Search", class: "btn btn-default" %>
             </div>
             <% end %>

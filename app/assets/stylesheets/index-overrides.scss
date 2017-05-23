@@ -30,14 +30,32 @@
   font-size: 16px;
 }
 
-// .heartbox {
-//   display: flex;
-//   text-align: right;
-// }
-
 .secondtextline {
   margin-top: 0;
   padding-top: 12px;
+  font-size: 14px;
+}
+
+.game-box {
+  border-bottom: 1px solid #cacaca;
+  margin: 1em;
+  text-align: right;
+}
+
+.game-textline {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.game-firsttextline {
+  padding-top: 11px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.game-secondtextline {
+  margin-top: 0;
   font-size: 14px;
 }
 

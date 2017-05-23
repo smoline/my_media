@@ -1,23 +1,31 @@
 <div class="container">
-  <div class="page-header">
-    <%= link_to new_game_path, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      New Game
-    <% end %>
-    <div class="well well-lg custom-well text-center">
-      <h5>Share what you are playing with your friends!</h5>
-      <div class="text-center">
-        <%= social_share_button_tag(@games.last.title, :url => "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+  <div class="page-header custom-header">
+    <div class="header-flexbox">
+      <div class="flextitle">
+        <h1 Listing>My Video Games </h1>
+      </div>
+      <div class="social-flexbox">
+        <div class="well well-sm custom-well text-center">
+          <h5>Share what you are playing with your friends!</h5>
+          <div class="text-center">
+            <%= social_share_button_tag(@games.last.title, :url => "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <%= link_to new_game_path, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          New Game
+        <% end %>
       </div>
     </div>
-    <h1 Listing>My Video Games</h1>
   </div>
 </div>
 
   <ul class="s-ul">
     <%- @games.each do |game| %>
     <% if game.created_by_id == current_user.id %>
-    <li class="box">
+    <li class="game-box">
       <% if game.image.present? %>
         <%= link_to game do %>
           <%= image_tag game.image_url(:small) %>
@@ -27,13 +35,13 @@
           <%= image_tag game.game_image_url, class:'gameimage' %>
         <% end %>
       <% end %>
-      <div class="textline">
-        <p class="s-text firsttextline"><%= game.title %></p>
+      <div class="game-textline">
+        <p class="s-text game-firsttextline"><%= game.title %></p>
         <p class="fav-heart" data-remote=true data-type=script data-gameid="<%= game.id %>"> &hearts;</p>
       </div>
       <div class="textline">
-        <p class="s-text secondtextline"><%= game.brand %></p>
-        <p class="s-text secondtextline"><%= game.console_type %></p>
+        <p class="s-text game-secondtextline"><%= game.brand %></p>
+        <p class="s-text game-secondtextline"><%= game.console_type %></p>
       </div>
     </li>
     <% end %>
