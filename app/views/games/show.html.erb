@@ -46,9 +46,11 @@
     <div class="media-body">
       <h3 class="media-heading custom-media-heading"><%= @game.title %></h3>
       <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= @game.id %>"> &hearts;</p>
-      <p class="custom-media">Brand: <%= @game.brand %> Console: <%= @game.console_type %></p>
+      <p class="custom-media"><strong>Brand: </strong><%= @game.brand %></p>
+      <p class="custom-media"><strong>Console: </strong><%= @game.console_type %></p>
       <p class="custom-media"><%= @game.description %></p>
-      <p class="custom-media">Upc: <%= @game.upc %></p>
+      <p class="custom-media"><strong>Original Release Date: </strong><%= @game.release_date %></p>
+      <p class="custom-media"><strong>Upc: </strong><%= @game.upc %></p>
     </div>
   </div>
 </div>

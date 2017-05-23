@@ -1,6 +1,8 @@
 class Movie < ApplicationRecord
   include ImageUploader[:image]
 
+  validates :title, presence: true
+
   has_many :favorites, dependent: :destroy
 
   def self.find_movie_title(upc)

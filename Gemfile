@@ -25,6 +25,9 @@ gem 'social-share-button', '~> 0.10.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Pagination
+gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'master'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

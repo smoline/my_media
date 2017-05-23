@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
   include ImageUploader[:image]
 
+  validates :title, presence: true
+
   def self.find_game_title(upc)
     response = HTTParty.get("http://www.searchupc.com/handlers/upcsearch.ashx", query: {
             request_type: 3,

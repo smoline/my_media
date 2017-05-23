@@ -3,15 +3,15 @@ class MoviesController < ApplicationController
   # GET /movies
   def index
     if params[:search]
-      @movies = Movie.search(params[:search]).order('title')
+      @movies = Movie.search(params[:search]).page(params[:page]).per(20).order('title')
     elsif params[:sort] == 'title'
-      @movies = Movie.all.order('title')
+      @movies = Movie.page(params[:page]).per(20).order('title')
     elsif params[:sort] == 'release_date'
-      @movies = Movie.all.order('release_date DESC')
+      @movies = Movie.page(params[:page]).per(20).order('release_date DESC')
     elsif params[:sort] == 'created_at'
-      @movies = Movie.all.order('created_at DESC')
+      @movies = Movie.page(params[:page]).per(20).order('created_at DESC')
     else
-      @movies = Movie.all.order('title')
+      @movies = Movie.page(params[:page]).per(20).order('title')
     end
   end
 

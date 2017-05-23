@@ -2,17 +2,17 @@ class GamesController < ApplicationController
   # GET /games
   def index
     if params[:search]
-      @games = Game.search(params[:search]).order('title')
+      @games = Game.search(params[:search]).page(params[:page]).per(10).order('title')
     elsif params[:sort] == 'title'
-      @games = Game.all.order('title')
+      @games = Game.page(params[:page]).per(10).order('title')
     elsif params[:sort] == 'release_date'
-      @games = Game.all.order('release_date DESC')
+      @games = Game.page(params[:page]).per(10).order('release_date DESC')
     elsif params[:sort] == 'created_at'
-      @games = Game.all.order('created_at DESC')
+      @games = Game.page(params[:page]).per(10).order('created_at DESC')
     elsif params[:sort] == 'console_type'
-      @games = Game.all.order('console_type DESC')
+      @games = Game.page(params[:page]).per(10).order('console_type DESC')
     else
-      @games = Game.all.order('title')
+      @games = Game.page(params[:page]).per(10).order('title')
     end
   end
 
@@ -84,6 +84,6 @@ class GamesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def game_params
-    params.require(:game).permit(:upc, :title, :description, :created_by_id, :game_image_url, :brand, :console_type, :image)
+    params.require(:game).permit(:upc, :title, :description, :created_by_id, :game_image_url, :brand, :console_type, :image, :release_date)
   end
 end
