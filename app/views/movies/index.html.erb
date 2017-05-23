@@ -8,7 +8,7 @@
         <div class="well well-sm custom-well text-center">
           <h5>Share what you are watching with your friends!</h5>
           <div class="text-center">
-            <%= social_share_button_tag(url: "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+            <%= social_share_button_tag(@movies.last.title, url: "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
           </div>
         </div>
       </div>
