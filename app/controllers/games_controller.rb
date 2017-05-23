@@ -2,9 +2,17 @@ class GamesController < ApplicationController
   # GET /games
   def index
     if params[:search]
-      @games = Game.search(params[:search]).order("title DESC")
+      @games = Game.search(params[:search]).order('title')
+    elsif params[:sort] == 'title'
+      @games = Game.all.order('title')
+    elsif params[:sort] == 'release_date'
+      @games = Game.all.order('release_date DESC')
+    elsif params[:sort] == 'created_at'
+      @games = Game.all.order('created_at DESC')
+    elsif params[:sort] == 'console_type'
+      @games = Game.all.order('console_type DESC')
     else
-      @games = Game.all.order("title")
+      @games = Game.all.order('title')
     end
   end
 

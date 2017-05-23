@@ -32,10 +32,11 @@
           <li class="dropdown active">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Movies<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Sort by Title", movies_path %></a></li>
-              <li><a href="#">Sort by Release Date</a></li>
-              <li><a href="#">Favorites First</a></li>
-              <li><a href="#">Sort By When Added</a></li>
+              <li><a href="#"><%= link_to "Sort by Title", movies_path(sort: 'title') %></a></li>
+              <li><a href="#"><%= link_to "Sort by Release Date", movies_path(sort: 'release_date') %></a></li>
+              <li><a href="#"><%= link_to "Sort by When Added", movies_path(sort: 'created_at') %></a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Favorites Only</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -43,19 +44,20 @@
             <ul class="dropdown-menu">
               <li><a href="#"><%= link_to "Sort by Title", movies_path %></a></li>
               <li><a href="#">Sort by Release Date</a></li>
-              <li><a href="#">Favorites First</a></li>
               <li><a href="#">Sort by When Added</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Favorites Only</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video Games<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Sort by Title", games_path %></a></li>
-              <li><a href="#">Sort by Release Date</a></li>
-              <li><a href="#">Favorites First</a></li>
-              <li><a href="#">Sort by When Added</a></li>
+              <li><a href="#"><%= link_to "Sort by Title", games_path(sort: 'title') %></a></li>
+              <li><a href="#"><%= link_to "Sort by Release Date", games_path(sort: 'release_date') %></a></li>
+              <li><a href="#"><%= link_to "Sort by When Added", games_path(sort: 'created_at') %></a></li>
+              <li><a href="#"><%= link_to "Sort by Console", games_path(sort: 'console_type') %></a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Sort by Console</a></li>
+              <li><a href="#">Favorites First</a></li>
             </ul>
           </li>
         </ul>

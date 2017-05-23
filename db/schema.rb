@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522005026) do
+ActiveRecord::Schema.define(version: 20170523170205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170522005026) do
     t.string   "console_type"
     t.string   "brand"
     t.text     "image_data"
+    t.string   "release_date"
   end
 
   create_table "movies", force: :cascade do |t|

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+</head>
+
+  <div class="container">
+    <div class="alert alert-warning">
+      <h1 class="text-center">Welcome to My Media Library, <%= @user.email %>!</h1>
+
+      <h2 class="text-center">We are pleased you chose us for all your media documenting and organizing needs.</h2>
+      <h3 class="text-center">
+        Here is a link to make it easy to <%= link_to "log back into My Media Library", new_user_session_url %>.
+      </h3>
+      <h2 class="text-center">
+        Thanks for joining and have a great day!
+      </h2>
+    </div>
+  </div>
+
+</html>
