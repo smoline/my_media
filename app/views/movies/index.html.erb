@@ -1,16 +1,24 @@
 <div class="container">
   <div class="page-header custom-header">
-    <%= link_to new_movie_path, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      Add Movie
-    <% end %>
-    <div class="well well-lg custom-well text-center">
-      <h5>Share what you are watching with your friends!</h5>
-      <div class="text-center">
-        <%= social_share_button_tag(@movies.last.title, :url => "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+    <div class="header-flexbox">
+      <div class="flextitle">
+        <h1 Listing>My Movies </h1>
       </div>
+      <div class="social-flexbox">
+        <div class="well well-sm custom-well text-center">
+          <h5>Share what you are watching with your friends!</h5>
+          <div class="text-center">
+            <%= social_share_button_tag(@movies.last.title, :url => "http://my-media-library.com", allow_sites: %w(twitter facebook linkedin)) %>
+          </div>
+        </div>
+      </div>
+      <div>
+      <%= link_to new_movie_path, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-plus"></span>
+        Add Movie
+      <% end %>
     </div>
-    <h1 Listing>My Movies</h1>
+    </div>
   </div>
 </div>
 
@@ -29,16 +37,20 @@
         <% end %>
       <% end %>
       <div class="textline">
-        <p class="s-text firsttextline"><%= movie.title %></p>
-        <% if user_signed_in? && favorited(movie.id) == true %>
-          <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"> &hearts;</p>
-        <% elsif user_signed_in? && favorited(movie.id) == false %>
-          <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"> &hearts;</p>
-        <% end %>
+        <div class="firsttextline">
+          <p class="s-text"><%= movie.title %></p>
+        </div>
       </div>
       <div class="textline">
         <p class="s-text secondtextline"><%= movie.release_date %></p>
         <p class="s-text secondtextline"><%= movie.runtime %> Mins.</p>
+        <div class="heartbox">
+          <% if user_signed_in? && favorited(movie.id) == true %>
+          <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"> &hearts;</p>
+          <% elsif user_signed_in? && favorited(movie.id) == false %>
+          <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"> &hearts;</p>
+          <% end %>
+        </div>
       </div>
     </li>
     <% end %>

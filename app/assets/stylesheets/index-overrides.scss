@@ -10,16 +10,41 @@
   border-bottom: 1px solid #cacaca;
   margin: 1em;
   text-align: right;
+  height: 375px;
+  width: 185px;
 }
 
 .textline {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.firsttextline {
+  padding-top: 5px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  max-width: 175px;
+  text-align: left;
   font-size: 16px;
+}
+
+// .heartbox {
+//   display: flex;
+//   text-align: right;
+// }
+
+.secondtextline {
+  margin-top: 0;
+  padding-top: 12px;
+  font-size: 14px;
 }
 
 .fav-heart {
   font-size: 30px;
+  padding: 0;
+  margin: 0;
 }
 
 .faved-heart {
@@ -29,15 +54,6 @@
 
 .s-text {
   color: #c2cdcd;
-}
-
-.firsttextline {
-  padding-top: 11px;
-}
-
-.secondtextline {
-  margin-top: 0;
-  padding-top: 0;
 }
 
 .custom-choice li {

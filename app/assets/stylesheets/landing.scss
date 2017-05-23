@@ -65,7 +65,6 @@ footer {
   .s-navbar {
     border-radius: 0;
     min-height: 0;
-    align-content: center;
     }
 
   .s-navbar-nav>li {
@@ -73,15 +72,18 @@ footer {
   }
 
   .s-navbar-nav {
-    display: table;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     float: none;
     margin: 0 auto;
-    table-layout: fixed;
+    // table-layout: fixed;
     font-size: 1.25em;
   }
 
   .s-nav>li {
     padding: 20px;
+    align-items: center;
   }
 
   .s-navbar-default {

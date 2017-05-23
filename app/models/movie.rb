@@ -40,7 +40,7 @@ class Movie < ApplicationRecord
   end
 
   def self.search(search)
-    where("title LIKE ? or release_date LIKE ?", "%#{search}%", "%#{search}%")
+    where("title LIKE ? or release_date LIKE ? or description LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 
 end
