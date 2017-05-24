@@ -77,13 +77,18 @@ function load_quagga(){
 $(document).on('turbolinks:load', load_quagga);
 
 $(document).on('turbolinks:load', function() {
+  $('.barcode-scanner-title').on('click', function() {
+    process_barcode('43396480209')
+  })
 
   $('#btn-scanner').on('click', function() {
-    $('#show-scanner').toggle()
+    $('#title-search').hide()
+    $('#show-scanner').show()
   })
 
   $('#btn-title-search').on('click', function() {
-    $('#title-search').toggle()
+    $('#show-scanner').hide()
+    $('#title-search').show()
   })
 
   $('#search-title').on('click', function() {
@@ -110,5 +115,17 @@ $(document).on('turbolinks:load', function() {
       url: '/movies/get_movie_info',
       data: { tmdb_id: tmdb_id, upc: upc }
     })
+  })
+
+  $('.s-ul').on('click', '.minhour', function(event) {
+    if ($(this).data('showing-hours') === 'true') {
+      let mins = $(this).data("mins")
+      $(this).text(`${mins} Mins.`)
+      $(this).data('showing-hours', 'false')
+    } else {
+      let hours = $(this).data("hours")
+      $(this).text(`${hours} Hrs.`)
+      $(this).data('showing-hours', 'true')
+    }
   })
 });

@@ -11,7 +11,6 @@ class User < ApplicationRecord
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
-        NotificationMailer.welcome_email(@user).deliver_later
       end
     end
   end

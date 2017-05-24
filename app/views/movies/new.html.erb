@@ -5,41 +5,44 @@
       Back
     <% end %>
 
-    <button type="button" class="btn btn-default" id='btn-scanner' remote='true'><span class="glyphicon glyphicon-barcode"></span> Search by UPC</button>
+    <a class="btn btn-default" id='btn-scanner'><span class="glyphicon glyphicon-barcode"></span> Search by UPC</a>
 
-    <button type="button" class="btn btn-default" id='btn-title-search' remote='true'><span class="glyphicon glyphicon-th"></span> Search by Title</button>
+    <a class="btn btn-default" id='btn-title-search'><span class="glyphicon glyphicon-th"></span> Search by Title</a>
 
     <h1>New movie</h1>
   </div>
 </div>
 
-<div id='title-search'>
-  <div class="search-flexbox">
-    <%= form_tag(get_movies_path, :method => "get", id: "get-movies", class: "form-inline") do %>
-      <div class="form-group">
-        <%= text_field_tag :movie_title, params[:movie_title], id: 'movie-title', class: "form-control", placeholder: "Please type the Title of the Movie Here", style: 'width: 400px' %>
+<div class="row">
+  <div class="col-md-6 col-xs-12">
+    <div id='title-search'>
+      <div class="search-flexbox">
+        <%= form_tag(get_movies_path, :method => "get", id: "get-movies", class: "form-inline") do %>
+          <div class="form-group">
+            <%= text_field_tag :movie_title, params[:movie_title], id: 'movie-title', class: "form-control", placeholder: "Please type the Title of the Movie Here", style: 'width: 400px' %>
+          </div>
+          <div class="btn btn-default" id='search-title'>
+            <span class="glyphicon glyphicon-search"></span> Search
+          </div>
+        <% end %>
       </div>
-      <div class="btn btn-default" id='search-title'>
-        <span class="glyphicon glyphicon-search"></span> Search
+    </div>
+    <div class="scanner-flexbox">
+      <div class="panel panel-default" id='show-scanner'>
+        <div class="panel-heading">
+          <h3 class="panel-title barcode-scanner-title">Barcode Scanner</h3>
+        </div>
+        <div class="panel-body">
+          <div id='barcode-scanner'></div>
+        </div>
       </div>
-    <% end %>
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12"
+    <%= render 'form' %>
   </div>
 </div>
 
-<div class="container">
-  <%= render 'form' %>
-</div>
-
-<div class="scanner-flexbox">
-  <div class="panel panel-default" id='show-scanner'>
-    <div class="panel-heading">
-      <h3 class="panel-title barcode-scanner-title">Barcode Scanner</h3>
-    </div>
-    <div class="panel-body">
-      <div id='barcode-scanner'></div>
-    </div>
-  </div>
-</div>
 
 <div class="modal fade" id="choose-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

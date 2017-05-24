@@ -65,9 +65,17 @@
   margin: 0;
 }
 
+.fav-heart:hover {
+  cursor: pointer;
+}
+
 .faved-heart {
   font-size: 30px;
   color: red;
+}
+
+.faved-heart:hover {
+  cursor: pointer;
 }
 
 .s-text {
@@ -80,6 +88,14 @@
   font-weight: bold;
 }
 
+.custom-choice li:hover {
+  cursor: pointer;
+}
+
 #paginator {
   padding-bottom: 50px;
+}
+
+.minhour:hover {
+  cursor: pointer;
 }

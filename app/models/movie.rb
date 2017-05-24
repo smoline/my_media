@@ -42,7 +42,13 @@ class Movie < ApplicationRecord
   end
 
   def self.search(search)
+
     where("title LIKE ? or release_date LIKE ? or description LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
+  def runtime_hours
+    hours = runtime.to_f / 60
+    return hours.round(2)
   end
 
 end

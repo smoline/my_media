@@ -1,5 +1,14 @@
-<p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<div class="container">
+  <div class="alert alert-warning">
+    <h1 class="text-center">Welcome to My Media Library, <%= @email %>!</h1>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+    <h2 class="text-center">You can confirm your account email through the link below:</h2>
+    <h3 class="text-center">
+      <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+    </h3>
+    <h2 class="text-center">
+      Thanks for joining and have a great day!
+    </h2>
+  </div>
+</div>
