@@ -90,8 +90,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :user_name => ENV['SENDGRID_USERNAME'],
     :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'my-media-library2.herokuapp.com',
-    :port => 587,
+    :domain => 'https://my-media-library2.herokuapp.com',
+    :port => 465,
     :authentication => :plain,
     :enable_starttls_auto => true
   }
