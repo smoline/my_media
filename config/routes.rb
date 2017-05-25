@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    get "/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
-    get "/auth/google/callback"   => "users/omniauth_callbacks#google"
-    get "/auth/linkedin/callback" => "users/omniauth_callbacks#linkedin"
-    get "/auth/github/callback"   => "users/omniauth_callbacks#github"
+    get "auth/facebook/callback" => "users/omniauth_callbacks#facebook"
+    get "auth/google/callback"   => "users/omniauth_callbacks#google"
+    get "auth/linkedin/callback" => "users/omniauth_callbacks#linkedin"
+    get "auth/github/callback"   => "users/omniauth_callbacks#github"
   end
 
   post '/favorites/:movieId'                   =>  'favorites#create'
