@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     user = User.find_by('email = ?', auth['info']['email'])
+    NotificationMailer.welcome_email(user).deliver_later
     if user.blank?
       user = User.new(
         {
@@ -26,7 +27,7 @@ class User < ApplicationRecord
           password: Devise.friendly_token[0,20]
         })
       user.save!
-      NotificationMailer.welcome_email(@user).deliver_later
+      NotificationMailer.welcome_email(user).deliver_later
     end
     user
   end
