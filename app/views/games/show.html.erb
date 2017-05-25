@@ -34,13 +34,9 @@
   <div class="media">
     <div class="media-left game-image">
       <% if @game.image.present? %>
-        <%= link_to @game do %>
-          <%= image_tag @game.image_url(:medium) %>
-        <% end %>
+        <%= image_tag @game.image_url(:medium) %>
       <%else %>
-        <%= link_to @game do %>
-          <%= image_tag @game.game_image_url, class: "gameimage" %>
-        <% end %>
+        <%= image_tag @game.game_image_url, class: "gameimage" %>
       <% end %>
     </div>
     <div class="media-body">

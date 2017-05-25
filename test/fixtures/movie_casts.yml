@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  person: one
+  character: MyString
+  order: 1
+
+two:
+  movie: two
+  person: two
+  character: MyString
+  order: 1

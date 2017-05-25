@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523201618) do
+ActiveRecord::Schema.define(version: 20170524235026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,37 @@ ActiveRecord::Schema.define(version: 20170523201618) do
     t.string   "name"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "movie_casts", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "person_id"
+    t.string   "character"
+    t.integer  "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_movie_casts_on_movie_id", using: :btree
+    t.index ["person_id"], name: "index_movie_casts_on_person_id", using: :btree
+  end
+
+  create_table "movie_crews", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.integer  "person_id"
+    t.string   "department"
+    t.string   "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_movie_crews_on_movie_id", using: :btree
+    t.index ["person_id"], name: "index_movie_crews_on_person_id", using: :btree
+  end
+
+  create_table "movie_genres", force: :cascade do |t|
+    t.integer  "genre_id"
+    t.integer  "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_movie_genres_on_genre_id", using: :btree
+    t.index ["movie_id"], name: "index_movie_genres_on_movie_id", using: :btree
   end
 
   create_table "movies", force: :cascade do |t|
@@ -101,4 +132,10 @@ ActiveRecord::Schema.define(version: 20170523201618) do
 
   add_foreign_key "favorites", "movies"
   add_foreign_key "favorites", "users"
+  add_foreign_key "movie_casts", "movies"
+  add_foreign_key "movie_casts", "people"
+  add_foreign_key "movie_crews", "movies"
+  add_foreign_key "movie_crews", "people"
+  add_foreign_key "movie_genres", "genres"
+  add_foreign_key "movie_genres", "movies"
 end

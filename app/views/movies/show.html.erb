@@ -34,13 +34,9 @@
   <div class="media">
     <div class="media-left">
         <% if @movie.image.present? %>
-          <%= link_to @movie do %>
-            <%= image_tag @movie.image_url(:medium), class:'mainimage' %>
-          <% end %>
+          <%= image_tag @movie.image_url(:medium), class:'mainimage' %>
         <%else %>
-          <%= link_to @movie do %>
             <%= image_tag @movie.movie_image_url %>
-          <% end %>
         <% end %>
     </div>
     <div class="media-body">

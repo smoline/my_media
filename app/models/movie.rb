@@ -3,7 +3,11 @@ class Movie < ApplicationRecord
 
   validates :title, presence: true
 
+  belongs_to :created_by, class_name: "User"
   has_many :favorites, dependent: :destroy
+  has_many :genres, through: :movie_genres
+  has_many :people, through: :movie_casts
+  has_many :people, through: :movie_crews
 
   def self.find_movie_title(upc)
     response = HTTParty.get("http://www.searchupc.com/handlers/upcsearch.ashx", query: {
@@ -17,7 +21,6 @@ class Movie < ApplicationRecord
 
   def self.find_initial_movie_info(title)
     title_new = title
-    p title_new
 
     response = HTTParty.get("https://api.themoviedb.org/3/search/movie", query: {
       api_key: ENV['TMDB_API_KEY'],
