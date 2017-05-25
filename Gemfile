@@ -22,6 +22,8 @@ gem 'turbolinks', '~> 5.0.0'
 
 gem 'social-share-button', '~> 0.10.0'
 
+gem 'sendgrid-ruby'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -87,5 +89,4 @@ gem 'refile', github: 'gstark/refile', branch: 'updates-for-rails-5', require: '
 gem 'refile-postgres'
 group :production do
   gem 'rails_12factor'
-  gem 'sendgrid-ruby'
 end
