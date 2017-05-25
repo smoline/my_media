@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :games do
     post :get_barcode, on: :collection
   end
+
   devise_for :users
 
   devise_scope :user do
@@ -17,8 +18,6 @@ Rails.application.routes.draw do
 
   get 'pages/landing'
   root 'pages#landing'
-
-  get '/get_movies'  =>  'movies#get_movies'
 
   resources :movies do
     collection do

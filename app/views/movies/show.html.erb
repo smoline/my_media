@@ -42,9 +42,9 @@
     <div class="media-body">
       <h3 class="media-heading custom-media-heading"><%= @movie.title %></h3>
       <% if user_signed_in? && favorited(@movie.id) == true %>
-        <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"> &hearts;</p>
+        <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
       <% elsif user_signed_in? && favorited(@movie.id) == false %>
-        <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"> &hearts;</p>
+        <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
       <% end %>
       <p class="custom-media"><%= @movie.tagline %></p>
       <p class="custom-media"><strong>Release date: </strong><%= @movie.release_date %></p>

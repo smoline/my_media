@@ -53,5 +53,4 @@ class Movie < ApplicationRecord
     hours = runtime.to_f / 60
     return hours.round(2)
   end
-
 end
