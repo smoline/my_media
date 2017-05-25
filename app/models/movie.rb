@@ -6,8 +6,8 @@ class Movie < ApplicationRecord
   belongs_to :created_by, class_name: "User"
   has_many :favorites, dependent: :destroy
   has_many :genres, through: :movie_genres
-  has_many :people, through: :movie_casts
-  has_many :people, through: :movie_crews
+  has_many :cast_members, through: :movie_casts, class_name: "Person"
+  has_many :crew_members, through: :movie_crews, class_name: "Person"
 
   def self.find_movie_title(upc)
     response = HTTParty.get("http://www.searchupc.com/handlers/upcsearch.ashx", query: {

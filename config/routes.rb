@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     get "/auth/github/callback"   => "users/omniauth_callbacks#github"
   end
 
-  post 'favorites/:movieId'           =>  'favorites#create'
-  delete 'favorites/destroy/:movieId' =>  'favorites#destroy'
+  post 'favorites/:movieId'                   =>  'favorites#create'
+  delete 'favorites/destroy/:movieId'         =>  'favorites#destroy'
 
   get 'pages/landing'
   root 'pages#landing'

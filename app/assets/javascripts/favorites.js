@@ -12,7 +12,7 @@ $(document).on('turbolinks:load', function() {
 
     $.ajax({
       type: "POST",
-      url: 'favorites/' + movieId
+      url: '/favorites/' + movieId
     })
   })
 
@@ -24,7 +24,7 @@ $(document).on('turbolinks:load', function() {
 
     $.ajax({
       type: "DELETE",
-      url: 'favorites/destroy/' + movieId
+      url: '/favorites/destroy/' + movieId
     })
   })
 
