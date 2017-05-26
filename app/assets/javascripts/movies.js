@@ -107,7 +107,6 @@ $(document).on('turbolinks:load', function() {
   $('#movies-info').on('click', 'li', function() {
     let tmdb_id = $(this).data('tmdb-id')
     let upc = $(this).data('upc')
-    console.log('you clicked on', $(this).html())
 
     console.log(`The tmdb id is ${tmdb_id}`)
     $.ajax({

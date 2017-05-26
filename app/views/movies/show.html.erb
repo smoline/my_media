@@ -50,7 +50,11 @@
       <p class="custom-media"><strong>Release date: </strong><%= @movie.release_date %></p>
       <p class="custom-media"><strong>Runtime: </strong><%= @movie.runtime %></p>
       <p class="custom-media"><%= @movie.description %></p>
-      <p class="custom-media">Tmdb: <%= @movie.tmdb_id %> Upc: <%= @movie.upc %></p>
+      <p class="custom-media"><strong>Genres: </strong>
+        <% @genres.each do |genre| %>
+        <%= genre.name %>
+        <% end %>
+      </p>
     </div>
   </div>
 </div>

@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
   # GET /movies/1
   def show
     @movie = Movie.find(params[:id])
+    @genres = @movie.genres.all
   end
 
   # GET /movies/new
@@ -44,6 +45,40 @@ class MoviesController < ApplicationController
     @movie.created_by_id = current_user.id
 
     if @movie.save
+      more_movie_info = Movie.find_more_movie_info(@movie.tmdb_id)
+      @movie_genres = more_movie_info["genres"]
+      @movie_genres.each do |thisgenre|
+        genreid = thisgenre["id"]
+        name = thisgenre["name"]
+        @genre = Genre.find_or_create_by(tmdb_genre_id: genreid, name: name)
+        @movie.genres << @genre
+      end
+      credits = Movie.get_movie_credits(@movie.tmdb_id)
+      @cast_members = credits["cast"]
+      @cast_members.each do |cast|
+        character = cast["character"]
+        order = cast["order"]
+        tmdb_people_id = cast["id"]
+        name = cast["name"]
+        @person = Person.find_by(tmdb_people_id: tmdb_people_id, name: name)
+        if @person.empty?
+          person_details = Person.get_person_details(tmdb_people_id)
+          Person.new = person_details.merge(
+                          name: person_details["name"],
+                          tmdb_people_id: params[:tmdb_people_id],
+                          biography: person_details["biography"],
+                          birthday: person_details["birthday"],
+                          deathday: person_details["deathday"],
+                          place_of_birth: person_details["place_of_birth"],
+                          gender: person_details["gender"]
+                          profile_path_url: "http://image.tmdb.org/t/p/w185/#{person_details["profile_path"]}")
+          @movie.people << @person
+        else
+          @movie.people << @person
+        end
+      end
+      @crew_members = credits["crew"]
+      p @crew_members
       redirect_to @movie, notice: 'Movie was successfully created.'
     else
       render :new
@@ -92,13 +127,13 @@ class MoviesController < ApplicationController
 
   def get_movie_info
     more_movie_info = Movie.find_more_movie_info(params[:tmdb_id])
+    @movie_genres = more_movie_info["genres"]
 
     movie_params = more_movie_info.merge(
                     upc: params[:upc],
                     tmdb_id: params[:tmdb_id],
                     description: more_movie_info["overview"],
                     movie_image_url: "http://image.tmdb.org/t/p/w185/#{more_movie_info["poster_path"]}")
-
     redirect_to new_movie_path(movie_params)
   end
 
