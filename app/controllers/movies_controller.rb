@@ -59,31 +59,47 @@ class MoviesController < ApplicationController
         character = cast["character"]
         order = cast["order"]
         tmdb_people_id = cast["id"]
-        name = cast["name"]
-        @person = Person.find_by(tmdb_people_id: tmdb_people_id, name: name)
-        if @person.empty?
-          person_details = Person.get_person_details(tmdb_people_id)
-          Person.new = person_details.merge(
-                          name: person_details["name"],
-                          tmdb_people_id: params[:tmdb_people_id],
-                          biography: person_details["biography"],
-                          birthday: person_details["birthday"],
-                          deathday: person_details["deathday"],
-                          place_of_birth: person_details["place_of_birth"],
-                          gender: person_details["gender"]
-                          profile_path_url: "http://image.tmdb.org/t/p/w185/#{person_details["profile_path"]}")
+        @person = Person.find_or_initialize_by(tmdb_people_id: tmdb_people_id)
+        if @person.new_record?
+          person_params = Person.get_person_details(tmdb_people_id)
+          @person = Person.create(person_params)
           @movie.people << @person
+          @movie_casts.character = character
+          @movie_casts.order = order
         else
           @movie.people << @person
+          @movie_casts.character = character
+          @movie_casts.order = order
         end
       end
-      @crew_members = credits["crew"]
-      p @crew_members
+      # @crew_members = credits["crew"]
+      # @crew_members.each do |crew|
+      #   department = crew["department"]
+      #   job = crew["job"]
+      #   tmdb_people_id = crew["id"]
+      #   @person = Person.find_or_initialize_by(tmdb_people_id: tmdb_people_id)
+      #   if @person.new_record?
+      #     person_params = Person.get_person_details(tmdb_people_id)
+      #     @person = Person.create(person_params)
+      #     @movie.movie_crew << @person
+      #     @movie_crew.department = department
+      #     @movie_crew.job = job
+      #   else
+      #     @movie.movie_crew << @person
+      #   end
+      # end
       redirect_to @movie, notice: 'Movie was successfully created.'
     else
       render :new
     end
   end
+
+  # def process_person
+  #   @person = Person.find_or_initialize_by(tmdb_people_id: tmdb_people_id)
+  #   if @person.new_record?
+  #     person_params = Person.get_person_details(tmdb_people_id)
+  #     @person = Person.create(person_params)
+  # end
 
   # PATCH/PUT /movies/1
   def update
