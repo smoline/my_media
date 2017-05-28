@@ -84,7 +84,7 @@ $(document).on('turbolinks:load', load_quagga);
 
 $(document).on('turbolinks:load', function() {
   $('.barcode-scanner-title').on('click', function() {
-    process_barcode('717951000316')
+    process_barcode('717951000000')
   })
 
   $('#btn-scanner').on('click', function() {
@@ -96,16 +96,14 @@ $(document).on('turbolinks:load', function() {
     location.reload()
   })
 
-  // $('#form-click').on('click', function() {
-  //
-  // })
-  //
-  // $('#theform').submit(function(){
-  //   $("input[type='submit']", this)
-  //     .val("Please Wait...")
-  //     .attr('disabled', 'disabled');
-  //   return true;
-  // });
+  $('#form-click').on('click', function() {
+    $('.new-movie-form').submit();
+    Quagga.stop();
+    $("input[type='submit']", this)
+      .val("Please Wait...")
+      .attr('disabled', 'disabled');
+      $('.spinner').show()
+  });
 
   $('#btn-title-search').on('click', function() {
     $('#show-scanner').hide()

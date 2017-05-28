@@ -1,6 +1,8 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 require 'csv'
 
+Game.destroy_all
+
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'games.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
@@ -8,7 +10,7 @@ csv.each do |row|
   g.upc = row['upc']
   g.title = row['title']
   g.description = row['description']
-  g.created_by_id =
+  g.created_by_id = 1
   g.game_image_url = row['game_image_url']
   g.console_type = row['console_type']
   g.brand = row['brand']
