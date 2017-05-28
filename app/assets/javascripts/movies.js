@@ -84,7 +84,7 @@ $(document).on('turbolinks:load', load_quagga);
 
 $(document).on('turbolinks:load', function() {
   $('.barcode-scanner-title').on('click', function() {
-    process_barcode('883929034604')
+    process_barcode('24543030041')
   })
 
   $('#btn-scanner').on('click', function() {

@@ -22,26 +22,16 @@
       <%= image_tag @person.profile_path_url %>
     </div>
     <div class="media-body">
-      <h3 class="media-heading custom-media-heading"><%= @movie.title %></h3>
-      <% if user_signed_in? && favorited(@movie.id) == true %>
-        <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
-      <% elsif user_signed_in? && favorited(@movie.id) == false %>
-        <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= @movie.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
-      <% end %>
-      <p class="custom-media"><%= @movie.tagline %></p>
-      <p class="custom-media"><strong>Release date: </strong><%= @movie.release_date %></p>
-      <p class="custom-media"><strong>Runtime: </strong><%= @movie.runtime %></p>
-      <p class="custom-media"><%= @movie.description %></p>
-      <p class="custom-media"><strong>Genres: </strong>
-        <% @genres.each do |genre| %>
-        <%= genre.name %>
-        <% end %>
-      </p>
+      <h3 class="media-heading custom-media-heading"><%= @person.name %></h3>
+      <p class="custom-media"><strong>Birthday: </strong><%= @person.birthday %></p>
+      <p class="custom-media"><strong>Birthplace: </strong><%= @person.place_of_birth %></p>
+      <p class="custom-media"><strong>Date of Death: </strong><%= @person.deathday %></p>
+      <p class="custom-media"><%= @person.biography %></p>
     </div>
   </div>
   <ul>
-    <% @actors.each do |actor| %>
-      <li><%= actor.name %> - <%= actor.character %></li>
+    <% @movies.each do |movie| %>
+      <li><%= movie.movie_image_url %></li>
     <% end %>
   </ul>
 </div>
