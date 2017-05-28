@@ -21,12 +21,18 @@ function process_barcode(upc) {
     url: '/movies/get_barcode',
     data: { upc: upc }
   }).then(function(movieInfo) {
-    $('#movies-info').html('')
-    movieInfo.forEach(function(movie) {
-      console.log(movie)
-      $('#choose-modal').modal('show')
-      $('#movies-info').append(`<li data-upc="${upc}" data-tmdb-id="${movie.id}">${movie.title} - ${movie.release_date}</li>`)
-    })
+    console.log(movieInfo)
+    if (movieInfo != null) {
+      $('#movies-info').html('')
+      movieInfo.forEach(function(movie) {
+        console.log(movie)
+        $('#choose-modal').modal('show')
+        $('#movies-info').append(`<li data-upc="${upc}" data-tmdb-id="${movie.id}">${movie.title} - ${movie.release_date}</li>`)
+      })
+    } else {
+      $('#refresh-modal').modal('show')
+      $('#went-wrong-notice').append(`<h3>Looks like something went wrong, click ok to try again</h3>`)
+    }
   });
 }
 
@@ -78,12 +84,16 @@ $(document).on('turbolinks:load', load_quagga);
 
 $(document).on('turbolinks:load', function() {
   $('.barcode-scanner-title').on('click', function() {
-    process_barcode('43396480209')
+    process_barcode('883929034604')
   })
 
   $('#btn-scanner').on('click', function() {
     $('#title-search').hide()
     $('#show-scanner').show()
+  })
+
+  $('#refresh-ok').on('click', function() {
+    location.reload()
   })
 
   $('#btn-title-search').on('click', function() {

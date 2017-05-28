@@ -1,6 +1,7 @@
 class MovieCrew < ApplicationRecord
   belongs_to :movie
   belongs_to :person
+  delegate :name, to: :person
 
   def create
     @crew_member = MovieCrew.new
