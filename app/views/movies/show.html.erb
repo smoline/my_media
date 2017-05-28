@@ -60,15 +60,17 @@
   <div class="col-md-6 col-xs-12">
     <h3 class="custom-media-heading">Cast:</h3>
     <% @actors.each do |actor| %>
-
+      <%= link_to person_path(actor.person.id) do %>
         <h5 class="custom-media"><%= actor.name %> - <%= actor.character %></h5>
-      
+      <% end %>
     <% end %>
   </div>
   <div class="col-md-6 col-xs-12">
     <h3 class="custom-media-heading">Crew:</h3>
     <% @crews.each do |crew| %>
-      <h5 class="custom-media"><%= crew.name %> - <%= crew.job %></h5>
+      <%= link_to person_path(crew.person.id) do %>
+        <h5 class="custom-media"><%= crew.name %> - <%= crew.job %></h5>
+      <% end %>
     <% end %>
   </div>
 </div>

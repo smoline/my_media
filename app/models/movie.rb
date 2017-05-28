@@ -2,15 +2,16 @@ class Movie < ApplicationRecord
   include ImageUploader[:image]
 
   validates :title, presence: true
+  validates :tmdb_id, presence: true
 
   belongs_to :created_by, class_name: "User"
   has_many :favorites, dependent: :destroy
   has_many :genres, through: :movie_genres
   has_many :movie_genres, dependent: :destroy
-  has_many :cast_members, through: :movie_casts, class_name: "Person", source: :person
   has_many :movie_casts, dependent: :destroy
-  has_many :crew_members, through: :movie_crews, class_name: "Person", source: :person
+  has_many :cast_members, through: :movie_casts, class_name: "Person", source: :person
   has_many :movie_crews, dependent: :destroy
+  has_many :crew_members, through: :movie_crews, class_name: "Person", source: :person
 
   def self.find_movie_title(upc)
     response = HTTParty.get("http://www.searchupc.com/handlers/upcsearch.ashx", query: {

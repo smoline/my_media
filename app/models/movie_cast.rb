@@ -2,6 +2,7 @@ class MovieCast < ApplicationRecord
   belongs_to :movie
   belongs_to :person
   delegate :name, to: :person
+  delegate :movie_image_url, to: :movie
 
   def create
     @cast_member = MovieCast.new

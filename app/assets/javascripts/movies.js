@@ -84,7 +84,7 @@ $(document).on('turbolinks:load', load_quagga);
 
 $(document).on('turbolinks:load', function() {
   $('.barcode-scanner-title').on('click', function() {
-    process_barcode('24543030041')
+    process_barcode('97363581444')
   })
 
   $('#btn-scanner').on('click', function() {
@@ -95,6 +95,17 @@ $(document).on('turbolinks:load', function() {
   $('#refresh-ok').on('click', function() {
     location.reload()
   })
+
+  // $('#form-click').on('click', function() {
+  //
+  // })
+  //
+  // $('#theform').submit(function(){
+  //   $("input[type='submit']", this)
+  //     .val("Please Wait...")
+  //     .attr('disabled', 'disabled');
+  //   return true;
+  // });
 
   $('#btn-title-search').on('click', function() {
     $('#show-scanner').hide()

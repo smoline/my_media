@@ -61,3 +61,14 @@ $well-sm-border-radius:       10px;
   text-align: left;
   align-self: flex-start;
 }
+
+.show-flexbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.inner-show-flexbox {
+  padding: 5px;
+}

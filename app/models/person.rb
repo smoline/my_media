@@ -1,19 +1,11 @@
 class Person < ApplicationRecord
-  has_many :movies_as_cast, through: :movie_casts, class_name: "Movie"
-  has_many :movies_as_crew, through: :movie_crews, class_name: "Movie"
+  has_many :movie_casts, dependent: :destroy
+  has_many :movies_as_cast, through: :movie_casts, class_name: "Movie", source: :movie
+  has_many :movie_crews, dependent: :destroy
+  has_many :movies_as_crew, through: :movie_crews, class_name: "Movie", source: :movie
 
-  def create
-    @person = Person.new
-    @person.name = params[:name]
-    @person.tmdb_people_id = params[:tmdb_people_id]
-    @person.gender = params[:gender]
-    @person.biography = params[:biography]
-    @person.birthday = params[:birthday]
-    @person.deathday = params[:deathday]
-    @person.place_of_birth = params[:place_of_birth]
-    @person.profile_path_url = params[:profile_path_url]
-    @person.save!
-  end
+  validates :name, presence: true
+  validates :tmdb_people_id, presence: true
 
   def self.get_person_details(tmdb_people_id)
     response = HTTParty.get("https://api.themoviedb.org/3/person/#{tmdb_people_id}", query:

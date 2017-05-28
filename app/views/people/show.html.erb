@@ -12,13 +12,25 @@
           </div>
         </div>
       </div>
+      <div>
+        <% if current_user.email == 'smoline@gmail.com' %>
+          <%= link_to @person, class:'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          Delete
+          <% end %>
+          <%= link_to edit_person_path(@person), class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-pencil"></span>
+          Edit
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="media">
-    <div class="media-left">
+    <div class="media-left col-md-3 text-center col-xs-12">
       <%= image_tag @person.profile_path_url %>
     </div>
     <div class="media-body">
@@ -29,9 +41,12 @@
       <p class="custom-media"><%= @person.biography %></p>
     </div>
   </div>
-  <ul>
-    <% @movies.each do |movie| %>
-      <li><%= movie.movie_image_url %></li>
+    <h3 class="custom-media-heading">Movies they appear in that you own:</h3>
+    <div class="show-flexbox">
+    <% @moviescast.each do |moviecast| %>
+      <p class="inner-show-flexbox"><%= link_to movie_path(moviecast.id) do %>
+        <%= image_tag moviecast.movie_image_url %>
+      <% end %></p>
     <% end %>
-  </ul>
+  </div>
 </div>

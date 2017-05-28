@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="page-header custom-header">
+    <%= link_to @person, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-info-sign"></span>
+      Show
+    <% end %>
+    <h1>Editing Person</h1>
+  </div>
+</div>
+
+<div class="container">
+  <%= render 'form' %>
+</div>

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'pages/landing'
   root 'pages#landing'
 
-  get "/people/:id"   =>  "people#show"
+  resources :people
 
   resources :movies do
     collection do
