@@ -86,7 +86,7 @@ class MoviesController < ApplicationController
 
   def get_barcode
     upc = params[:upc]
-    @movie = Movie.find_or_initialize_by(upc: params[:upc])
+    @movie = Movie.find_or_initialize_by(upc: params[:upc], created_by_id: current_user.id)
     if @movie.new_record?
       title = Movie.find_movie_title(upc)
       @movie_info = Movie.find_initial_movie_info(title)
@@ -98,7 +98,7 @@ class MoviesController < ApplicationController
 
   def get_movies
     title = params[:title]
-    @movie = Movie.find_or_initialize_by(title: params[:title])
+    @movie = Movie.find_or_initialize_by(title: params[:title], created_by_id: current_user.id)
     if @movie.new_record?
       @movie_info = Movie.find_initial_movie_info(title)
       render json: @movie_info

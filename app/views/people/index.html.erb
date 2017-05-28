@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="page-header custom-header">
+    <div class="header-flexbox">
+      <div class="flextitle">
+        <h1 Listing>Movie People </h1>
+      </div>
+      <div class="social-flexbox">
+        <div class="well well-sm custom-well text-center">
+          <h5>Share what you are watching with your friends!</h5>
+          <div class="text-center">
+            <%= social_share_button_tag %>
+          </div>
+        </div>
+      </div>
+      <div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <ul class="s-ul">
+    <%- @people.each do |person| %>
+    <li class="box">
+        <%= link_to person do %>
+          <%= image_tag person.profile_path_url %>
+        <% end %>
+      <div class="textline">
+        <div class="firsttextline">
+          <p class="s-text"><%= person.name %></p>
+        </div>
+      </div>
+      <div class="textline">
+        <p class="s-text secondtextline"><%= person.birthday %></p>
+        <div class="heartbox">
+          <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= person.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="text-center" id='paginator'>
+  <!-- <%= paginate @people, remote: true %><br> -->
+  <%= paginate @people do %>
+    <nav>
+      <ul class="pagination pagination-lg">
+        <%= first_page_tag unless current_page.first? %>
+        <%= prev_page_tag unless current_page.first? %>
+        <% each_page do |page| %>
+          <% if page.left_outer? || page.right_outer? || page.inside_window? %>
+            <%= page_tag page %>
+          <% end %>
+        <% end %>
+        <%= next_page_tag unless current_page.last? %>
+        <%= last_page_tag unless current_page.last? %>
+      </ul>
+    </nav>
+  <% end %>
+  <%= page_entries_info @people %>
+<p>Logged in as <%= current_user.email %></p>
+</div>

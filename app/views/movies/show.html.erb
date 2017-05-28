@@ -31,6 +31,7 @@
 </div>
 
 <div class="container">
+  <% if @movie.created_by_id == current_user.id %>
   <div class="media">
     <div class="media-left">
         <% if @movie.image.present? %>
@@ -73,4 +74,5 @@
       <% end %>
     <% end %>
   </div>
+  <% end %>
 </div>

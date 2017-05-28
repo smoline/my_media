@@ -1,6 +1,19 @@
 class PeopleController < ApplicationController
   before_action :authenticate_user!
 
+  # GET /people
+  def index
+    if params[:search]
+      @people = Person.search(params[:search]).page(params[:page]).per(20).order('name')
+    elsif params[:sort] == 'name'
+      @people = Person.page(params[:page]).per(20).order('name')
+    elsif params[:sort] == 'created_at'
+      @people = Person.page(params[:page]).per(20).order('created_at DESC')
+    else
+      @people = Person.page(params[:page]).per(20).order('name')
+    end
+  end
+
   def create
     @person = Person.new
     @person.name = params[:name]
@@ -17,6 +30,7 @@ class PeopleController < ApplicationController
   def show
     @person = Person.find(params[:id])
     @moviescast = @person.movies_as_cast.all
+    @moviescrew = @person.movies_as_crew.all
   end
 
   # GET /people/1/edit

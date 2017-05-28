@@ -65,7 +65,7 @@ class Movie < ApplicationRecord
 
   def self.search(search)
 
-    where("title LIKE ? or release_date LIKE ? or description LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") && created_by == current_user
+    where("title LIKE ? or release_date LIKE ? or description LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 
   def runtime_hours
