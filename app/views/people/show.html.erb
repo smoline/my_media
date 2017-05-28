@@ -37,7 +37,9 @@
       <h3 class="media-heading custom-media-heading"><%= @person.name %></h3>
       <p class="custom-media"><strong>Birthday: </strong><%= @person.birthday %></p>
       <p class="custom-media"><strong>Birthplace: </strong><%= @person.place_of_birth %></p>
-      <p class="custom-media"><strong>Date of Death: </strong><%= @person.deathday %></p>
+      <% if @person.deathday != "" %>
+        <p class="custom-media"><strong>Date of Death: </strong><%= @person.deathday %></p>
+      <% end %>
       <p class="custom-media"><%= @person.biography %></p>
     </div>
   </div>

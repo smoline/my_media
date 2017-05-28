@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :movies, through: :favorites
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -17,7 +17,6 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     user = User.find_by('email = ?', auth['info']['email'])
-    NotificationMailer.welcome_email(user).deliver_later
     if user.blank?
       user = User.new(
         {
