@@ -27,4 +27,15 @@ class Game < ApplicationRecord
   def self.search(search)
     where("title LIKE ? or description LIKE ?", "%#{search}%", "%#{search}%")
   end
+
+  def self.to_csv
+    attributes = %w{upc title description game_image_url console_type brand release_date}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |game|
+        csv << game.attributes.values_at(*attributes)
+      end
+    end
+  end
 end

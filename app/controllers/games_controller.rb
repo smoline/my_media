@@ -15,6 +15,11 @@ class GamesController < ApplicationController
     else
       @games = Game.page(params[:page]).per(10).order('title')
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Game.all.to_csv }
+    end
   end
 
   # GET /games/1

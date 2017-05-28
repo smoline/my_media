@@ -15,6 +15,11 @@ class MoviesController < ApplicationController
     else
       @movies = Movie.page(params[:page]).per(20).order('title')
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Movie.all.to_csv }
+    end
   end
 
   # GET /movies/1

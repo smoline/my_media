@@ -17,7 +17,6 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     user = User.find_by('email = ?', auth['info']['email'])
-    NotificationMailer.welcome_email(user).deliver_later
     if user.blank?
       user = User.new(
         {
