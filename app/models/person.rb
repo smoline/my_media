@@ -22,7 +22,11 @@ class Person < ApplicationRecord
     deathday = person_details["deathday"]
     place_of_birth = person_details["place_of_birth"]
     gender = person_details["gender"]
-    profile_path_url = "http://image.tmdb.org/t/p/w185/#{person_details["profile_path"]}"
+    if person_details["profile_path"].nil?
+      profile_path_url = person_details["profile_path"]
+    else
+      profile_path_url = "http://image.tmdb.org/t/p/w185/#{person_details["profile_path"]}"
+    end
 
     person_params = {name: name, tmdb_people_id: tmdb_people_id, biography: biography, birthday: birthday, deathday: deathday, place_of_birth: place_of_birth, gender: gender, profile_path_url: profile_path_url}
 

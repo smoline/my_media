@@ -13,6 +13,7 @@
 //= require jquery
 //= require turbolinks
 //= require jquery_ujs
+//= require underscore
 
 //= require quagga
 //= require 'movies'

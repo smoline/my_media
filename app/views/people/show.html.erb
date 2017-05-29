@@ -13,6 +13,10 @@
         </div>
       </div>
       <div>
+        <%= link_to movies_path, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        Back
+        <% end %>
         <% if current_user.email == 'smoline@gmail.com' %>
           <%= link_to @person, class:'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } do %>
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -21,6 +25,10 @@
           <%= link_to edit_person_path(@person), class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-pencil"></span>
           Edit
+          <% end %>
+          <%= link_to people_path, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-list-alt"></span>
+          Back to People
           <% end %>
         <% end %>
       </div>
@@ -31,7 +39,11 @@
 <div class="container">
   <div class="media">
     <div class="media-left col-md-3 text-center col-xs-12">
-      <%= image_tag @person.profile_path_url %>
+      <% if @person.profile_path_url.nil? %>
+        <%= image_tag("genericperson.png") %>
+      <% else %>
+        <%= image_tag @person.profile_path_url %>
+      <% end %>
     </div>
     <div class="media-body">
       <h3 class="media-heading custom-media-heading"><%= @person.name %></h3>

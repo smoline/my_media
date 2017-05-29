@@ -84,7 +84,7 @@ $(document).on('turbolinks:load', load_quagga);
 
 $(document).on('turbolinks:load', function() {
   $('.barcode-scanner-title').on('click', function() {
-    process_barcode('717951000000')
+    process_barcode('24543030041')
   })
 
   $('#btn-scanner').on('click', function() {
@@ -104,6 +104,18 @@ $(document).on('turbolinks:load', function() {
       .attr('disabled', 'disabled');
       $('.spinner').show()
   });
+
+  $('.page-item a').on('click', function(event) {
+    let pageNumber = $(this).text()
+    console.log(`The page number is ${pageNumber}`)
+    event.preventDefault()
+
+    $.ajax({
+      url: '/movies',
+      data: { page: pageNumber },
+      dataType: 'script'
+    })
+  })
 
   $('#btn-title-search').on('click', function() {
     $('#show-scanner').hide()
@@ -146,4 +158,17 @@ $(document).on('turbolinks:load', function() {
       $(this).data('showing-hours', 'true')
     }
   })
+
+  // Dynamic Searching with Debouncing
+  $('#query').on('input', _.debounce(function(event) {
+    let queryValue = $(this).val()
+    console.log(`you are searching for ${queryValue}`)
+
+    $.ajax({
+      url: '/movies',
+      data: { search: queryValue },
+      dataType: 'script'
+    })
+  }, 400))
+
 });

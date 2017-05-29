@@ -41,7 +41,7 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1
   def update
     @person = Person.find(params[:id])
-    if @person.update(movie_params)
+    if @person.update(person_params)
       redirect_to @person, notice: 'Person was successfully updated.'
     else
       render :edit
@@ -53,5 +53,12 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @person.destroy
     redirect_to people_url, notice: 'Person was successfully destroyed.'
+  end
+
+  private
+
+  # Only allow a trusted parameter "white list" through.
+  def person_params
+    params.require(:person).permit(:name, :tmdb_people_id, :biography, :birthday, :deathday, :place_of_birth, :profile_path_url, :gender)
   end
 end

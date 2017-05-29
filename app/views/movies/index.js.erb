@@ -1,0 +1,6 @@
+<% if @movies.empty? %>
+  $('.s-ul').html('<%= j(render 'empty_movies') %>')
+<% else %>
+  $('.s-ul').html('<%= j(render @movies) %>');
+  $('.pagination').html('<%= j(paginate(@movies, :remote => true).to_s) %>');
+<% end %>

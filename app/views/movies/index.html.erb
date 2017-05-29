@@ -24,36 +24,10 @@
 
 <div class="container-fluid">
   <ul class="s-ul">
-    <%- @movies.each do |movie| %>
-    <% if movie.created_by_id == current_user.id %>
-    <li class="box">
-      <% if movie.image.present? %>
-        <%= link_to movie do %>
-          <%= image_tag movie.image_url(:small) %>
-        <% end %>
-      <%else %>
-        <%= link_to movie do %>
-          <%= image_tag movie.movie_image_url %>
-        <% end %>
-      <% end %>
-      <div class="textline">
-        <div class="firsttextline">
-          <p class="s-text"><%= movie.title %></p>
-        </div>
-      </div>
-      <div class="textline">
-        <p class="s-text secondtextline"><%= movie.release_date %></p>
-        <p class="s-text secondtextline minhour" data-showing-hours="false" data-hours="<%= movie.runtime_hours %>" data-mins="<%= movie.runtime %>"><%= movie.runtime %> Mins.</p>
-        <div class="heartbox">
-          <% if user_signed_in? && favorited(movie.id) == true %>
-          <p class="faved-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
-          <% elsif user_signed_in? && favorited(movie.id) == false %>
-          <p class="fav-heart" data-remote=true data-type=script data-movieid="<%= movie.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
-          <% end %>
-        </div>
-      </div>
-    </li>
-    <% end %>
+    <% if @movies.empty? %>
+      <%= render 'empty_movies' %>
+    <% else %>
+      <%= render @movies %>
     <% end %>
   </ul>
 </div>
