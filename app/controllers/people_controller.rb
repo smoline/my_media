@@ -29,8 +29,8 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    @moviescast = @person.movies_as_cast.all
-    @moviescrew = @person.movies_as_crew.all
+    @moviescast = @person.movies_as_cast.all + @person.movies_as_crew.all
+    @moviescast.uniq!
   end
 
   # GET /people/1/edit

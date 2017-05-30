@@ -65,13 +65,4 @@
       <% end %>
     <% end %>
   </div>
-  <div class="show-flexbox">
-    <% @moviescrew.each do |moviecrew| %>
-      <% if moviecrew.created_by_id == current_user.id %>
-      <p class="inner-show-flexbox"><%= link_to movie_path(moviecrew.id) do %>
-        <%= image_tag moviecrew.movie_image_url %>
-      <% end %></p>
-      <% end %>
-    <% end %>
-  </div>
 </div>

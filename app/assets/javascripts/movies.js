@@ -105,18 +105,6 @@ $(document).on('turbolinks:load', function() {
       $('.spinner').show()
   });
 
-  $('.page-item a').on('click', function(event) {
-    let pageNumber = $(this).text()
-    console.log(`The page number is ${pageNumber}`)
-    event.preventDefault()
-
-    $.ajax({
-      url: '/movies',
-      data: { page: pageNumber },
-      dataType: 'script'
-    })
-  })
-
   $('#btn-title-search').on('click', function() {
     $('#show-scanner').hide()
     $('#title-search').show()
@@ -159,16 +147,29 @@ $(document).on('turbolinks:load', function() {
     }
   })
 
-  // Dynamic Searching with Debouncing
-  $('#query').on('input', _.debounce(function(event) {
-    let queryValue = $(this).val()
-    console.log(`you are searching for ${queryValue}`)
+  // Pagination with AJAX
+  // $('.page-item a').on('click', function(event) {
+  //   let pageNumber = $(this).text()
+  //   console.log(`The page number is ${pageNumber}`)
+  //   event.preventDefault()
+  //
+  //   $.ajax({
+  //     type: "GET",
+  //     url: '/movies',
+  //     data: { page: pageNumber }
+  //   })
+  // })
 
-    $.ajax({
-      url: '/movies',
-      data: { search: queryValue },
-      dataType: 'script'
-    })
-  }, 400))
+  // Dynamic Searching with Debouncing
+  // $('#query').on('input', _.debounce(function(event) {
+  //   let queryValue = $(this).val()
+  //   console.log(`you are searching for ${queryValue}`)
+  //
+  //   $.ajax({
+  //     type: "GET",
+  //     url: '/movies',
+  //     data: { search: queryValue }
+  //   })
+  // }, 400))
 
 });

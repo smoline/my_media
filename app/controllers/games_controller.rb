@@ -3,22 +3,19 @@ class GamesController < ApplicationController
   # GET /games
   def index
     if params[:search]
-      @games = Game.search(params[:search]).page(params[:page]).per(10).order('title')
+      @games = Game.search(params[:search], current_user.id).page(params[:page]).per(10).order('title')
     elsif params[:sort] == 'title'
-      @games = Game.page(params[:page]).per(10).order('title')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('title')
     elsif params[:sort] == 'release_date'
-      @games = Game.page(params[:page]).per(10).order('release_date DESC')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('release_date DESC')
     elsif params[:sort] == 'created_at'
-      @games = Game.page(params[:page]).per(10).order('created_at DESC')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('created_at DESC')
     elsif params[:sort] == 'console_type'
-      @games = Game.page(params[:page]).per(10).order('console_type DESC')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('console_type DESC')
+    # elsif params[:sort] == 'favorites'
+    #   @games = current_user.games.page(params[:page]).per(10).order('title')
     else
-      @games = Game.page(params[:page]).per(10).order('title')
-    end
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data Game.all.to_csv }
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('title')
     end
   end
 
@@ -73,7 +70,7 @@ class GamesController < ApplicationController
 
   def get_barcode
     upc = params[:upc]
-    @game = Game.find_or_initialize_by(upc: params[:upc])
+    @game = Game.find_or_initialize_by(upc: params[:upc], created_by_id: current_user.id)
     if @game.new_record?
       game_info = Game.find_game_info(upc)
       title = game_info["items"].first["title"]

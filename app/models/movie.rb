@@ -3,6 +3,7 @@ class Movie < ApplicationRecord
 
   validates :title, presence: true
   validates :tmdb_id, presence: true
+  validates_uniqueness_of :tmdb_id, scope: :created_by_id
 
   belongs_to :created_by, class_name: "User"
   has_many :favorites, dependent: :destroy
@@ -63,23 +64,12 @@ class Movie < ApplicationRecord
     return credits
   end
 
-  def self.search(search)
-    where("title LIKE ? or release_date LIKE ? or description LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+  def self.search(search, user_id)
+    where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ?) AND created_by_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", user_id)
   end
 
   def runtime_hours
     hours = runtime.to_f / 60
     return hours.round(2)
-  end
-
-  def self.to_csv
-    attributes = %w{upc title}
-    CSV.generate(headers: true) do |csv|
-      csv << attributes
-
-      all.each do |movie|
-        csv << movie.attributes.values_at(*attributes)
-      end
-    end
   end
 end

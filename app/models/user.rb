@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :movies, through: :favorites
 
+  has_many :games, dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

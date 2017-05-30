@@ -3,22 +3,17 @@ class MoviesController < ApplicationController
   # GET /movies
   def index
     if params[:search]
-      @movies = Movie.search(params[:search]).page(params[:page]).per(20).order('title')
+      @movies = Movie.search(params[:search], current_user.id).page(params[:page]).per(16).order('title')
     elsif params[:sort] == 'title'
-      @movies = Movie.page(params[:page]).per(20).order('title')
+      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(16).order('title')
     elsif params[:sort] == 'release_date'
-      @movies = Movie.page(params[:page]).per(20).order('release_date DESC')
+      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(16).order('release_date DESC')
     elsif params[:sort] == 'created_at'
-      @movies = Movie.page(params[:page]).per(20).order('created_at DESC')
+      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(16).order('created_at DESC')
     elsif params[:sort] == 'favorites'
-      @movies = Movie.all
+      @movies = current_user.movies.page(params[:page]).per(16).order('title')
     else
-      @movies = Movie.page(params[:page]).per(20).order('title')
-    end
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data Movie.all.to_csv }
+      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(16).order('title')
     end
   end
 

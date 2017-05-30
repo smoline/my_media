@@ -47,10 +47,7 @@ $well-border:                 darken($well-bg, 20%);
 $well-sm-border-radius:       10px;
 
 .header-flexbox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .social-flexbox {
@@ -71,4 +68,13 @@ $well-sm-border-radius:       10px;
 
 .inner-show-flexbox {
   padding: 5px;
+}
+
+@media screen and (min-width:768px) {
+  .header-flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }

@@ -24,11 +24,7 @@
 
 <div class="container-fluid">
   <ul class="s-ul">
-    <% if @movies.empty? %>
-      <%= render 'empty_movies' %>
-    <% else %>
-      <%= render @movies %>
-    <% end %>
+    <%= render @movies %>
   </ul>
 </div>
 <div class="text-center" id='paginator'>

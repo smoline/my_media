@@ -32,7 +32,7 @@
 
 <div class="container">
   <div class="media">
-    <div class="media-left game-image">
+    <div class="media-left col-md-5 text-center col-s-12 game-image">
       <% if @game.image.present? %>
         <%= image_tag @game.image_url(:medium) %>
       <%else %>
