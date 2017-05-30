@@ -22,7 +22,7 @@ function process_barcode(upc) {
     data: { upc: upc }
   }).then(function(movieInfo) {
     console.log(movieInfo)
-    if (movieInfo != null) {
+    if (movieInfo != "") {
       $('#movies-info').html('')
       movieInfo.forEach(function(movie) {
         console.log(movie)

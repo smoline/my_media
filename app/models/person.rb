@@ -57,7 +57,7 @@ class Person < ApplicationRecord
     @crew_members.each do |crew|
       department = crew["department"]
       job = crew["job"]
-      next unless department == "Directing" || department == "Writing" || job == "Music"
+      next unless department == "Directing" || department == "Writing"
       tmdb_people_id = crew["id"]
       @person = Person.find_or_initialize_by(tmdb_people_id: tmdb_people_id)
       if @person.new_record?
