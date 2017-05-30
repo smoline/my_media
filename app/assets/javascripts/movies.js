@@ -82,7 +82,7 @@ function load_quagga(){
 };
 
 $(document).on('turbolinks:load', function() {
-  load_quagga()
+   load_quagga()
 
   $('.barcode-scanner-title').on('click', function() {
     process_barcode('24543030041')
@@ -148,7 +148,7 @@ $(document).on('turbolinks:load', function() {
     }
   })
 
-  Pagination with AJAX
+  // Pagination with AJAX
   $('.page-item a').on('click', function(event) {
     let pageNumber = $(this).text()
     console.log(`The page number is ${pageNumber}`)
