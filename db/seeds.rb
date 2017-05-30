@@ -1,26 +1,32 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 require 'csv'
 
+Movie.destroy_all
+Person.destroy_all
+MovieCast.destroy_all
+MovieCrew.destroy_all
+Favorite.destroy_all
+MovieGenre.destroy_all
 # Game.destroy_all
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'games.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  g = Game.new
-  g.upc = row['upc']
-  g.title = row['title']
-  g.description = row['description']
-  g.created_by_id = 2
-  g.game_image_url = row['game_image_url']
-  g.console_type = row['console_type']
-  g.brand = row['brand']
-  g.release_date = row['release_date']
-  g.save
-
-  puts "#{g.title} saved"
-end
-
-puts "There are now #{Game.count} rows in the games table"
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'games.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+# csv.each do |row|
+#   g = Game.new
+#   g.upc = row['upc']
+#   g.title = row['title']
+#   g.description = row['description']
+#   g.created_by_id = 2
+#   g.game_image_url = row['game_image_url']
+#   g.console_type = row['console_type']
+#   g.brand = row['brand']
+#   g.release_date = row['release_date']
+#   g.save
+#
+#   puts "#{g.title} saved"
+# end
+#
+# puts "There are now #{Game.count} rows in the games table"
 
 # csv_text = File.read(Rails.root.join('lib', 'seeds', 'games.csv'))
 # csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')

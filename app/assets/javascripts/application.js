@@ -19,6 +19,7 @@
 //= require 'movies'
 //= require 'games'
 //= require 'favorites'
+//= require 'game_favorites'
 //= require social-share-button
 
 
