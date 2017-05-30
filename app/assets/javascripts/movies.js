@@ -80,9 +80,10 @@ function load_quagga(){
 
   }
 };
-$(document).on('turbolinks:load', load_quagga);
 
 $(document).on('turbolinks:load', function() {
+  load_quagga()
+
   $('.barcode-scanner-title').on('click', function() {
     process_barcode('24543030041')
   })
@@ -147,29 +148,31 @@ $(document).on('turbolinks:load', function() {
     }
   })
 
-  // Pagination with AJAX
-  // $('.page-item a').on('click', function(event) {
-  //   let pageNumber = $(this).text()
-  //   console.log(`The page number is ${pageNumber}`)
-  //   event.preventDefault()
-  //
-  //   $.ajax({
-  //     type: "GET",
-  //     url: '/movies',
-  //     data: { page: pageNumber }
-  //   })
-  // })
+  Pagination with AJAX
+  $('.page-item a').on('click', function(event) {
+    let pageNumber = $(this).text()
+    console.log(`The page number is ${pageNumber}`)
+    event.preventDefault()
+
+    $.ajax({
+      type: "GET",
+      url: '/movies',
+      dataType: 'script',
+      data: { page: pageNumber }
+    })
+  })
 
   // Dynamic Searching with Debouncing
-  // $('#query').on('input', _.debounce(function(event) {
-  //   let queryValue = $(this).val()
-  //   console.log(`you are searching for ${queryValue}`)
-  //
-  //   $.ajax({
-  //     type: "GET",
-  //     url: '/movies',
-  //     data: { search: queryValue }
-  //   })
-  // }, 400))
+  $('#query').on('input', _.debounce(function(event) {
+    let queryValue = $(this).val()
+    console.log(`you are searching for ${queryValue}`)
+
+    $.ajax({
+      type: "GET",
+      url: '/movies',
+      dataType: 'script',
+      data: { search: queryValue }
+    })
+  }, 400))
 
 });

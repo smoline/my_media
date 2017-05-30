@@ -35,10 +35,10 @@ class Movie < ApplicationRecord
 
     response = HTTParty.get("https://api.themoviedb.org/3/search/movie", query: {
       api_key: ENV['TMDB_API_KEY'],
-        language: "en-US",
-        query: title_new,
-        page: 1,
-        include_adult: false
+      language: "en-US",
+      query: title_new,
+      page: 1,
+      include_adult: false
       })
 
     movie_info = JSON.parse(response.body)["results"]
@@ -65,7 +65,7 @@ class Movie < ApplicationRecord
   end
 
   def self.search(search, user_id)
-    where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ?) AND created_by_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", user_id)
+    joins(:cast_members).where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ? or LOWER(people.name) LIKE ?) AND created_by_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", "%#{search.downcase}%", user_id).distinct
   end
 
   def runtime_hours
