@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'game_favorites/create'
+
+  get 'game_favorites/destroy'
+
   resources :games do
     post :get_barcode, on: :collection
   end
@@ -13,8 +17,11 @@ Rails.application.routes.draw do
     get "auth/github/callback"   => "users/omniauth_callbacks#github"
   end
 
-  post '/favorites/:movieId'                   =>  'favorites#create'
-  delete '/favorites/destroy/:movieId'         =>  'favorites#destroy'
+  post '/favorites/:movieId'                =>  'favorites#create'
+  delete '/favorites/destroy/:movieId'      =>  'favorites#destroy'
+
+  post '/game_favorites/:gameId'            =>  'game_favorites#create'
+  delete '/game_favorites/destroy/:gameId'  =>  'game_favorites#destroy'
 
   get 'pages/landing'
   root 'pages#landing'

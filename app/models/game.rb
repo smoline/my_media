@@ -4,6 +4,7 @@ class Game < ApplicationRecord
   validates :title, presence: true
 
   belongs_to :created_by, class_name: "User"
+  has_many :game_favorites, dependent: :destroy
 
 # Use this one if upcitemdb has problems
   # def self.find_game_title(upc)

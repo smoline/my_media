@@ -23,47 +23,11 @@
 </div>
 
   <ul class="s-ul">
-    <%- @games.each do |game| %>
-    <% if game.created_by_id == current_user.id %>
-    <li class="game-box">
-      <% if game.image.present? %>
-        <%= link_to game do %>
-          <%= image_tag game.image_url(:small) %>
-        <% end %>
-      <%else %>
-        <%= link_to game do %>
-          <%= image_tag game.game_image_url, class:'gameimage' %>
-        <% end %>
-      <% end %>
-      <div class="game-textline">
-        <p class="s-text game-firsttextline"><%= game.title %></p>
-        <p class="fav-heart" data-remote=true data-type=script data-gameid="<%= game.id %>"> &hearts;</p>
-      </div>
-      <div class="textline">
-        <p class="s-text game-secondtextline"><%= game.brand %></p>
-        <p class="s-text game-secondtextline"><%= game.console_type %></p>
-      </div>
-    </li>
-    <% end %>
-    <% end %>
+    <%= render @games %>
   </ul>
 
   <div class="text-center" id='paginator'>
-    <!-- <%= paginate @games, remote: true %><br> -->
-    <%= paginate @games do %>
-      <nav>
-        <ul class="pagination pagination-lg">
-          <%= first_page_tag unless current_page.first? %>
-          <%= prev_page_tag unless current_page.first? %>
-          <% each_page do |page| %>
-            <% if page.left_outer? || page.right_outer? || page.inside_window? %>
-              <%= page_tag page %>
-            <% end %>
-          <% end %>
-          <%= next_page_tag unless current_page.last? %>
-          <%= last_page_tag unless current_page.last? %>
-        </ul>
-      </nav>
-    <% end %>
+    <%= paginate @games, remote: true %><br>
     <%= page_entries_info @games %>
+    <p>Logged in as <%= current_user.email %></p>
   </div>
