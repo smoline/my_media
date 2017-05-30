@@ -23,10 +23,6 @@
   align-items: center;
 }
 
-.gameimage {
-  width: 300px;
-}
-
 $size: 35px;
 
 .social-share-button {
@@ -47,6 +43,9 @@ $well-border:                 darken($well-bg, 20%);
 $well-sm-border-radius:       10px;
 
 .header-flexbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
