@@ -39,7 +39,7 @@
 <div class="container">
   <div class="media">
     <div class="media-left col-md-3 text-center col-xs-12">
-      <% if @person.profile_path_url.nil? %>
+      <% if @person.profile_path_url.nil? || @person.profile_path_url.empty? %>
         <%= image_tag("genericperson.png") %>
       <% else %>
         <%= image_tag @person.profile_path_url %>

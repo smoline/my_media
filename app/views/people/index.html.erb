@@ -22,12 +22,20 @@
   <ul class="s-ul">
     <%- @people.each do |person| %>
     <li class="box">
+      <% if person.profile_path_url.nil? || person.profile_path_url.empty? %>
+        <%= link_to person do %>
+          <%= image_tag("genericperson.png") %>
+        <% end %>
+      <% else %>
         <%= link_to person do %>
           <%= image_tag person.profile_path_url %>
         <% end %>
+      <% end %>
       <div class="textline">
         <div class="firsttextline">
-          <p class="s-text"><%= person.name %></p>
+          <%= link_to person do %>
+            <p class="s-text"><%= person.name %></p>
+          <% end %>
         </div>
       </div>
       <div class="textline">

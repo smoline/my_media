@@ -4,13 +4,13 @@ class PeopleController < ApplicationController
   # GET /people
   def index
     if params[:search]
-      @people = Person.search(params[:search]).page(params[:page]).per(20).order('name')
+      @people = Person.search(params[:search]).page(params[:page]).per(50).order('name')
     elsif params[:sort] == 'name'
-      @people = Person.page(params[:page]).per(20).order('name')
+      @people = Person.page(params[:page]).per(50).order('name')
     elsif params[:sort] == 'created_at'
-      @people = Person.page(params[:page]).per(20).order('created_at DESC')
+      @people = Person.page(params[:page]).per(50).order('created_at DESC')
     else
-      @people = Person.page(params[:page]).per(20).order('name')
+      @people = Person.page(params[:page]).per(50).order('name')
     end
   end
 
