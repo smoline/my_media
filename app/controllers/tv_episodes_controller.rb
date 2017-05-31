@@ -1,6 +1,5 @@
 class TvEpisodesController < ApplicationController
   layout false
-
   # GET /tv_episodes
   def index
     @tv_episodes = TvEpisode.all

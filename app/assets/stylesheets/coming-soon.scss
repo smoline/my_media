@@ -27,12 +27,49 @@
 .custom-navbar {
 }
 
+.coming-soon-header h1 {
+  font-family: 'Roboto Slab', serif;
+  color: #f9f4f4;
+  font-size: 40px;
+  font-weight: bold;
+}
+
 .coming-soon-body {
   background-color: #040202;
 }
 
-// .coming-soon-flexbox {
-//   display: flex;
-//   justify-content: center;
-//   margin: 5px;
-// }
+.coming-soon-flexbox {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.coming-soon {
+  max-height: 175px;
+}
+
+@media screen and (min-width:768px){
+  .coming-soon-header h1 {
+    font-family: 'Roboto Slab', serif;
+    color: #f9f4f4;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .coming-soon {
+    max-height: 300px;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .coming-soon-header h1 {
+    font-family: 'Roboto Slab', serif;
+    color: #f9f4f4;
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  .coming-soon {
+    max-height: 500px;
+  }
+}
