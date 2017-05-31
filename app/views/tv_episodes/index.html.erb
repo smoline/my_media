@@ -16,8 +16,8 @@
 
   </style>
 </head>
-<body class="controller-<%= controller_name%> action-<%= action_name%> custom-body-js coming-soon-body">
-  <nav class="navbar navbar-inverse navbar-fixed-top custom-navbar" role="navigation">
+<body class="controller-<%= controller_name%> action-<%= action_name%> coming-soon-body">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -32,37 +32,9 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown active">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Movies<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Sort by Title", movies_path(sort: 'title') %></a></li>
-              <li><a href="#"><%= link_to "Sort by Release Date", movies_path(sort: 'release_date') %></a></li>
-              <li><a href="#"><%= link_to "Sort by When Added", movies_path(sort: 'created_at') %></a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#"><%= link_to "Favorites Only", movies_path(sort: 'favorites') %></a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TV Shows<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Sort by Title", tv_episodes_path %></a></li>
-              <li><a href="#"><%= link_to "Sort by Release Date", tv_episodes_path %></a></li>
-              <li><a href="#"><%= link_to "Sort by When Added", tv_episodes_path %></a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#"><%= link_to "Favorites Only", tv_episodes_path %></a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video Games<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Sort by Title", games_path(sort: 'title') %></a></li>
-              <li><a href="#"><%= link_to "Sort by Release Date", games_path(sort: 'release_date') %></a></li>
-              <li><a href="#"><%= link_to "Sort by When Added", games_path(sort: 'created_at') %></a></li>
-              <li><a href="#"><%= link_to "Sort by Console", games_path(sort: 'console_type') %></a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#"><%= link_to "Favorites Only", games_path(sort: 'favorites') %></a></li>
-            </ul>
-          </li>
+          <li class="active"><%= link_to "Movies", movies_path(sort: 'title') %></li>
+          <li><%= link_to "TV Shows", tv_episodes_path %></li>
+          <li><%= link_to "Games", games_path(sort: 'title') %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right pull-right">
           <% if user_signed_in? %>
