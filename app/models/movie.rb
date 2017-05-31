@@ -64,8 +64,12 @@ class Movie < ApplicationRecord
     return credits
   end
 
+  # def self.search(search, user_id)
+  #   joins(:cast_members).where("movies.title ILIKE ? or movies.release_date ILIKE ? or movies.description ILIKE ? or people.name ILIKE ? AND created_by_id = ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", user_id).distinct
+  # end
+
   def self.search(search, user_id)
-    joins(:cast_members).where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ? or LOWER(people.name) LIKE ?) AND created_by_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", "%#{search.downcase}%", user_id).distinct
+    joins('INNER JOIN "movie_crews" ON "movie_crews"."movie_id" = "movies"."id" INNER JOIN "people" AS "people1" ON "people1"."id" = "movie_crews"."person_id" INNER JOIN "movie_casts" ON "movie_casts"."movie_id" = "movies"."id" INNER JOIN "people" AS "people2" ON "people2"."id" = "movie_casts"."person_id"').where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ?) or (LOWER(people1.name) LIKE ? OR LOWER(people2.name) LIKE ?) AND created_by_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", user_id).distinct
   end
 
   def runtime_hours

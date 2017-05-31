@@ -69,26 +69,6 @@
             <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %></li>
           <% end %>
         </ul>
-        <% if controller_name == "movies" && action_name == "index" %>
-          <ul>
-            <%= form_tag(movies_path, :method => "get", id: "search-form", class: "navbar-form navbar-right form-inline") do %>
-            <div class="form-group">
-              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title, Description or Year", style: 'width: 300px', id: "query" %>
-              <!-- <%= submit_tag "Search", class: "btn btn-default" %> -->
-            </div>
-            <% end %>
-          </ul>
-        <% end %>
-        <% if controller_name == "games" && action_name == "index" %>
-          <ul>
-            <%= form_tag(games_path, :method => "get", id: "search-form", class: "navbar-form navbar-right form-inline") do %>
-            <div class="form-group">
-              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title or Description", style: 'width: 300px' %>
-              <%= submit_tag "Search", class: "btn btn-default" %>
-            </div>
-            <% end %>
-          </ul>
-        <% end %>
       </div>
     </div>
   </nav>
@@ -106,8 +86,9 @@
     <div class="custom-header text-center">
       <h1 Listing>New Shows</h1>
     </div>
-    <div class="embed-responsive embed-responsive-16by9 coming-soon">
-
+    <div class="coming-soon-flexbox">
+      <div class="coming-soon">
+      </div>
     </div>
   </div>
 </body>

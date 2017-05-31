@@ -55,17 +55,17 @@ function load_quagga2(){
 $(document).on('turbolinks:load', function() {
    load_quagga2()
 
-  // Pagination with AJAX
-  $('.game-paginator').on('click', '.page-item a', function(event) {
-    let pageNumber = $(this).text()
-    console.log(`The page number is ${pageNumber}`)
-    event.preventDefault()
-
-    $.ajax({
-      type: "GET",
-      url: '/games',
-      dataType: 'script',
-      data: { page: pageNumber }
-    })
-  })
+  // // Pagination with AJAX
+  // $('.game-paginator').on('click', '.page-item a', function(event) {
+  //   let pageNumber = $(this).text()
+  //   console.log(`The page number is ${pageNumber}`)
+  //   event.preventDefault()
+  //
+  //   $.ajax({
+  //     type: "GET",
+  //     url: '/games',
+  //     dataType: 'script',
+  //     data: { page: pageNumber }
+  //   })
+  // })
 });

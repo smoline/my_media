@@ -31,7 +31,26 @@
   background-color: black;
 }
 
+// .coming-soon-flexbox {
+//   display: flex;
+//   justify-content: center;
+//   margin: 5px;
+// }
+
 .coming-soon {
-  background-image: url('source.gif');
+  height: 200px;
+  background-image: url('200w_d.gif');
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
+}
+
+@media screen and (min-width:768px){
+  .coming-soon {
+    height: 500px;
+    background-image: url('source.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
 }
