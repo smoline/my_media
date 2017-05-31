@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tv_episodes
   get 'game_favorites/create'
 
   get 'game_favorites/destroy'

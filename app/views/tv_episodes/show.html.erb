@@ -1,0 +1,38 @@
+<div class="page-header">
+  <%= link_to tv_episodes_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_tv_episode_path(@tv_episode), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show tv_episode</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Title:</dt>
+  <dd><%= @tv_episode.title %></dd>
+
+  <dt>Tmdb episode:</dt>
+  <dd><%= @tv_episode.tmdb_episode_id %></dd>
+
+  <dt>Description:</dt>
+  <dd><%= @tv_episode.description %></dd>
+
+  <dt>Air date:</dt>
+  <dd><%= @tv_episode.air_date %></dd>
+
+  <dt>Episode number:</dt>
+  <dd><%= @tv_episode.episode_number %></dd>
+
+  <dt>Season number:</dt>
+  <dd><%= @tv_episode.season_number %></dd>
+
+  <dt>Tvshow image url:</dt>
+  <dd><%= @tv_episode.tvshow_image_url %></dd>
+
+  <dt>Created by:</dt>
+  <dd><%= @tv_episode.created_by_id %></dd>
+
+</dl>

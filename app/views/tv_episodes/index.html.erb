@@ -10,11 +10,14 @@
     <%= Rails.application.class.parent_name %>
   </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'coming-soon', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <style>
+
+  </style>
 </head>
-<body class="controller-<%= controller_name%> action-<%= action_name%> custom-body-js">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<body class="controller-<%= controller_name%> action-<%= action_name%> custom-body-js coming-soon-body">
+  <nav class="navbar navbar-inverse navbar-fixed-top custom-navbar" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -99,6 +102,13 @@
     <% end %>
 
   </div>
-  <%= yield %>
+  <div class="container">
+    <div class="custom-header text-center">
+      <h1 Listing>New Shows</h1>
+    </div>
+    <div class="embed-responsive embed-responsive-16by9 coming-soon">
+
+    </div>
+  </div>
 </body>
 </html>
