@@ -15,9 +15,9 @@
     <div class="textline">
       <p class="s-text secondtextline"><%= game.console_type %></p>
       <div class="heartbox pull-right">
-        <% if user_signed_in? && favorited(game.id) == true %>
+        <% if user_signed_in? && gamefavorited(game.id) == true %>
         <p class="game-faved-heart" data-remote=true data-type=script data-gameid="<%= game.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
-        <% elsif user_signed_in? && favorited(game.id) == false %>
+        <% elsif user_signed_in? && gamefavorited(game.id) == false %>
         <p class="game-fav-heart" data-remote=true data-type=script data-gameid="<%= game.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
         <% end %>
       </div>

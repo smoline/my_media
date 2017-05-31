@@ -2,5 +2,5 @@
   $('.s-ul').html('<%= j(render 'empty_games') %>')
 <% else %>
   $('.s-ul').html('<%= j(render @games) %>');
-  $('.pagination').html('<%= j(paginate(@games, :remote => true).to_s) %>');
+  $('.game-pagination').html('<%= j(paginate(@games, :remote => true).to_s) %>');
 <% end %>

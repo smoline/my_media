@@ -26,7 +26,7 @@
     <%= render @games %>
   </ul>
 
-  <div class="text-center" id='paginator'>
+  <div class="text-center" id='game-paginator'>
     <%= paginate @games, remote: true %><br>
     <%= page_entries_info @games %>
     <p>Logged in as <%= current_user.email %></p>

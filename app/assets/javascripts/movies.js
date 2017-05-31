@@ -149,7 +149,7 @@ $(document).on('turbolinks:load', function() {
   })
 
   // Pagination with AJAX
-  $('.page-item a').on('click', function(event) {
+  $('.paginator').on('click', 'page-item a', function(event) {
     let pageNumber = $(this).text()
     console.log(`The page number is ${pageNumber}`)
     event.preventDefault()
