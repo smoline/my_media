@@ -4,21 +4,58 @@
       <span class="glyphicon glyphicon-list-alt"></span>
       Back
     <% end %>
+
+    <a class="btn btn-default" id='btn-game-scanner'><span class="glyphicon glyphicon-barcode"></span> Search by UPC</a>
+
+    <a class="btn btn-default" id='btn-game-search'><span class="glyphicon glyphicon-th"></span> Search by Title</a>
+
     <h1>New game</h1>
   </div>
-</div>
 
-<div class="container">
-  <%= render 'form' %>
-</div>
-
-<div class='scanner-flexbox'>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Barcode Scanner</h3>
+<div class="row">
+  <div class="col-md-6 col-xs-12">
+    <div id='title-search'>
+      <div class="search-flexbox">
+        <div class="form-inline">
+          <div class="form-group">
+            <%= text_field_tag :game_title, params[:movie_title], id: 'game-title', class: "form-control", placeholder: "Please type the Title of the Game Here", style: 'width: 400px' %>
+          </div>
+          <div class="btn btn-default" id='search-game-title'>
+            <span class="glyphicon glyphicon-search"></span> Search
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="panel-body">
-      <div id='barcode-scanner-game'></div>
+    <div class='scanner-flexbox'>
+      <div class="panel panel-default" id='show-game-scanner'>
+        <div class="panel-heading">
+          <h3 class="panel-title barcode-game-scanner">Barcode Scanner</h3>
+        </div>
+        <div class="panel-body">
+          <div id='barcode-scanner-game'></div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="col-md-6 col-xs-12">
+      <%= render 'form' %>
+  </div>
 </div>
+
+<div class="modal fade" id="game-choose-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Click on the Correct Item</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="custom-game-choice" id='games-info'>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

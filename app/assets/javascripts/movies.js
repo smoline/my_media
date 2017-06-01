@@ -70,7 +70,7 @@ function load_quagga(){
         target: document.querySelector('#barcode-scanner')
       },
       decoder: {
-          readers : ['upc_reader','upc_e_reader']
+          readers : ['upc_reader','upc_e_reader','code_39_vin_reader']
       }
     },function(err) {
         if (err) { console.log(err); return }
