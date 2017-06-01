@@ -3,19 +3,19 @@ class GamesController < ApplicationController
   # GET /games
   def index
     if params[:search]
-      @games = Game.search(params[:search], current_user.id).page(params[:page]).per(10).order('title')
+      @games = Game.search(params[:search], current_user.id).page(params[:page]).per(12).order('title')
     elsif params[:sort] == 'title'
-      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('title')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(12).order('title')
     elsif params[:sort] == 'release_date'
-      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('release_date DESC')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(12).order('release_date DESC')
     elsif params[:sort] == 'created_at'
-      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('created_at DESC')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(12).order('created_at DESC')
     elsif params[:sort] == 'console_type'
-      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('console_type DESC')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(12).order('console_type DESC')
     elsif params[:sort] == 'favorites'
-      @games = current_user.games.page(params[:page]).per(10).order('title')
+      @games = current_user.games.page(params[:page]).per(12).order('title')
     else
-      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(10).order('title')
+      @games = Game.where(created_by_id: current_user.id).page(params[:page]).per(12).order('title')
     end
   end
 

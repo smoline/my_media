@@ -18,17 +18,17 @@
         Back
         <% end %>
         <% if current_user.email == 'smoline@gmail.com' %>
-          <%= link_to @person, class:'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <!-- <%= link_to @person, class:'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } do %>
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           Delete
           <% end %>
           <%= link_to edit_person_path(@person), class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-pencil"></span>
           Edit
-          <% end %>
+          <% end %> -->
           <%= link_to people_path, class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-list-alt"></span>
-          Back to People
+          People
           <% end %>
         <% end %>
       </div>

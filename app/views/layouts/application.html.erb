@@ -50,7 +50,7 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video Games<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#"><%= link_to "Sort by Title", games_path(sort: 'title') %></a></li>
               <li><a href="#"><%= link_to "Sort by Release Date", games_path(sort: 'release_date') %></a></li>
@@ -70,7 +70,7 @@
           <ul>
             <%= form_tag(movies_path, :method => "get", id: "search-form", class: "navbar-form navbar-right form-inline") do %>
             <div class="form-group">
-              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title, Description or Year", style: 'width: 300px', id: "query" %>
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title, Description or Year", style: 'width: 275px', id: "query" %>
               <!-- <%= submit_tag "Search", class: "btn btn-default" %> -->
             </div>
             <% end %>
@@ -80,7 +80,7 @@
           <ul>
             <%= form_tag(games_path, :method => "get", id: "search-form", class: "navbar-form navbar-right form-inline") do %>
             <div class="form-group">
-              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title or Description", style: 'width: 300px' %>
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Title or Description", style: 'width: 275px' %>
               <%= submit_tag "Search", class: "btn btn-default" %>
             </div>
             <% end %>

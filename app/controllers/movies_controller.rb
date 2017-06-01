@@ -3,17 +3,17 @@ class MoviesController < ApplicationController
   # GET /movies
   def index
     if params[:search]
-      @movies = Movie.search(params[:search], current_user.id).page(params[:page]).per(16).order('title')
+      @movies = Movie.search(params[:search], current_user.id).page(params[:page]).per(24).order('title')
     elsif params[:sort] == 'title'
-      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(16).order('title')
+      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(24).order('title')
     elsif params[:sort] == 'release_date'
-      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(16).order('release_date DESC')
+      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(24).order('release_date DESC')
     elsif params[:sort] == 'created_at'
-      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(16).order('created_at DESC')
+      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(24).order('created_at DESC')
     elsif params[:sort] == 'favorites'
-      @movies = current_user.movies.page(params[:page]).per(16).order('title')
+      @movies = current_user.movies.page(params[:page]).per(24).order('title')
     else
-      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(16).order('title')
+      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(24).order('title')
     end
   end
 

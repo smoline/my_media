@@ -21,14 +21,14 @@
     </div>
   </div>
 </div>
-
 <div class="container-fluid">
-  <ul class="s-ul">
+  <div class="s-ul">
     <%= render @movies %>
-  </ul>
-</div>
-<div class="text-center" id='paginator'>
-  <%= paginate @movies, remote: true %><br>
-  <%= page_entries_info @movies %>
-<p>Logged in as <%= current_user.email %></p>
+  </div>
+
+  <div class="text-center" id='paginator'>
+    <%= paginate @movies, remote: true %><br>
+    <%= page_entries_info @movies %>
+    <p>Logged in as <%= current_user.email %></p>
+  </div>
 </div>
