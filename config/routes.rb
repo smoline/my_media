@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get 'game_favorites/destroy'
 
   resources :games do
-    post :get_barcode, on: :collection
+    collection do
+      post :get_barcode
+      post :get_game_info
+      post :get_games
+    end
   end
 
   devise_for :users

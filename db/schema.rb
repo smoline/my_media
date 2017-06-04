@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531144150) do
+ActiveRecord::Schema.define(version: 20170601213143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170531144150) do
     t.string   "brand"
     t.text     "image_data"
     t.string   "release_date"
+    t.integer  "igdb_id"
   end
 
   create_table "genres", force: :cascade do |t|

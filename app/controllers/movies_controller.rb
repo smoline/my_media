@@ -47,6 +47,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     @movie.created_by_id = current_user.id
+    
 
     if @movie.save
       movieid = @movie.id

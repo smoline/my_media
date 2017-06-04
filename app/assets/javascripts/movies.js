@@ -70,7 +70,7 @@ function load_quagga(){
         target: document.querySelector('#barcode-scanner')
       },
       decoder: {
-          readers : ['upc_reader','upc_e_reader','code_39_vin_reader']
+          readers : ['upc_reader','upc_e_reader','ean_reader','ean_8_reader','code_39_reader','code_39_vin_reader','codabar_reader','code_128_reader']
       }
     },function(err) {
         if (err) { console.log(err); return }
@@ -93,6 +93,11 @@ $(document).on('turbolinks:load', function() {
     $('#show-scanner').show()
   })
 
+  $('#btn-title-search').on('click', function() {
+    $('#show-scanner').hide()
+    $('#title-search').show()
+  })
+
   $('#refresh-ok').on('click', function() {
     location.reload()
   })
@@ -105,11 +110,6 @@ $(document).on('turbolinks:load', function() {
       .attr('disabled', 'disabled');
       $('.spinner').show()
   });
-
-  $('#btn-title-search').on('click', function() {
-    $('#show-scanner').hide()
-    $('#title-search').show()
-  })
 
   $('#search-title').on('click', function() {
     let title = $('#movie-title').val()

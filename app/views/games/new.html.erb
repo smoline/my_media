@@ -14,11 +14,11 @@
 
 <div class="row">
   <div class="col-md-6 col-xs-12">
-    <div id='title-search'>
+    <div id='game-title-search'>
       <div class="search-flexbox">
         <div class="form-inline">
           <div class="form-group">
-            <%= text_field_tag :game_title, params[:movie_title], id: 'game-title', class: "form-control", placeholder: "Please type the Title of the Game Here", style: 'width: 400px' %>
+            <%= text_field_tag :game_title, params[:game_title], id: 'game-title', class: "form-control", placeholder: "Please type the Title of the Game Here", style: 'width: 400px' %>
           </div>
           <div class="btn btn-default" id='search-game-title'>
             <span class="glyphicon glyphicon-search"></span> Search
@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="game-choose-modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="choose-game-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -55,6 +55,22 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="refresh-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body text-center" id='went-wrong-notice'>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="refresh-ok" data-dismiss="modal">OK</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

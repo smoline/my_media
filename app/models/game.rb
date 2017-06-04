@@ -17,12 +17,38 @@ class Game < ApplicationRecord
   #   return title
   # end
 
-  def self.find_game_info(upc)
+  def self.find_game_title(upc)
     response = HTTParty.get("https://api.upcitemdb.com/prod/trial/lookup", query: {
             upc: upc
             })
-    game_info = JSON.parse(response.body)
-    return game_info
+    title = JSON.parse(response.body)
+    if title.present?
+      title = title["items"][0]["title"]
+      title = title[/^[A-Za-z0-9]+[^\-\(\[]+/i]
+    else
+      title = ""
+    end
+    return title
+  end
+
+  def self.find_initial_games_info(title)
+    title_new = title
+
+    response = HTTParty.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=30&offset=0&search=#{title_new}", headers: {
+          "X-Mashape-Key" => ENV['IGDB_API_KEY'],
+          "Accept" => "application/json"
+                })
+    games_info = JSON.parse(response.body)
+    return games_info
+  end
+
+  def self.find_more_game_info(igdb_id)
+    response = HTTParty.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/#{igdb_id}?fields=*", headers: {
+            "X-Mashape-Key" => ENV['IGDB_API_KEY'],
+            "Accept" => "application/json"
+            })
+    more_game_info = JSON.parse(response.body)[0]
+    return more_game_info
   end
 
   def self.search(search, user_id)
