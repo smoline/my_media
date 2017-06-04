@@ -47,7 +47,7 @@ class Game < ApplicationRecord
   end
 
   def self.find_more_game_info(igdb_id)
-    response = HTTParty.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/#{igdb_id}?fields=*", headers: {
+    response = HTTParty.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/#{igdb_id}?fields=id%2Cname%2Csummary%2Cdevelopers%2Cgenres%2Cfirst_release_date%2Ccover", headers: {
             "X-Mashape-Key" => ENV['IGDB_API_KEY'],
             "Accept" => "application/json"
             })

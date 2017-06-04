@@ -22,6 +22,7 @@ class GamesController < ApplicationController
   # GET /games/1
   def show
     @game = Game.find(params[:id])
+    # @game_genre = @game.game_genre_lists.all
   end
 
   # GET /games/new
@@ -47,6 +48,13 @@ class GamesController < ApplicationController
     @game.created_by_id = current_user.id
 
     if @game.save
+      more_game_info = Game.find_more_game_info(@game.igdb_id)
+      @game_genres = more_game_info["genres"]
+      @game_genres.each do |thisgenre|
+        genreid = thisgenre
+        @genre = GameGenreList.find_or_create_by(igdb_genre_id: genreid)
+        @game.game_genre_lists << @genre
+      end
       redirect_to @game, notice: 'Video Game was successfully created.'
     else
       render :new

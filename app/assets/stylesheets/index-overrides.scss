@@ -90,6 +90,16 @@ $grid-float-breakpoint:     994px;
   cursor: pointer;
 }
 
+.custom-game-choice li:hover {
+  cursor: pointer;
+}
+
+.custom-game-choice li {
+  color: #c2cdcd;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 #paginator {
   padding-bottom: 50px;
 }
