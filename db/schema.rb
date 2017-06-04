@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601213143) do
+ActiveRecord::Schema.define(version: 20170604173204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20170601213143) do
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_game_favorites_on_game_id", using: :btree
     t.index ["user_id"], name: "index_game_favorites_on_user_id", using: :btree
+  end
+
+  create_table "game_genre_lists", force: :cascade do |t|
+    t.integer  "igdb_genre_id"
+    t.string   "name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "game_genres", force: :cascade do |t|
+    t.integer  "game_genre_list_id"
+    t.integer  "game_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["game_genre_list_id"], name: "index_game_genres_on_game_genre_list_id", using: :btree
+    t.index ["game_id"], name: "index_game_genres_on_game_id", using: :btree
   end
 
   create_table "games", force: :cascade do |t|
@@ -161,6 +177,8 @@ ActiveRecord::Schema.define(version: 20170601213143) do
   add_foreign_key "favorites", "users"
   add_foreign_key "game_favorites", "games"
   add_foreign_key "game_favorites", "users"
+  add_foreign_key "game_genres", "game_genre_lists"
+  add_foreign_key "game_genres", "games"
   add_foreign_key "movie_casts", "movies"
   add_foreign_key "movie_casts", "people"
   add_foreign_key "movie_crews", "movies"
