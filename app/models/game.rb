@@ -9,6 +9,8 @@ class Game < ApplicationRecord
   has_many :game_genre_lists, through: :game_genres
   has_many :game_genres, dependent: :destroy
 
+  has_many :game_companies, through: :developers
+  has_many :developers, dependent: :destroy
 
 # Use this one if upcitemdb has problems
   # def self.find_game_title(upc)
@@ -38,20 +40,26 @@ class Game < ApplicationRecord
   def self.find_initial_games_info(title)
     title_new = title
 
-    response = HTTParty.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=30&offset=0&search=#{title_new}", headers: {
-          "X-Mashape-Key" => ENV['IGDB_API_KEY'],
-          "Accept" => "application/json"
-                })
-    games_info = JSON.parse(response.body)
+    response = HTTParty.get("http://www.giantbomb.com/api/search/",
+      query: {
+        api_key: ENV['GIANTBOMB_API_KEY'],
+        format: 'json',
+        query: "#{title_new}",
+        resources: 'game',
+        field_list: 'id,name'
+        })
+    games_info = JSON.parse(response.body)["results"]
     return games_info
   end
 
   def self.find_more_game_info(igdb_id)
-    response = HTTParty.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/#{igdb_id}?fields=id%2Cname%2Csummary%2Cdevelopers%2Cgenres%2Cfirst_release_date%2Ccover", headers: {
-            "X-Mashape-Key" => ENV['IGDB_API_KEY'],
-            "Accept" => "application/json"
-            })
-    more_game_info = JSON.parse(response.body)[0]
+    response = HTTParty.get("https://www.giantbomb.com/api/game/#{igdb_id}/",
+      query: {
+        api_key: ENV['GIANTBOMB_API_KEY'],
+        format: 'json',
+        field_list: 'id,name,deck,image,original_release_date,genres,developers'
+        })
+    more_game_info = JSON.parse(response.body)["results"]
     return more_game_info
   end
 

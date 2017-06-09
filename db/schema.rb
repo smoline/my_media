@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604173204) do
+ActiveRecord::Schema.define(version: 20170609194432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "developers", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "game_company_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["game_company_id"], name: "index_developers_on_game_company_id", using: :btree
+    t.index ["game_id"], name: "index_developers_on_game_id", using: :btree
+  end
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
@@ -27,6 +36,14 @@ ActiveRecord::Schema.define(version: 20170604173204) do
   create_table "files", force: :cascade do |t|
     t.binary "content"
     t.text   "metadata"
+  end
+
+  create_table "game_companies", force: :cascade do |t|
+    t.integer  "igdb_company_id"
+    t.string   "name"
+    t.string   "company_url"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "game_favorites", force: :cascade do |t|
@@ -173,6 +190,8 @@ ActiveRecord::Schema.define(version: 20170604173204) do
     t.index ["uid"], name: "index_users_on_uid", using: :btree
   end
 
+  add_foreign_key "developers", "game_companies"
+  add_foreign_key "developers", "games"
   add_foreign_key "favorites", "movies"
   add_foreign_key "favorites", "users"
   add_foreign_key "game_favorites", "games"

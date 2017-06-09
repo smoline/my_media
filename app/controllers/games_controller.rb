@@ -22,7 +22,8 @@ class GamesController < ApplicationController
   # GET /games/1
   def show
     @game = Game.find(params[:id])
-    # @game_genre = @game.game_genre_lists.all
+    @game_genre = @game.game_genre_lists.all
+    @developers = @game.game_companies.all
   end
 
   # GET /games/new
@@ -33,7 +34,6 @@ class GamesController < ApplicationController
     @game.description = params[:description]
     @game.release_date = params[:release_date]
     @game.game_image_url = params[:game_image_url]
-    @game.brand = params[:brand]
     @game.igdb_id = params[:igdb_id]
   end
 
@@ -47,14 +47,28 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     @game.created_by_id = current_user.id
 
-    if @game.save
+    if @game.save && @game.igdb_id
       more_game_info = Game.find_more_game_info(@game.igdb_id)
       @game_genres = more_game_info["genres"]
-      @game_genres.each do |thisgenre|
-        genreid = thisgenre
-        @genre = GameGenreList.find_or_create_by(igdb_genre_id: genreid)
-        @game.game_genre_lists << @genre
+      unless @game_genres.nil?
+        @game_genres.each do |thisgenre|
+          genreid = thisgenre["id"]
+          @genre = GameGenreList.find_or_create_by(igdb_genre_id: genreid)
+          @game.game_genre_lists << @genre
+        end
       end
+      @game_developers = more_game_info["developers"]
+      unless @game_developers.nil?
+        @game_developers.each do |thiscompany|
+          companyid = thiscompany["id"]
+          companyname = thiscompany["name"]
+          companyurl = thiscompany["site_detail_url"]
+          @developer = GameCompany.find_or_create_by(igdb_company_id: companyid, name: companyname, company_url: companyurl)
+          @game.game_companies << @developer
+        end
+      end
+      redirect_to @game, notice: 'Video Game was successfully created.'
+    elsif @game.save
       redirect_to @game, notice: 'Video Game was successfully created.'
     else
       render :new
@@ -104,15 +118,17 @@ class GamesController < ApplicationController
 
   def get_game_info
     more_game_info = Game.find_more_game_info(params[:igdb_id])
+    p more_game_info
 
     game_params = more_game_info.merge(
                     upc: params[:upc],
                     igdb_id: params[:igdb_id],
                     title: more_game_info["name"],
-                    description: more_game_info["summary"],
-                    release_date: Time.at(more_game_info["first_release_date"] / 1000).to_date.to_s,
-                    brand: more_game_info["developers"].first,
-                    game_image_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/#{more_game_info["cover"]["cloudinary_id"]}.jpg")
+                    description: more_game_info["deck"],
+                    release_date: more_game_info["original_release_date"].to_date.to_s,
+                    # brand: more_game_info["developers"],
+                    game_image_url: more_game_info["image"]["small_url"]
+                    )
     redirect_to new_game_path(game_params)
   end
 

@@ -22,10 +22,12 @@
     </div>
   </div>
 
+  <%# igdb_id %>
+  <%= f.hidden_field :igdb_id, class: "form-control" %>
 
   <%# brand %>
   <div class="form-group">
-    <%= f.label :brand, class: "col-sm-3 control-label" %>
+    <%= f.label :developer, class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
       <%= f.text_field :brand, class: "form-control" %>
     </div>
