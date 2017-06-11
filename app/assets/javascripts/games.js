@@ -85,7 +85,7 @@ $(document).on('turbolinks:load', function() {
    load_quagga2()
 
   $('.barcode-game-scanner').on('click', function() {
-    process_game_barcode('45496902445')
+    process_game_barcode('93155170414')
   })
 
   $('#btn-game-scanner').on('click', function() {
