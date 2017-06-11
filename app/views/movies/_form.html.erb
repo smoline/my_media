@@ -65,7 +65,6 @@
   <%# tmdb_id %>
   <%= f.hidden_field :tmdb_id, class: "form-control" %>
 
-
   <%# image_url %>
   <div class="form-group">
     <%= f.label :movie_image_url, class: "col-sm-3 control-label" %>
@@ -80,6 +79,14 @@
     <div class="col-sm-9">
       <%= f.hidden_field :image, value: @movie.cached_image_data %>
       <%= f.file_field :image %>
+    </div>
+  </div>
+
+  <%# notes %>
+  <div class="form-group">
+    <%= f.label :notes, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :notes, class: "form-control" %>
     </div>
   </div>
 
