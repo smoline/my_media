@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="textline">
-      <p class="s-text secondtextline"><%= movie.release_date %></p>
+      <p class="s-text secondtextline yearage" data-showing-age="false" data-age="<%= movie.year_age %>" data-release="<%= movie.release_date %>"><%= movie.release_date %></p>
       <p class="s-text secondtextline minhour" data-showing-hours="false" data-hours="<%= movie.runtime_hours %>" data-mins="<%= movie.runtime %>"><%= movie.runtime %> Mins.</p>
       <div class="heartbox">
         <% if user_signed_in? && favorited(movie.id) == true %>

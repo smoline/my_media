@@ -76,4 +76,9 @@ class Movie < ApplicationRecord
     hours = runtime.to_f / 60
     return hours.round(2)
   end
+
+  def year_age
+    age = Time.now.year - release_date.to_date.year
+    return age
+  end
 end

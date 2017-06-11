@@ -136,6 +136,7 @@ $(document).on('turbolinks:load', function() {
     })
   })
 
+  // index minutes to hours
   $('.s-ul').on('click', '.minhour', function(event) {
     if ($(this).data('showing-hours') === 'true') {
       let mins = $(this).data("mins")
@@ -145,6 +146,45 @@ $(document).on('turbolinks:load', function() {
       let hours = $(this).data("hours")
       $(this).text(`${hours} Hrs.`)
       $(this).data('showing-hours', 'true')
+    }
+  })
+
+  // index release date to years old
+  $('.s-ul').on('click', '.yearage', function(event) {
+    if ($(this).data('showing-age') === 'true') {
+      let release = $(this).data("release")
+      $(this).text(`${release}`)
+      $(this).data('showing-age', 'false')
+    } else {
+      let age = $(this).data("age")
+      $(this).text(`${age} Years`)
+      $(this).data('showing-age', 'true')
+    }
+  })
+
+  // show minutes to hours
+  $('.s-media').on('click', '.minhour', function(event) {
+    if ($(this).data('showing-hours') === 'true') {
+      let mins = $(this).data("mins")
+      $(this).text(`Runtime: ${mins} Mins.`)
+      $(this).data('showing-hours', 'false')
+    } else {
+      let hours = $(this).data("hours")
+      $(this).text(`Runtime: ${hours} Hrs.`)
+      $(this).data('showing-hours', 'true')
+    }
+  })
+
+  // show release date to years old
+  $('.s-media').on('click', '.yearage', function(event) {
+    if ($(this).data('showing-age') === 'true') {
+      let release = $(this).data("release")
+      $(this).text(`Release Date: ${release}`)
+      $(this).data('showing-age', 'false')
+    } else {
+      let age = $(this).data("age")
+      $(this).text(`Age of Movie: ${age} Years`)
+      $(this).data('showing-age', 'true')
     }
   })
 
