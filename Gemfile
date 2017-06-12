@@ -24,6 +24,8 @@ gem 'social-share-button', '~> 0.10.0'
 
 # Automatically inline mail CSS styles
 gem 'premailer-rails', '~> 1.9', '>= 1.9.6'
+gem 'nokogiri'
+
 gem 'sendgrid-ruby'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes

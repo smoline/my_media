@@ -321,6 +321,7 @@ DEPENDENCIES
   kaminari!
   listen (~> 3.0.5)
   mini_magick (~> 4.3.5)
+  nokogiri
   omniauth (~> 1.6, >= 1.6.1)
   omniauth-facebook (~> 4.0)
   omniauth-github (~> 1.2, >= 1.2.3)
