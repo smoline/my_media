@@ -1,4 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+      .warning {
+        background-color: #d4fcfc;
+        border:1px solid #23a4a4;
+    }
 
+    .alert-box {
+      color:#212121;
+      border-radius:10px;
+      font-family: 'Roboto Slab', serif;font-size:12px;
+      padding:10px 10px 10px 36px;
+      margin:10px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+    </style>
+  </head>
+
+  <body>
     <div class="alert-box warning">
       <h1 class="text-center">Welcome to My Media Library, <%= @email %>!</h1>
 
@@ -10,3 +35,5 @@
         Thanks for joining and have a great day!
       </h2>
     </div>
+  </body>
+</html>

@@ -1,4 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+      .warning {
+        background-color: #d4fcfc;
+        border:1px solid #23a4a4;
+    }
 
+    .alert-box {
+      color:#212121;
+      border-radius:10px;
+      font-family: 'Roboto Slab', serif;font-size:12px;
+      padding:10px 10px 10px 36px;
+      margin:10px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+    </style>
+  </head>
+
+  <body>
     <div class="alert-box warning">
       <h1 class="text-center">Hello <%= @resource.email %>!</h1>
 
@@ -8,4 +33,5 @@
 
       <h3 class="text-center"><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></h3>
     </div>
-  
+  </body>
+</html>
