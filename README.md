@@ -1,24 +1,31 @@
-# README
+# My Media Library
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## To see a working version of this app visit https://my-media-library2.herokuapp.com/
 
-Things you may want to cover:
+The purpose of this Ruby on Rails app is to create a place to document, organize and get more information about the media you own.
 
-* Ruby version
+* MML uses Devise and Omniauth for authentication (Facebook, google, github, linkedin, but not twitter because they required a privacy policy and terms of service agreement and this project is not a commercial one)
+* My Media Library uses jQuagga a JavaScript bar code scanner for easier media input and turbolinks
+* You may also search by title to enter media
+* It uses 4 APIs to gather information along with HTTParty and JSON gems
+  * SearchUPC.com
+  * TMDb.com
+  * UPCItemdb.com
+  * GiantBomb.com
+* Pagination with the Kaminari gem and AJAX in the movie model
+* Favoriting function with jQuery and AJAX
+* Clicking on the movie release date will switch to how old the movie is via jQuery
+* Clicking on the number of Mins for the movie will switch to Hours via jQuery
+* emails sent via SendGrid and customized with premailer-rails & nokogiri
+* Facebook, twitter, and linked in sharing with social-share-button
+* Shrine. Image Processing, and MiniMagick for image uploading
+* Customized Bootstrap, HTML, Sass and solar theme used for design
 
-* System dependencies
+### Plans for future updates
+* Finish the TV model (TVShows, TVSeasons, TVEpisodes)
+* Configure Resque and Active Job for background processes
+* Look at adding a model for Books
 
-* Configuration
+![MyMediaLibrary Landing](docs/landingPage.png)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![MyMediaLibrary Movie Index](docs/movieindex.png)
