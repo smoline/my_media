@@ -14,6 +14,7 @@ The purpose of this Ruby on Rails app is to create a place to document, organize
   * GiantBomb.com
 * Pagination with the Kaminari gem and AJAX in the movie model
 * Favoriting function with jQuery and AJAX
+* Search in the movies model can search on Title, Actor, Director, Writer, Description, or Release Date.  Search utilizes jQuery and Debouncing to narrow the search as you type
 * Clicking on the movie release date will switch to how old the movie is via jQuery
 * Clicking on the number of Mins for the movie will switch to Hours via jQuery
 * emails sent via SendGrid and customized with premailer-rails & nokogiri
