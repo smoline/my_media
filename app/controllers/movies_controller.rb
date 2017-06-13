@@ -109,14 +109,17 @@ class MoviesController < ApplicationController
 
   def get_movie_info
     more_movie_info = Movie.find_more_movie_info(params[:tmdb_id])
-    @movie_genres = more_movie_info["genres"]
-
-    movie_params = more_movie_info.merge(
+    @movie = Movie.find_or_initialize_by(tmdb_id: params[:tmdb_id], created_by_id: current_user.id)
+    if @movie.new_record?
+      movie_params = more_movie_info.merge(
                     upc: params[:upc],
                     tmdb_id: params[:tmdb_id],
                     description: more_movie_info["overview"],
                     movie_image_url: "http://image.tmdb.org/t/p/w185/#{more_movie_info["poster_path"]}")
-    redirect_to new_movie_path(movie_params)
+      redirect_to new_movie_path(movie_params)
+    else
+      redirect_to @movie
+    end
   end
 
   private

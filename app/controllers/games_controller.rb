@@ -98,7 +98,6 @@ class GamesController < ApplicationController
     if @game.new_record?
       title = Game.find_game_title(upc)
       @games_info = Game.find_initial_games_info(title)
-      p @games_info
       render json: @games_info
     else
       redirect_to @game
@@ -118,9 +117,9 @@ class GamesController < ApplicationController
 
   def get_game_info
     more_game_info = Game.find_more_game_info(params[:igdb_id])
-    p more_game_info
-
-    game_params = more_game_info.merge(
+    @game = Game.find_or_initialize_by(igdb_id: params[:igdb_id], created_by_id: current_user.id)
+    if @game.new_record?
+      game_params = more_game_info.merge(
                     upc: params[:upc],
                     igdb_id: params[:igdb_id],
                     title: more_game_info["name"],
@@ -128,7 +127,10 @@ class GamesController < ApplicationController
                     release_date: more_game_info["original_release_date"].to_date.to_s,
                     game_image_url: more_game_info["image"]["small_url"]
                     )
-    redirect_to new_game_path(game_params)
+      redirect_to new_game_path(game_params)
+    else
+      redirect_to @game
+    end
   end
 
   private
