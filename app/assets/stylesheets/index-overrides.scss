@@ -100,14 +100,15 @@ $grid-float-breakpoint:     994px;
   font-weight: bold;
 }
 
-#paginator {
-  padding-bottom: 50px;
-}
-
 .minhour:hover {
   cursor: pointer;
 }
 
 .yearage:hover {
   cursor: pointer;
+}
+
+.api-logo {
+  margin: 0;
+  padding: 0 0 50px;
 }
