@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
-  has_many :movies, through: :favorites
+  has_many :favorite_movies, through: :favorites, class_name: "Movie", source: :movie
+
+  has_many :owners, dependent: :destroy
+  has_many :owned_movies, through: :owners, class_name: "Movie", source: :movie
 
   has_many :game_favorites, dependent: :destroy
   has_many :games, through: :game_favorites

@@ -5,15 +5,15 @@ class MoviesController < ApplicationController
     if params[:search]
       @movies = Movie.search(params[:search], current_user.id).page(params[:page]).per(24).order('title')
     elsif params[:sort] == 'title'
-      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(24).order('title')
+      @movies = current_user.owned_movies.page(params[:page]).per(24).order('title')
     elsif params[:sort] == 'release_date'
-      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(24).order('release_date DESC')
+      @movies = current_user.owned_movies.page(params[:page]).per(24).order('release_date DESC')
     elsif params[:sort] == 'created_at'
-      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(24).order('created_at DESC')
+      @movies = current_user.owned_movies.page(params[:page]).per(24).order('created_at DESC')
     elsif params[:sort] == 'favorites'
-      @movies = current_user.movies.page(params[:page]).per(24).order('title')
+      @movies = current_user.favorite_movies.page(params[:page]).per(24).order('title')
     else
-      @movies = Movie.where(created_by_id: current_user.id).page(params[:page]).per(24).order('title')
+      @movies = current_user.owned_movies.page(params[:page]).per(24).order('title')
     end
   end
 
@@ -23,6 +23,7 @@ class MoviesController < ApplicationController
     @genres = @movie.genres.all
     @actors = @movie.movie_casts.all
     @crews = @movie.movie_crews.all
+    # @owner_info = @movie.owned_movies.all
   end
 
   # GET /movies/new
@@ -45,11 +46,14 @@ class MoviesController < ApplicationController
 
   # POST /movies
   def create
-    @movie = Movie.new(movie_params)
-    @movie.created_by_id = current_user.id
+    @movie = current_user.owned_movies.new(movie_params)
+    # @movie = Movie.new(movie_params)
+    # @movie.created_by_id = current_user.id
 
     if @movie.save
       movieid = @movie.id
+      # FIXME: create owner record with custom owner data
+      @movie.owners.create(user_id: current_user.id, upc: params[:upc], movie_id: movieid, notes: params[:notes])
       more_movie_info = Movie.find_more_movie_info(@movie.tmdb_id)
       @movie_genres = more_movie_info["genres"]
       @movie_genres.each do |thisgenre|
@@ -71,6 +75,8 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
+      @movie.owner.update(user_id: current_user.id, upc: params[:upc], movie_id: movieid, notes: params[:notes])
+      # FIXME: update owner record with owner custom fields
       redirect_to @movie, notice: 'Movie was successfully updated.'
     else
       render :edit
@@ -86,8 +92,9 @@ class MoviesController < ApplicationController
 
   def get_barcode
     upc = params[:upc]
-    @movie = Movie.find_or_initialize_by(upc: params[:upc], created_by_id: current_user.id)
-    if @movie.new_record?
+    @owned_movie = Owner.find_or_initialize_by(upc: params[:upc], user_id: current_user.id)
+    # @movie = Movie.find_or_initialize_by(upc: params[:upc], created_by_id: current_user.id)
+    if @owned_movie.new_record?
       title = Movie.find_movie_title(upc)
       @movie_info = Movie.find_initial_movie_info(title)
       render json: @movie_info
@@ -98,7 +105,7 @@ class MoviesController < ApplicationController
 
   def get_movies
     title = params[:title]
-    @movie = Movie.find_or_initialize_by(title: params[:title], created_by_id: current_user.id)
+    @movie = Movie.find_or_initialize_by(title: params[:title])
     if @movie.new_record?
       @movie_info = Movie.find_initial_movie_info(title)
       render json: @movie_info
@@ -109,7 +116,7 @@ class MoviesController < ApplicationController
 
   def get_movie_info
     more_movie_info = Movie.find_more_movie_info(params[:tmdb_id])
-    @movie = Movie.find_or_initialize_by(tmdb_id: params[:tmdb_id], created_by_id: current_user.id)
+    @movie = Movie.find_or_initialize_by(tmdb_id: params[:tmdb_id])
     if @movie.new_record?
       movie_params = more_movie_info.merge(
                     upc: params[:upc],
@@ -118,6 +125,8 @@ class MoviesController < ApplicationController
                     movie_image_url: "http://image.tmdb.org/t/p/w185/#{more_movie_info["poster_path"]}")
       redirect_to new_movie_path(movie_params)
     else
+      # FIXME: this is new
+      @movie.owners.create(user_id: current_user.id, upc: params[:upc], movie_id: @movie.id, notes: params[:notes])
       redirect_to @movie
     end
   end
@@ -126,6 +135,6 @@ class MoviesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def movie_params
-    params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :upc, :runtime, :tagline, :movie_image_url, :image)
+    params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :upc, :runtime, :tagline, :movie_image_url, :image, :notes)
   end
 end

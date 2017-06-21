@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611152009) do
+ActiveRecord::Schema.define(version: 20170621164053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,18 @@ ActiveRecord::Schema.define(version: 20170611152009) do
     t.string   "notes"
   end
 
+  create_table "owners", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "movie_id"
+    t.string   "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint   "upc"
+    t.text     "image_data"
+    t.index ["movie_id"], name: "index_owners_on_movie_id", using: :btree
+    t.index ["user_id"], name: "index_owners_on_user_id", using: :btree
+  end
+
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.integer  "tmdb_people_id"
@@ -205,4 +217,6 @@ ActiveRecord::Schema.define(version: 20170611152009) do
   add_foreign_key "movie_crews", "people"
   add_foreign_key "movie_genres", "genres"
   add_foreign_key "movie_genres", "movies"
+  add_foreign_key "owners", "movies"
+  add_foreign_key "owners", "users"
 end

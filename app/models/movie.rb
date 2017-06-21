@@ -4,12 +4,17 @@ class Movie < ApplicationRecord
   validates :title, presence: true
   validates :release_date, presence: true
   validates :tmdb_id, presence: true
-  validates_uniqueness_of :tmdb_id, scope: :created_by_id
+  validates_uniqueness_of :tmdb_id
 
-  belongs_to :created_by, class_name: "User"
+  # belongs_to :created_by, class_name: "User"
+  has_many :owners, dependent: :destroy
+  has_many :movie_owners, through: :owners, class_name: "User", source: :user
   has_many :favorites, dependent: :destroy
-  has_many :genres, through: :movie_genres
+  has_many :movie_favorites, through: :favorites, class_name: "User", source: :user
+
   has_many :movie_genres, dependent: :destroy
+  has_many :genres, through: :movie_genres
+
   has_many :movie_casts, dependent: :destroy
   has_many :cast_members, through: :movie_casts, class_name: "Person", source: :person
   has_many :movie_crews, dependent: :destroy
@@ -65,12 +70,8 @@ class Movie < ApplicationRecord
     return credits
   end
 
-  # def self.search(search, user_id)
-  #   joins(:cast_members).where("movies.title ILIKE ? or movies.release_date ILIKE ? or movies.description ILIKE ? or people.name ILIKE ? AND created_by_id = ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", user_id).distinct
-  # end
-
   def self.search(search, user_id)
-    joins('INNER JOIN "movie_crews" ON "movie_crews"."movie_id" = "movies"."id" INNER JOIN "people" AS "people1" ON "people1"."id" = "movie_crews"."person_id" INNER JOIN "movie_casts" ON "movie_casts"."movie_id" = "movies"."id" INNER JOIN "people" AS "people2" ON "people2"."id" = "movie_casts"."person_id"').where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ?) or (LOWER(people1.name) LIKE ? OR LOWER(people2.name) LIKE ?) AND created_by_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", user_id).distinct
+    joins('LEFT JOIN "movie_crews" ON "movie_crews"."movie_id" = "movies"."id" LEFT JOIN "people" AS "people1" ON "people1"."id" = "movie_crews"."person_id" LEFT JOIN "movie_casts" ON "movie_casts"."movie_id" = "movies"."id" LEFT JOIN "people" AS "people2" ON "people2"."id" = "movie_casts"."person_id" LEFT JOIN "owners" ON "owners"."movie_id" = "movies"."id" LEFT JOIN "users" ON "users"."id" = "owners"."user_id"').where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ?) or (LOWER(people1.name) LIKE ? OR LOWER(people2.name) LIKE ?) AND owners.user_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", user_id).distinct
   end
 
   def runtime_hours

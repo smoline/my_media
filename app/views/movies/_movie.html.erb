@@ -1,4 +1,4 @@
-<% if movie.created_by_id == current_user.id %>
+
   <li class="box">
     <% if movie.image.present? %>
       <%= link_to movie do %>
@@ -26,4 +26,3 @@
       </div>
     </div>
   </li>
-<% end %>
