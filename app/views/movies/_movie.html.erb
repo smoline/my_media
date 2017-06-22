@@ -1,8 +1,8 @@
 
   <li class="box">
-    <% if movie.image.present? %>
+    <% if movie.owners.find_by(user_id: current_user.id).image.present? %>
       <%= link_to movie do %>
-        <%= image_tag movie.image_url(:small) %>
+        <%= image_tag movie.owners.find_by(user_id: current_user.id).image_url(:small) %>
       <% end %>
     <% elsif movie.movie_image_url.nil? || movie.movie_image_url.empty? %>
       <%= link_to movie do %>

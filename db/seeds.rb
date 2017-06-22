@@ -5,18 +5,18 @@
 # Movie.where(created_by_id: [1,2,4,5]).destroy_all
 
 # Populate the Owner Table with all movies in the database for each user
-Movie.all.each { |movie| Owner.create user_id: 3, movie_id: movie.id }
-
-Movie.all.each { |movie| Owner.create user_id: 1, movie_id: movie.id }
-
-Movie.all.each { |movie| Owner.create user_id: 2, movie_id: movie.id }
+# Movie.all.each { |movie| Owner.create user_id: 3, movie_id: movie.id }
+#
+# Movie.all.each { |movie| Owner.create user_id: 1, movie_id: movie.id }
+#
+# Movie.all.each { |movie| Owner.create user_id: 2, movie_id: movie.id }
 
 # copy all upc codes from Movie table over to Owner table for each user
-Movie.all.each { |movie| Owner.find_by(user_id: 1, movie_id: movie.id).update upc: movie.upc }
-
-Movie.all.each { |movie| Owner.find_by(user_id: 2, movie_id: movie.id).update upc: movie.upc }
-
-Movie.all.each { |movie| Owner.find_by(user_id: 3, movie_id: movie.id).update upc: movie.upc }
+# Movie.all.each { |movie| Owner.find_by(user_id: 1, movie_id: movie.id).update upc: movie.upc }
+#
+# Movie.all.each { |movie| Owner.find_by(user_id: 2, movie_id: movie.id).update upc: movie.upc }
+#
+# Movie.all.each { |movie| Owner.find_by(user_id: 3, movie_id: movie.id).update upc: movie.upc }
 
 # Movie.destroy_all
 # Person.destroy_all
