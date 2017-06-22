@@ -14,46 +14,6 @@
     </div>
   <% end %>
 
-  <%# title %>
-  <div class="form-group">
-    <%= f.label :title, class: "col-sm-3 control-label" %>
-    <div class="col-sm-9">
-      <%= f.text_field :title, class: "form-control" %>
-    </div>
-  </div>
-
-  <%# description %>
-  <div class="form-group">
-    <%= f.label :description, class: "col-sm-3 control-label" %>
-    <div class="col-sm-9">
-      <%= f.text_field :description, class: "form-control" %>
-    </div>
-  </div>
-
-  <%# release_date %>
-  <div class="form-group">
-    <%= f.label :release_date, class: "col-sm-3 control-label" %>
-    <div class="col-sm-9">
-      <%= f.text_field :release_date, class: "form-control" %>
-    </div>
-  </div>
-
-  <%# runtime %>
-  <div class="form-group">
-    <%= f.label :runtime, class: "col-sm-3 control-label" %>
-    <div class="col-sm-9">
-      <%= f.number_field :runtime, class: "form-control" %>
-    </div>
-  </div>
-
-  <%# tagline %>
-  <div class="form-group">
-    <%= f.label :tagline, class: "col-sm-3 control-label" %>
-    <div class="col-sm-9">
-      <%= f.text_field :tagline, class: "form-control" %>
-    </div>
-  </div>
-
   <%# upc %>
   <div class="form-group">
     <%= f.label :upc, class: "col-sm-3 control-label" %>
@@ -62,14 +22,11 @@
     </div>
   </div>
 
-  <%# tmdb_id %>
-  <%= f.hidden_field :tmdb_id, class: "form-control" %>
-
-  <%# image_url %>
+  <%# notes %>
   <div class="form-group">
-    <%= f.label :movie_image_url, class: "col-sm-3 control-label" %>
+    <%= f.label :notes, class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
-      <%= f.text_field :movie_image_url, class: "form-control" %>
+      <%= f.text_field :notes, class: "form-control" %>
     </div>
   </div>
 

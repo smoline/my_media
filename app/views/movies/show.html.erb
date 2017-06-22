@@ -31,11 +31,14 @@
 </div>
 
 <div class="container s-media">
+  <% if current_user.owned_movies.include?(@movie) %>
   <div class="media">
     <div class="media-left col-md-3 text-center col-xs-12">
         <% if @movie.image.present? %>
           <%= image_tag @movie.image_url(:medium), class:'mainimage' %>
-        <%else %>
+        <%elsif @movie.movie_image_url.nil? || @movie.movie_image_url.empty? %>
+          <%= image_tag("genericperson.png") %>
+        <% else %>
             <%= image_tag @movie.movie_image_url %>
         <% end %>
     </div>
@@ -55,7 +58,8 @@
         - <%= genre.name %>
         <% end %>
       </p>
-      <p class="custom-media"><strong>Location: </strong><%= @movie.notes %></p>
+      <p class="custom-media"><strong>Location Notes: </strong></p>
+      <p class="custom-media"><strong>UPC: </strong></p>
     </div>
   </div>
   <div class="col-md-6 col-xs-12">
@@ -74,4 +78,5 @@
       <% end %>
     <% end %>
   </div>
+  <% end %>
 </div>

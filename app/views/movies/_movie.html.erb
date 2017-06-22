@@ -4,6 +4,10 @@
       <%= link_to movie do %>
         <%= image_tag movie.image_url(:small) %>
       <% end %>
+    <% elsif movie.movie_image_url.nil? || movie.movie_image_url.empty? %>
+      <%= link_to movie do %>
+        <%= image_tag("genericperson.png") %>
+      <% end %>
     <% else %>
       <%= link_to movie do %>
         <%= image_tag movie.movie_image_url %>

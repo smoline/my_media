@@ -18,14 +18,14 @@
         Back
         <% end %>
         <% if current_user.email == 'smoline@gmail.com' %>
-          <!-- <%= link_to @person, class:'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <%= link_to @person, class:'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } do %>
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           Delete
           <% end %>
           <%= link_to edit_person_path(@person), class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-pencil"></span>
           Edit
-          <% end %> -->
+          <% end %>
           <%= link_to people_path, class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-list-alt"></span>
           People
@@ -58,7 +58,7 @@
     <h3 class="custom-media-heading">Movies they are associated with that you own:</h3>
   <div class="show-flexbox">
     <% @moviescast.each do |moviecast| %>
-      <% if moviecast.created_by_id == current_user.id %>
+      <% if current_user.owned_movies.include?(moviecast) %>
       <p class="inner-show-flexbox"><%= link_to movie_path(moviecast.id) do %>
         <%= image_tag moviecast.movie_image_url %>
       <% end %></p>
