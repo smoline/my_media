@@ -34,8 +34,8 @@
   <% if current_user.owned_movies.include?(@movie) %>
   <div class="media">
     <div class="media-left col-md-3 text-center col-xs-12">
-        <% if @movie.image.present? %>
-          <%= image_tag @movie.image_url(:medium), class:'mainimage' %>
+        <% if @owner_info.image.present? %>
+          <%= image_tag @owner_info.image_url(:medium), class:'mainimage' %>
         <%elsif @movie.movie_image_url.nil? || @movie.movie_image_url.empty? %>
           <%= image_tag("genericperson.png") %>
         <% else %>
@@ -58,8 +58,8 @@
         - <%= genre.name %>
         <% end %>
       </p>
-      <p class="custom-media"><strong>Location Notes: </strong></p>
-      <p class="custom-media"><strong>UPC: </strong></p>
+      <p class="custom-media"><strong>Location Notes: </strong><%= @owner_info.notes %></p>
+      <p class="custom-media"><strong>UPC: </strong><%= @owner_info.upc %></p>
     </div>
   </div>
   <div class="col-md-6 col-xs-12">

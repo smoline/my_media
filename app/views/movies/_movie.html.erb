@@ -15,7 +15,7 @@
     <% end %>
     <div class="textline">
       <div class="firsttextline">
-        <p class="s-text"><%= movie.title %></p>
+        <p class="s-text"><%= truncate(movie.title, length: 44, seperator: ' ') %></p>
       </div>
     </div>
     <div class="textline">
