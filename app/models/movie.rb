@@ -1,13 +1,12 @@
 class Movie < ApplicationRecord
-  include ImageUploader[:image]
 
   validates :title, presence: true
   validates :release_date, presence: true
   validates :tmdb_id, presence: true
   validates_uniqueness_of :tmdb_id
 
-  # belongs_to :created_by, class_name: "User"
   has_many :owners, dependent: :destroy
+  accepts_nested_attributes_for :owners
   has_many :movie_owners, through: :owners, class_name: "User", source: :user
   has_many :favorites, dependent: :destroy
   has_many :movie_favorites, through: :favorites, class_name: "User", source: :user

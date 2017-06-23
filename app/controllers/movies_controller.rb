@@ -29,7 +29,6 @@ class MoviesController < ApplicationController
   # GET /movies/new
   def new
     @movie = Movie.new
-    @movie.upc = params[:upc]
     @movie.title = params[:title]
     @movie.description = params[:description]
     @movie.release_date = params[:release_date]
@@ -37,23 +36,22 @@ class MoviesController < ApplicationController
     @movie.runtime = params[:runtime]
     @movie.tagline = params[:tagline]
     @movie.movie_image_url = params[:movie_image_url]
+    @owner_info = @movie.owners.new
   end
 
   # GET /movies/1/edit
   def edit
     @movie = Movie.find(params[:id])
+    @owner_info = @movie.owners.find_by(user_id: current_user.id)
   end
 
   # POST /movies
   def create
     @movie = Movie.new(movie_params)
-    # @movie = current_user.owned_movies.new(movie_params) - didn't work
-    owner_params = [user_id: current_user.id, movie_id: @movie.id, upc: params[:upc], notes: params[:notes]]
-
+    @movie.owners.first.user_id = current_user.id
     if @movie.save
+      # @movie.owners.create(owner_params)
       movieid = @movie.id
-      # FIXME: create owner record with custom owner data - created
-      @movie.owners.create(owner_params)
       more_movie_info = Movie.find_more_movie_info(@movie.tmdb_id)
       @movie_genres = more_movie_info["genres"]
       @movie_genres.each do |thisgenre|
@@ -74,10 +72,8 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   def update
     @movie = Movie.find(params[:id])
-    @owner_info = @movie.owners.find_by(movie_id: @movie.id, user_id: current_user.id)
+    @owner_info = @movie.owners.find_by(user_id: current_user.id)
     if @movie.update(movie_params)
-      @owner_info.update(upc: params[:upc], notes: params[:notes])
-      # FIXME: update owner record with owner custom fields
       redirect_to @movie, notice: 'Movie was successfully updated.'
     else
       render :edit
@@ -88,6 +84,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @owner = @movie.owners.find_by(user_id: current_user.id)
+    # @movie.destroy
     @owner.destroy
     redirect_to movies_url, notice: 'Movie was successfully removed from your list.'
   end
@@ -132,7 +129,7 @@ class MoviesController < ApplicationController
       redirect_to new_movie_path(movie_params)
     else
       # FIXME: this is new
-      @movie.owners.create(user_id: current_user.id, upc: params[:upc], movie_id: @movie.id, notes: params[:notes])
+      @movie.owners.create(user_id: current_user.id, movie_id: @movie.id, upc: params[:upc], notes: params[:notes])
       redirect_to @movie
     end
   end
@@ -141,6 +138,6 @@ class MoviesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def movie_params
-    params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :runtime, :tagline, :movie_image_url, :image, :upc)
+    params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :runtime, :tagline, :movie_image_url, owners_attributes: Owner.attribute_names.map(&:to_sym))
   end
 end

@@ -54,14 +54,6 @@
     </div>
   </div>
 
-  <%# upc %>
-  <div class="form-group">
-    <%= f.label :upc, class: "col-sm-3 control-label" %>
-    <div class="col-sm-9">
-      <%= f.number_field :upc, class: "form-control" %>
-    </div>
-  </div>
-
   <%# tmdb_id %>
   <%= f.hidden_field :tmdb_id, class: "form-control" %>
 
@@ -73,14 +65,9 @@
     </div>
   </div>
 
-  <%# image_upload %>
-  <div class="form-group">
-    <%= f.label :image, class: "col-sm-3 control-label" %>
-    <div class="col-sm-9">
-      <%= f.hidden_field :image, value: @movie.cached_image_data %>
-      <%= f.file_field :image %>
-    </div>
-  </div>
+  <%= f.fields_for :owners, @owner_info do |builder| %>
+    <%= render 'ownerform', f: builder %>
+  <% end %>
 
   <%# Submit %>
   <div class="form-group">
