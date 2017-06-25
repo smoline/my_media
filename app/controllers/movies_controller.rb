@@ -8,8 +8,9 @@ class MoviesController < ApplicationController
       @movies = current_user.owned_movies.page(params[:page]).per(24).order('title')
     elsif params[:sort] == 'release_date'
       @movies = current_user.owned_movies.page(params[:page]).per(24).order('release_date DESC')
+    # Should be the created_at on the owners table, not movies table
     elsif params[:sort] == 'created_at'
-      @movies = current_user.owned_movies.page(params[:page]).per(24).order('created_at DESC')
+      @movies = current_user.owned_movies.page(params[:page]).per(24).order('owners.created_at DESC')
     elsif params[:sort] == 'favorites'
       @movies = current_user.favorite_movies.page(params[:page]).per(24).order('title')
     else
@@ -41,16 +42,18 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
-    @movie = Movie.find(params[:id])
-    @owner_info = @movie.owners.find_by(user_id: current_user.id)
+    @movie = current_user.owned_movies.find_by(id: params[:id])
+    # @movie = Movie.find(params[:id])
+    # @owner_info = @movie.owners.find_by(user_id: current_user.id)
   end
 
   # POST /movies
   def create
+    # @movie = current_user.owned_movies.new(movie_params)
     @movie = Movie.new(movie_params)
     @movie.owners.first.user_id = current_user.id
+
     if @movie.save
-      # @movie.owners.create(owner_params)
       movieid = @movie.id
       more_movie_info = Movie.find_more_movie_info(@movie.tmdb_id)
       @movie_genres = more_movie_info["genres"]
@@ -71,8 +74,9 @@ class MoviesController < ApplicationController
 
   # PATCH/PUT /movies/1
   def update
-    @movie = Movie.find(params[:id])
-    @owner_info = @movie.owners.find_by(user_id: current_user.id)
+    @movie = current_user.owned_movies.find_by(id: params[:id])
+    # @movie = Movie.find(params[:id])
+    # @owner_info = @movie.owners.find_by(user_id: current_user.id)
     if @movie.update(movie_params)
       redirect_to @movie, notice: 'Movie was successfully updated.'
     else
@@ -84,8 +88,8 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @owner = @movie.owners.find_by(user_id: current_user.id)
-    # @movie.destroy
-    @owner.destroy
+    @movie.destroy
+    # @owner.destroy
     redirect_to movies_url, notice: 'Movie was successfully removed from your list.'
   end
 
@@ -139,5 +143,7 @@ class MoviesController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def movie_params
     params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :runtime, :tagline, :movie_image_url, owners_attributes: Owner.attribute_names.map(&:to_sym))
+    # owners_attributes: [:upc, :notes, :user_id, :movie_id, :image]
+    # owners_attributes: Owner.attribute_names.map(&:to_sym)
   end
 end

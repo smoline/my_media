@@ -5,7 +5,7 @@ class Movie < ApplicationRecord
   validates :tmdb_id, presence: true
   validates_uniqueness_of :tmdb_id
 
-  has_many :owners, dependent: :destroy
+  has_many :owners, dependent: :destroy, inverse_of: :movie
   accepts_nested_attributes_for :owners
   has_many :movie_owners, through: :owners, class_name: "User", source: :user
   has_many :favorites, dependent: :destroy
