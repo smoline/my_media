@@ -8,7 +8,6 @@ class MoviesController < ApplicationController
       @movies = current_user.owned_movies.page(params[:page]).per(24).order('title')
     elsif params[:sort] == 'release_date'
       @movies = current_user.owned_movies.page(params[:page]).per(24).order('release_date DESC')
-    # Should be the created_at on the owners table, not movies table
     elsif params[:sort] == 'created_at'
       @movies = current_user.owned_movies.page(params[:page]).per(24).order('owners.created_at DESC')
     elsif params[:sort] == 'favorites'
@@ -42,14 +41,12 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
-    @movie = current_user.owned_movies.find_by(id: params[:id])
-    # @movie = Movie.find(params[:id])
-    # @owner_info = @movie.owners.find_by(user_id: current_user.id)
+    @movie = Movie.find(params[:id])
+    @owner_info = @movie.owners.find_by(user_id: current_user.id)
   end
 
   # POST /movies
   def create
-    # @movie = current_user.owned_movies.new(movie_params)
     @movie = Movie.new(movie_params)
     @movie.owners.first.user_id = current_user.id
 
@@ -75,8 +72,6 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   def update
     @movie = current_user.owned_movies.find_by(id: params[:id])
-    # @movie = Movie.find(params[:id])
-    # @owner_info = @movie.owners.find_by(user_id: current_user.id)
     if @movie.update(movie_params)
       redirect_to @movie, notice: 'Movie was successfully updated.'
     else
