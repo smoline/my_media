@@ -90,7 +90,7 @@ class MoviesController < ApplicationController
 
   def get_barcode
     upc = params[:upc]
-    @owned_movie = Owner.find_or_initialize_by(upc: params[:upc], user_id: current_user.id)
+    @owned_movie = Movie.owners.find_or_initialize_by(upc: params[:upc], user_id: current_user.id)
     # @movie = Movie.find_or_initialize_by(upc: params[:upc], created_by_id: current_user.id)
     if @owned_movie.new_record?
       title = Movie.find_movie_title(upc)
@@ -137,7 +137,6 @@ class MoviesController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def movie_params
     params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :runtime, :tagline, :movie_image_url, owners_attributes: Owner.attribute_names.map(&:to_sym))
-    # owners_attributes: [:upc, :notes, :user_id, :movie_id, :image]
-    # owners_attributes: Owner.attribute_names.map(&:to_sym)
+    # owners_attributes: [:upc, :notes, :image]
   end
 end

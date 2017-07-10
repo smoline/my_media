@@ -53,7 +53,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
+  # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "my_media_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: "my-media-library2.herokuapp.com" }
