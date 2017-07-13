@@ -43,6 +43,7 @@ class Person < ApplicationRecord
       if @person.nil?
         person_params = Person.get_person_details(tmdb_people_id)
         @person = Person.create(person_params)
+        Resque.enqueue(Sleeper, 1)
         cast_params = {movie_id: movieid, person_id: @person.id, character: character, order: order}
         @cast_member = MovieCast.create(cast_params)
       else

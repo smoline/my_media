@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  require 'resque/server'
 
   resources :tv_episodes
 
@@ -37,6 +38,8 @@ Rails.application.routes.draw do
       post :get_movies
     end
   end
+
+  mount Resque::Server.new, at: "/resque"
 
   mount Shrine::DownloadEndpoint => "/attachments"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
