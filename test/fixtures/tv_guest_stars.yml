@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tv_episode: one
+  person: one
+  character: MyString
+
+two:
+  tv_episode: two
+  person: two
+  character: MyString

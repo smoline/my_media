@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725175537) do
+ActiveRecord::Schema.define(version: 20170725175639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,6 +213,16 @@ ActiveRecord::Schema.define(version: 20170725175537) do
     t.index ["tv_show_id"], name: "index_tv_genres_on_tv_show_id", using: :btree
   end
 
+  create_table "tv_guest_stars", force: :cascade do |t|
+    t.integer  "tv_episode_id"
+    t.integer  "person_id"
+    t.string   "character"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["person_id"], name: "index_tv_guest_stars_on_person_id", using: :btree
+    t.index ["tv_episode_id"], name: "index_tv_guest_stars_on_tv_episode_id", using: :btree
+  end
+
   create_table "tv_owners", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "tv_show_id"
@@ -317,6 +327,8 @@ ActiveRecord::Schema.define(version: 20170725175537) do
   add_foreign_key "tv_favorites", "users"
   add_foreign_key "tv_genres", "genres"
   add_foreign_key "tv_genres", "tv_shows"
+  add_foreign_key "tv_guest_stars", "people"
+  add_foreign_key "tv_guest_stars", "tv_episodes"
   add_foreign_key "tv_owners", "tv_shows"
   add_foreign_key "tv_owners", "users"
   add_foreign_key "tv_season_owners", "tv_seasons"
