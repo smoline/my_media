@@ -8,6 +8,18 @@ class User < ApplicationRecord
   has_many :game_favorites, dependent: :destroy
   has_many :games, through: :game_favorites
 
+  has_many :tv_favorites, dependent: :destroy
+  has_many :favorite_tv_shows, through: :tv_favorites, class_name: "TvShow", source: :tv_show
+
+  has_many :tv_owners, dependent: :destroy
+  has_many :owned_tv_shows, through: :tv_owners, class_name: "TvShow", source: :tv_show
+
+  has_many :tv_season_owners, dependent: :destroy
+  has_many :tv_seasons, through: :tv_season_owners
+
+  has_many :tv_watched, dependent: :destroy
+  has_many :tv_episodes, through: :tv_watched
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
