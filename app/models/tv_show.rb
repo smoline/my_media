@@ -10,4 +10,6 @@ class TvShow < ApplicationRecord
 
   has_many :tv_creators, dependent: :destroy
   has_many :people, through: :tv_creators
+
+  has_many :tv_seasons, dependent: :destroy
 end

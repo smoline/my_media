@@ -4,6 +4,15 @@ class Person < ApplicationRecord
   has_many :movie_crews, dependent: :destroy
   has_many :movies_as_crew, through: :movie_crews, class_name: "Movie", source: :movie
 
+  has_many :tv_creators, dependent: :destroy
+  has_many :tv_shows, through: :tv_creators
+
+  has_many :tv_casts, dependent: :destroy
+  has_many :tv_seasons, through: :tv_casts
+
+  has_many :tv_guest_stars, dependent: :destroy
+  has_many :tv_episodes, through: :tv_guest_stars
+
   validates :name, presence: true
   validates :tmdb_people_id, presence: true
 
