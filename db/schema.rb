@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725165319) do
+ActiveRecord::Schema.define(version: 20170725174341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,15 @@ ActiveRecord::Schema.define(version: 20170725165319) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "tv_creators", force: :cascade do |t|
+    t.integer  "tv_show_id"
+    t.integer  "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_tv_creators_on_person_id", using: :btree
+    t.index ["tv_show_id"], name: "index_tv_creators_on_tv_show_id", using: :btree
+  end
+
   create_table "tv_episodes", force: :cascade do |t|
     t.string   "title"
     t.integer  "tmdb_episode_id"
@@ -174,6 +183,25 @@ ActiveRecord::Schema.define(version: 20170725165319) do
     t.datetime "updated_at",        null: false
     t.integer  "tv_season_id"
     t.index ["tv_season_id"], name: "index_tv_episodes_on_tv_season_id", using: :btree
+  end
+
+  create_table "tv_favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tv_show_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tv_show_id"], name: "index_tv_favorites_on_tv_show_id", using: :btree
+    t.index ["user_id"], name: "index_tv_favorites_on_user_id", using: :btree
+  end
+
+  create_table "tv_owners", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tv_show_id"
+    t.string   "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tv_show_id"], name: "index_tv_owners_on_tv_show_id", using: :btree
+    t.index ["user_id"], name: "index_tv_owners_on_user_id", using: :btree
   end
 
   create_table "tv_seasons", force: :cascade do |t|
@@ -243,6 +271,12 @@ ActiveRecord::Schema.define(version: 20170725165319) do
   add_foreign_key "movie_genres", "movies"
   add_foreign_key "owners", "movies"
   add_foreign_key "owners", "users"
+  add_foreign_key "tv_creators", "people"
+  add_foreign_key "tv_creators", "tv_shows"
   add_foreign_key "tv_episodes", "tv_seasons"
+  add_foreign_key "tv_favorites", "tv_shows"
+  add_foreign_key "tv_favorites", "users"
+  add_foreign_key "tv_owners", "tv_shows"
+  add_foreign_key "tv_owners", "users"
   add_foreign_key "tv_seasons", "tv_shows"
 end
