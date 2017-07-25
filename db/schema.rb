@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725175325) do
+ActiveRecord::Schema.define(version: 20170725175426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -248,6 +248,15 @@ ActiveRecord::Schema.define(version: 20170725175325) do
     t.datetime "updated_at",         null: false
   end
 
+  create_table "tv_watcheds", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tv_episode_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["tv_episode_id"], name: "index_tv_watcheds_on_tv_episode_id", using: :btree
+    t.index ["user_id"], name: "index_tv_watcheds_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -301,4 +310,6 @@ ActiveRecord::Schema.define(version: 20170725175325) do
   add_foreign_key "tv_season_owners", "tv_seasons"
   add_foreign_key "tv_season_owners", "users"
   add_foreign_key "tv_seasons", "tv_shows"
+  add_foreign_key "tv_watcheds", "tv_episodes"
+  add_foreign_key "tv_watcheds", "users"
 end
