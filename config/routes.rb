@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   delete '/game_favorites/destroy/:gameId'  =>  'game_favorites#destroy'
 
   get 'pages/landing'
+  get 'pages/comingsoon'
   root 'pages#landing'
 
   resources :people
