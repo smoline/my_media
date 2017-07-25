@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725164250) do
+ActiveRecord::Schema.define(version: 20170725165319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,21 @@ ActiveRecord::Schema.define(version: 20170725164250) do
     t.string   "episode_image_url"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "tv_season_id"
+    t.index ["tv_season_id"], name: "index_tv_episodes_on_tv_season_id", using: :btree
+  end
+
+  create_table "tv_seasons", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "tmdb_season_id"
+    t.integer  "tv_show_id"
+    t.string   "overview"
+    t.string   "air_date"
+    t.integer  "season_number"
+    t.string   "season_poster_path"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["tv_show_id"], name: "index_tv_seasons_on_tv_show_id", using: :btree
   end
 
   create_table "tv_shows", force: :cascade do |t|
@@ -228,4 +243,6 @@ ActiveRecord::Schema.define(version: 20170725164250) do
   add_foreign_key "movie_genres", "movies"
   add_foreign_key "owners", "movies"
   add_foreign_key "owners", "users"
+  add_foreign_key "tv_episodes", "tv_seasons"
+  add_foreign_key "tv_seasons", "tv_shows"
 end

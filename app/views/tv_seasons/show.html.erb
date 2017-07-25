@@ -1,0 +1,35 @@
+<div class="page-header">
+  <%= link_to tv_seasons_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_tv_season_path(@tv_season), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show tv_season</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @tv_season.name %></dd>
+
+  <dt>Tmdb season:</dt>
+  <dd><%= @tv_season.tmdb_season_id %></dd>
+
+  <dt>Tv show:</dt>
+  <dd><%= @tv_season.tv_show %></dd>
+
+  <dt>Overview:</dt>
+  <dd><%= @tv_season.overview %></dd>
+
+  <dt>Air date:</dt>
+  <dd><%= @tv_season.air_date %></dd>
+
+  <dt>Season number:</dt>
+  <dd><%= @tv_season.season_number %></dd>
+
+  <dt>Season poster path:</dt>
+  <dd><%= @tv_season.season_poster_path %></dd>
+
+</dl>
