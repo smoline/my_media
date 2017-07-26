@@ -1,7 +1,7 @@
 class TvShowsController < ApplicationController
   # GET /tv_shows
   def index
-    @tv_shows = TvShow.all
+    @tv_shows = TvShow.all.page(params[:page]).per(24).order('name')
   end
 
   # GET /tv_shows/1

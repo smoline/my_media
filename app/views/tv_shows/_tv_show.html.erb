@@ -1,0 +1,16 @@
+<li class="box">
+  <% if tv_show.show_poster_path.nil? || tv_show.show_poster_path.empty? %>
+    <%= link_to tv_show do %>
+      <%= image_tag("genericperson.png") %>
+    <% end %>
+  <% else %>
+    <%= link_to tv_show do %>
+      <%= image_tag tv_show.show_poster_path %>
+    <% end %>
+  <% end %>
+  <div class="textline">
+    <div class="firsttextline">
+      <p class="s-text"><%= truncate(tv_show.name, length: 44, seperator: ' ') %></p>
+    </div>
+  </div>
+</li>
