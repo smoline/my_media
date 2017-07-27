@@ -1,6 +1,5 @@
 class TvShow < ApplicationRecord
   has_many :tv_favorites, dependent: :destroy
-  has_many :users, through: :tv_favorites
 
   has_many :tv_genres, dependent: :destroy
   has_many :genres, through: :tv_genres

@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   post '/game_favorites/:gameId'            =>  'game_favorites#create'
   delete '/game_favorites/destroy/:gameId'  =>  'game_favorites#destroy'
 
+  post '/tv_favorites/:tvshowId'                =>  'tv_favorites#create'
+  delete '/tv_favorites/destroy/:tvshowId'      =>  'tv_favorites#destroy'
+
   get 'pages/landing'
   get 'pages/comingsoon'
   root 'pages#landing'
