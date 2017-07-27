@@ -13,4 +13,13 @@
       <p class="s-text"><%= truncate(tv_show.name, length: 44, seperator: ' ') %></p>
     </div>
   </div>
+  <div class="textline">
+    <div class="heartbox">
+      <% if user_signed_in? && tv_favorited(tv_show.id) == true %>
+        <p class="tv-faved-heart" data-remote=true data-type=script data-tvshowid="<%= tv_show.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
+      <% elsif user_signed_in? && tv_favorited(tv_show.id) == false %>
+        <p class="tv-fav-heart" data-remote=true data-type=script data-tvshowid="<%= tv_show.id %>"><i class="fa fa-heart" aria-hidden="true"></i></p>
+      <% end %>
+    </div>
+  </div>
 </li>
