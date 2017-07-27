@@ -1,9 +1,71 @@
-<div class="page-header">
-  <%= link_to tv_shows_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <h1>New tv_show</h1>
+<div class="container">
+  <div class="page-header custom-header">
+    <%= link_to tv_shows_path, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>
+    <h1>New TV Show</h1>
+  </div>
+  <div class="tv-search-flexbox">
+    <div class="form-inline">
+      <div class="form-group">
+        <%= text_field_tag :tv_show_name, params[:tv_show_name], id: 'tv-show-title', class: "form-control", placeholder: "Please type the Title of the TV Show Here", style: 'width: 400px' %>
+      </div>
+      <div class="btn btn-default" id='search-title'>
+        <span class="glyphicon glyphicon-search"></span> Search
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <%= render 'form' %>
+  </div>
+  <div class="spinner">
+    <div class="sk-circle1 sk-circle"></div>
+    <div class="sk-circle2 sk-circle"></div>
+    <div class="sk-circle3 sk-circle"></div>
+    <div class="sk-circle4 sk-circle"></div>
+    <div class="sk-circle5 sk-circle"></div>
+    <div class="sk-circle6 sk-circle"></div>
+    <div class="sk-circle7 sk-circle"></div>
+    <div class="sk-circle8 sk-circle"></div>
+    <div class="sk-circle9 sk-circle"></div>
+    <div class="sk-circle10 sk-circle"></div>
+    <div class="sk-circle11 sk-circle"></div>
+    <div class="sk-circle12 sk-circle"></div>
+  </div>
 </div>
 
-<%= render 'form' %>
+
+<div class="modal fade" id="choose-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Click on the Correct Item</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="custom-choice" id='tv-show-info'>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="refresh-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body text-center" id='went-wrong-notice'>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="refresh-ok" data-dismiss="modal">OK</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
