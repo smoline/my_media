@@ -1,13 +1,14 @@
-<div class="page-header">
-  <%= link_to tv_shows_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to @tv_show, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-info-sign"></span>
-    Show
-  <% end %>
-  <h1>Editing tv_show</h1>
+<div class="container">
+  <div class="page-header custom-header">
+    <%= link_to tv_shows_path, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>
+    <%= link_to @tv_show, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-info-sign"></span>
+      Show
+    <% end %>
+    <h1>Editing TV Show</h1>
+  </div>
+  <%= render 'form' %>
 </div>
-
-<%= render 'form' %>
