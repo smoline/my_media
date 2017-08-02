@@ -48,6 +48,17 @@ class TvShowsController < ApplicationController
     redirect_to tv_shows_url, notice: 'Tv show was successfully destroyed.'
   end
 
+  def get_tv_shows
+    title = params[:title]
+    @tv_show = TvShow.find_or_initialize_by(title: params[:title])
+    if @tv_show.new_record?
+      @movie_info = Movie.find_initial_movie_info(title)
+      render json: @movie_info
+    else
+      redirect_to @movie
+    end
+  end
+
   private
 
   # Only allow a trusted parameter "white list" through.
