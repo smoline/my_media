@@ -1,4 +1,5 @@
 class TvShowsController < ApplicationController
+  before_action :authenticate_user!
   # GET /tv_shows
   def index
     @tv_shows = TvShow.all.page(params[:page]).per(24).order('name')

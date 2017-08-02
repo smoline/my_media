@@ -1,4 +1,5 @@
 class TvSeasonsController < ApplicationController
+  before_action :authenticate_user!
   # GET /tv_seasons
   def index
     @tv_seasons = TvSeason.all

@@ -1,6 +1,5 @@
 class TvEpisodesController < ApplicationController
   before_action :authenticate_user!
-  layout false
   # GET /tv_episodes
   def index
     @tv_episodes = TvEpisode.all

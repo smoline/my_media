@@ -1,4 +1,6 @@
 class Movie < ApplicationRecord
+  include ImageUploader[:image]
+
   validates :title, presence: true
   validates :release_date, presence: true
   validates :tmdb_id, presence: true
