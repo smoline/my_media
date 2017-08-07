@@ -1,6 +1,15 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+function process_tv_show_choices(tvshowInfo) {
+  $('#tv-shows-info').html('')
+  tvshowInfo.forEach(function(tv_show) {
+    console.log(tv_show)
+    $('#choose-tv-modal').modal('show')
+    $('#tv-shows-info').append(`<li data-tv-show-id="${tv_show.id}">${tv_show.name}</li>`)
+  })
+}
+
 $(document).on('turbolinks:load', function() {
   $('#search-name').on('click', function() {
     let name = $('#tv-show-name').val()
