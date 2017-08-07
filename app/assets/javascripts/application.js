@@ -18,6 +18,7 @@
 //= require quagga
 //= require 'movies'
 //= require 'games'
+//= require 'tv_shows'
 //= require 'favorites'
 //= require 'game_favorites'
 //= require 'tv_favorites'

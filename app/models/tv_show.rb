@@ -16,10 +16,20 @@ class TvShow < ApplicationRecord
       api_key: ENV['TMDB_API_KEY'],
       language: "en-US",
       query: name_new,
-      page: 1,
+      page: 1
       })
 
     tv_show_info = JSON.parse(response.body)["results"]
     return tv_show_info
+  end
+
+  def self.find_more_tv_show_info(tmdb_show_id)
+    response = HTTParty.get("https://api.themoviedb.org/3/tv/#{tmdb_show_id}", query:
+    {
+      api_key: ENV['TMDB_API_KEY'],
+      language: "en-US"
+      })
+    more_tv_show_info = JSON.parse(response.body)
+    return more_tv_show_info
   end
 end

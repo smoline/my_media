@@ -6,11 +6,12 @@ function process_tv_show_choices(tvshowInfo) {
   tvshowInfo.forEach(function(tv_show) {
     console.log(tv_show)
     $('#choose-tv-modal').modal('show')
-    $('#tv-shows-info').append(`<li data-tv-show-id="${tv_show.id}">${tv_show.name}</li>`)
+    $('#tv-shows-info').append(`<li data-tmdb-id="${tv_show.id}">${tv_show.name}</li>`)
   })
 }
 
 $(document).on('turbolinks:load', function() {
+
   $('#search-name').on('click', function() {
     let name = $('#tv-show-name').val()
     console.log(`the title is ${name}`)
@@ -34,4 +35,4 @@ $(document).on('turbolinks:load', function() {
       data: { tmdb_show_id: tmdb_show_id }
     })
   })
-}
+})
