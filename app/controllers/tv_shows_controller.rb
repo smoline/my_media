@@ -59,6 +59,27 @@ class TvShowsController < ApplicationController
     end
   end
 
+  def get_tv_show_info
+    more_tv_show_info = TvShow.find_more_tv_show_info(params[:tmdb_show_id])
+    @tv_show = TvShow.find_or_initialize_by(tmdb_show_id: params[:tmdb_show_id])
+    if @tv_show.new_record?
+      if more_tv_show_info["poster_path"].nil?
+        show_poster_path = more_tv_show_info["poster_path"]
+      else
+        show_poster_path = "http://image.tmdb.org/t/p/w185/#{more_tv_show_info["poster_path"]}"
+      end
+      tv_show_params = more_tv_show_info.merge(
+                    tmdb_show_id: params[:tmdb_show_id],
+                    overview: more_tv_show_info["overview"],
+                    show_poster_path: show_poster_path)
+      redirect_to new_tv_show_path(tv_show_params)
+    else
+      # @tv_show.owners.create(user_id: current_user.id, tv_show_id: @tv_show.id, notes: params[:notes])
+      redirect_to @tv_show
+    end
+  end
+
+
   private
 
   # Only allow a trusted parameter "white list" through.
