@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   require 'resque/server'
 
-  resources :tv_shows
+  resources :tv_shows do
+    collection do
+      post :get_tv_show_info
+      post :get_tv_shows
+    end
+  end
   resources :tv_seasons
   resources :tv_episodes
 
