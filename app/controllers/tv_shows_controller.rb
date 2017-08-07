@@ -49,10 +49,10 @@ class TvShowsController < ApplicationController
   end
 
   def get_tv_shows
-    title = params[:title]
-    @tv_show = TvShow.find_or_initialize_by(title: params[:title])
+    name = params[:name]
+    @tv_show = TvShow.find_or_initialize_by(name: params[:name])
     if @tv_show.new_record?
-      @tv_show_info = TvShow.find_initial_tv_show_info(title)
+      @tv_show_info = TvShow.find_initial_tv_show_info(name)
       render json: @tv_show_info
     else
       redirect_to @tv_show
