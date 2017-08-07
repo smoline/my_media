@@ -13,6 +13,14 @@ class TvShowsController < ApplicationController
   # GET /tv_shows/new
   def new
     @tv_show = TvShow.new
+    @tv_show.tmdb_show_id = params[:tmdb_show_id]
+    @tv_show.name = params[:name]
+    @tv_show.overview = params[:overview]
+    @tv_show.first_air_date = params[:first_air_date]
+    @tv_show.last_air_date = params[:last_air_date]
+    @tv_show.number_of_seasons = params[:number_of_seasons]
+    @tv_show.number_of_episodes = params[:number_of_episodes]
+    @tv_show.show_poster_path = params[:show_poster_path]
   end
 
   # GET /tv_shows/1/edit
@@ -71,6 +79,10 @@ class TvShowsController < ApplicationController
       tv_show_params = more_tv_show_info.merge(
                     tmdb_show_id: params[:tmdb_show_id],
                     overview: more_tv_show_info["overview"],
+                    first_air_date: more_tv_show_info["first_air_date"],
+                    last_air_date: more_tv_show_info["last_air_date"],
+                    number_of_seasons: more_tv_show_info["number_of_seasons"],
+                    number_of_episodes: more_tv_show_info["number_of_episodes"],
                     show_poster_path: show_poster_path)
       redirect_to new_tv_show_path(tv_show_params)
     else
