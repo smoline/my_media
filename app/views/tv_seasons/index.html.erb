@@ -22,7 +22,19 @@
     </div>
   </div>
 </div>
-
+<div class="container-fluid">
+  <div class="s-ul">
+    <%= render @tv_seasons %>
+  </div>
+  <div class="text-center" id='paginator'>
+    <%= paginate @tv_seasons, remote: true %><br>
+    <%= page_entries_info @tv_seasons %>
+    <p>Logged in as <%= current_user.email %></p>
+  </div>
+  <div class="col-md-2 col-md-offset-10 text-center api-logo">
+      <a href="https://www.themoviedb.org/?language=en" height="50px"><%= image_tag("408x161-powered-by-rectangle-green sm.png") %></a>
+  </div>
+</div>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
