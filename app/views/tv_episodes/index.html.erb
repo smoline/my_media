@@ -1,11 +1,41 @@
-<div class="page-header">
-  <%= link_to new_tv_episode_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Tv episode
-  <% end %>
-  <h1 Listing>tv_episodes</h1>
+<div class="container">
+  <div class="page-header custom-header">
+    <div class="header-flexbox">
+      <div class="flextitle">
+        <h1 Listing>TV Episodes </h1>
+      </div>
+      <div class="social-flexbox">
+        <div class="well well-sm custom-well text-center">
+          <h5>Share what you are watching with your friends!</h5>
+          <div class="text-center">
+            <%= social_share_button_tag %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <%= link_to new_tv_episode_path, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          New TV Episode
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+<div class="container-fluid">
+  <div class="s-ul">
+    <%= render @tv_episodes %>
+  </div>
+  <div class="text-center" id='paginator'>
+    <%= paginate @tv_episodes, remote: true %><br>
+    <%= page_entries_info @tv_episodes %>
+    <p>Logged in as <%= current_user.email %></p>
+  </div>
+  <div class="col-md-2 col-md-offset-10 text-center api-logo">
+      <a href="https://www.themoviedb.org/?language=en" height="50px"><%= image_tag("408x161-powered-by-rectangle-green sm.png") %></a>
+  </div>
+</div>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>

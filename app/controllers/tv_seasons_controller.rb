@@ -2,7 +2,7 @@ class TvSeasonsController < ApplicationController
   before_action :authenticate_user!
   # GET /tv_seasons
   def index
-    @tv_seasons = TvSeason.all
+    @tv_seasons = TvSeason.all.page(params[:page]).per(24).order('name')
   end
 
   # GET /tv_seasons/1
