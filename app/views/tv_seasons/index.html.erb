@@ -1,9 +1,26 @@
-<div class="page-header">
-  <%= link_to new_tv_season_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Tv season
-  <% end %>
-  <h1 Listing>tv_seasons</h1>
+<div class="container">
+  <div class="page-header custom-header">
+    <div class="header-flexbox">
+      <div class="flextitle">
+        <h1 Listing>TV Seasons </h1>
+      </div>
+      <div class="social-flexbox">
+        <div class="well well-sm custom-well text-center">
+          <h5>Share what you are watching with your friends!</h5>
+          <div class="text-center">
+            <%= social_share_button_tag %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <%= link_to new_tv_season_path, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          New TV Season
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="table-responsive">
