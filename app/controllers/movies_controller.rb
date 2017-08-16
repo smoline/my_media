@@ -136,7 +136,8 @@ class MoviesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def movie_params
-    params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :runtime, :tagline, :movie_image_url, owners_attributes: Owner.attribute_names.map(&:to_sym))
-    # owners_attributes: [:upc, :notes, :image]
+    params.require(:movie).permit(:title, :tmdb_id, :description, :release_date, :runtime, :tagline, :movie_image_url, owners_attributes: [:id, :upc, :notes, :image])
+    # owners_attributes: Owner.attribute_names.map(&:to_sym)
+    # owners_attributes: [:id, :upc, :notes, :image]
   end
 end

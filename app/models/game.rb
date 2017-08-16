@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  include ImageUploader[:image]
+  include ImageUploader::Attachment.new(:image)
 
   validates :title, presence: true
 
