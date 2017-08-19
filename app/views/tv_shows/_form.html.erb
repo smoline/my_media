@@ -16,7 +16,7 @@
 
   <%# name %>
   <div class="form-group">
-    <%= f.label :name, class: "col-sm-3 control-label" %>
+    <%= f.label(:name, "TV Show Name", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :name, class: "form-control" %>
     </div>
@@ -25,7 +25,7 @@
 
   <%# tmdb_show_id %>
   <div class="form-group">
-    <%= f.label :tmdb_show_id, class: "col-sm-3 control-label" %>
+    <%= f.label(:tmdb_show_id, "TMDb Show ID", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.number_field :tmdb_show_id, class: "form-control" %>
     </div>
@@ -34,7 +34,7 @@
 
   <%# overview %>
   <div class="form-group">
-    <%= f.label :overview, class: "col-sm-3 control-label" %>
+    <%= f.label(:overview, "Show Overview", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :overview, class: "form-control" %>
     </div>
@@ -43,7 +43,7 @@
 
   <%# first_air_date %>
   <div class="form-group">
-    <%= f.label :first_air_date, class: "col-sm-3 control-label" %>
+    <%= f.label(:first_air_date, "First Air Date", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :first_air_date, class: "form-control" %>
     </div>
@@ -52,7 +52,7 @@
 
   <%# last_air_date %>
   <div class="form-group">
-    <%= f.label :last_air_date, class: "col-sm-3 control-label" %>
+    <%= f.label(:last_air_date, "Last Air Date", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :last_air_date, class: "form-control" %>
     </div>
@@ -61,7 +61,7 @@
 
   <%# number_of_seasons %>
   <div class="form-group">
-    <%= f.label :number_of_seasons, class: "col-sm-3 control-label" %>
+    <%= f.label(:number_of_seasons, "# of Seasons", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.number_field :number_of_seasons, class: "form-control" %>
     </div>
@@ -70,7 +70,7 @@
 
   <%# number_of_episodes %>
   <div class="form-group">
-    <%= f.label :number_of_episodes, class: "col-sm-3 control-label" %>
+    <%= f.label(:number_of_episodes, "# of Episodes", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.number_field :number_of_episodes, class: "form-control" %>
     </div>
@@ -79,7 +79,7 @@
 
   <%# show_poster_path %>
   <div class="form-group">
-    <%= f.label :show_poster_path, class: "col-sm-3 control-label" %>
+    <%= f.label(:show_poster_path, "Show Image Link", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :show_poster_path, class: "form-control" %>
     </div>
