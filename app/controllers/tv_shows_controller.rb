@@ -21,6 +21,8 @@ class TvShowsController < ApplicationController
     @tv_show.number_of_seasons = params[:number_of_seasons]
     @tv_show.number_of_episodes = params[:number_of_episodes]
     @tv_show.show_poster_path = params[:show_poster_path]
+    @tv_season = @tv_show.tv_seasons.build
+    @tv_episode = @tv_season.tv_episodes.build
   end
 
   # GET /tv_shows/1/edit

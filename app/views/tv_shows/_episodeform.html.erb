@@ -52,6 +52,25 @@
     </div>
   </div>
 
+
+  <%# episode_image_url %>
+  <div class="form-group">
+    <%= f.label(:episode_image_url, "TV Episode Image Link", class: "col-sm-3 control-label") %>
+    <div class="col-sm-9">
+      <%= f.text_field :episode_image_url, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <%# tv_season_id %>
+  <div class="form-group">
+    <%= f.label(:tv_season_id, "TV Season ID", class: "col-sm-3 control-label") %>
+    <div class="col-sm-9">
+      <%= f.text_field :tv_season_id, class: "form-control" %>
+    </div>
+  </div>
+
+
   <%= f.fields_for :tv_owners, @tv_owner_info do |builder| %>
     <%= render 'tvownerform', f: builder %>
   <% end %>

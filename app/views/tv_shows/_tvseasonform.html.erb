@@ -18,16 +18,16 @@
 
   <%# tv_show %>
   <div class="form-group">
-    <%= f.label :tv_show, class: "col-sm-3 control-label" %>
+    <%= f.label(:tv_show_id, "TV Show ID", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
-      <%= f.text_field :tv_show, class: "form-control" %>
+      <%= f.text_field :tv_show_id, class: "form-control" %>
     </div>
   </div>
 
 
   <%# overview %>
   <div class="form-group">
-    <%= f.label :overview, class: "col-sm-3 control-label" %>
+    <%= f.label(:overview, "TV Season Overview", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :overview, class: "form-control" %>
     </div>
@@ -36,7 +36,7 @@
 
   <%# air_date %>
   <div class="form-group">
-    <%= f.label :air_date, class: "col-sm-3 control-label" %>
+    <%= f.label(:air_date, "TV Season Air Date", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :air_date, class: "form-control" %>
     </div>
@@ -45,7 +45,7 @@
 
   <%# season_number %>
   <div class="form-group">
-    <%= f.label :season_number, class: "col-sm-3 control-label" %>
+    <%= f.label(:season_number, "TV Season Number", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.number_field :season_number, class: "form-control" %>
     </div>
@@ -54,7 +54,7 @@
 
   <%# season_poster_path %>
   <div class="form-group">
-    <%= f.label :season_poster_path, class: "col-sm-3 control-label" %>
+    <%= f.label(:season_poster_path, "TV Season Image Link", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :season_poster_path, class: "form-control" %>
     </div>
