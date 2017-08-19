@@ -1,7 +1,6 @@
-
   <%# name %>
   <div class="form-group">
-    <%= f.label :name, class: "col-sm-3 control-label" %>
+    <%= f.label(:name, "TV Season Title", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :name, class: "form-control" %>
     </div>
@@ -10,7 +9,7 @@
 
   <%# tmdb_season_id %>
   <div class="form-group">
-    <%= f.label :tmdb_season_id, class: "col-sm-3 control-label" %>
+    <%= f.label(:tmdb_season_id, "TMDb Season ID", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.number_field :tmdb_season_id, class: "form-control" %>
     </div>
@@ -60,3 +59,7 @@
       <%= f.text_field :season_poster_path, class: "form-control" %>
     </div>
   </div>
+
+  <%= f.fields_for :tv_episodes, @tv_episode_info do |builder| %>
+    <%= render 'episodeform', f: builder %>
+  <% end %>

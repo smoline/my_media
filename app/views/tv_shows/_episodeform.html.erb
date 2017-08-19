@@ -51,3 +51,7 @@
       <%= f.number_field :season_number, class: "form-control" %>
     </div>
   </div>
+
+  <%= f.fields_for :tv_owners, @tv_owner_info do |builder| %>
+    <%= render 'tvownerform', f: builder %>
+  <% end %>
