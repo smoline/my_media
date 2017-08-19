@@ -1,23 +1,8 @@
-<%= form_for(@tv_season, html: { class: "form-horizontal", role: "form" }) do |f| %>
-
-  <%# Alert showing errors for this form %>
-  <% if @tv_season.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@tv_season.errors.count, "error") %> prohibited this tv_season from being saved:</h4>
-
-      <ul>
-      <% @tv_season.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <%# name %>
   <div class="form-group">
-    <%= f.label :name, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :name, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
@@ -25,8 +10,8 @@
 
   <%# tmdb_season_id %>
   <div class="form-group">
-    <%= f.label :tmdb_season_id, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :tmdb_season_id, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.number_field :tmdb_season_id, class: "form-control" %>
     </div>
   </div>
@@ -34,8 +19,8 @@
 
   <%# tv_show %>
   <div class="form-group">
-    <%= f.label :tv_show, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :tv_show, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.text_field :tv_show, class: "form-control" %>
     </div>
   </div>
@@ -43,8 +28,8 @@
 
   <%# overview %>
   <div class="form-group">
-    <%= f.label :overview, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :overview, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.text_field :overview, class: "form-control" %>
     </div>
   </div>
@@ -52,8 +37,8 @@
 
   <%# air_date %>
   <div class="form-group">
-    <%= f.label :air_date, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :air_date, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.text_field :air_date, class: "form-control" %>
     </div>
   </div>
@@ -61,8 +46,8 @@
 
   <%# season_number %>
   <div class="form-group">
-    <%= f.label :season_number, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :season_number, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.number_field :season_number, class: "form-control" %>
     </div>
   </div>
@@ -70,17 +55,8 @@
 
   <%# season_poster_path %>
   <div class="form-group">
-    <%= f.label :season_poster_path, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :season_poster_path, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.text_field :season_poster_path, class: "form-control" %>
     </div>
   </div>
-
-
-  <%# Submit %>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-default" %>
-    </div>
-  </div>
-<% end -%>
