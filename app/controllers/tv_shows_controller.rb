@@ -96,6 +96,6 @@ class TvShowsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def tv_show_params
-    params.require(:tv_show).permit(:name, :tmdb_show_id, :overview, :first_air_date, :last_air_date, :number_of_seasons, :number_of_episodes, :show_poster_path)
+    params.require(:tv_show).permit(:name, :tmdb_show_id, :overview, :first_air_date, :last_air_date, :number_of_seasons, :number_of_episodes, :show_poster_path, :tv_seasons_attributes [:name, :tmdb_season_id, :tv_show_id, :overview, :air_date, :season_number, :season_poster_path])
   end
 end
