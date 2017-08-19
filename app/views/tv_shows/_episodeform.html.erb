@@ -1,0 +1,82 @@
+<%= form_for(@tv_episode, html: { class: "form-horizontal", role: "form" }) do |f| %>
+
+  <%# Alert showing errors for this form %>
+  <% if @tv_episode.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@tv_episode.errors.count, "error") %> prohibited this tv_episode from being saved:</h4>
+
+      <ul>
+      <% @tv_episode.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# title %>
+  <div class="form-group">
+    <%= f.label :title, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <%# tmdb_episode_id %>
+  <div class="form-group">
+    <%= f.label :tmdb_episode_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :tmdb_episode_id, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <%# description %>
+  <div class="form-group">
+    <%= f.label :description, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <%# air_date %>
+  <div class="form-group">
+    <%= f.label :air_date, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :air_date, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <%# episode_number %>
+  <div class="form-group">
+    <%= f.label :episode_number, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :episode_number, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <%# season_number %>
+  <div class="form-group">
+    <%= f.label :season_number, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :season_number, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <%= f.fields_for :tv_owners, @tv_owner_info do |builder| %>
+    <%= render 'tvownerform', f: builder %>
+  <% end %>
+
+
+  <%# Submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-default" %>
+    </div>
+  </div>
+<% end -%>

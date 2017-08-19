@@ -8,6 +8,9 @@ class TvShow < ApplicationRecord
   has_many :people, through: :tv_creators
 
   has_many :tv_seasons, dependent: :destroy
+  accepts_nested_attributes_for :tv_seasons, dependent: :destroy, inverse_of: :tv_show
+  accepts_nested_attributes_for :tv_episodes, dependent: :destroy, inverse_of: :tv_show
+  accepts_nested_attributes_for :tv_owners, dependent: :destroy, inverse_of: :tv_show
 
   def self.find_initial_tv_show_info(name)
     name_new = name

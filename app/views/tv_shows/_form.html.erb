@@ -85,6 +85,17 @@
     </div>
   </div>
 
+  <%= f.fields_for :tv_seasons, @season_info do |builder| %>
+    <%= render 'seasonform', f: builder %>
+  <% end %>
+
+  <%= f.fields_for :tv_episodes, @episode_info do |builder| %>
+    <%= render 'episodeform', f: builder %>
+  <% end %>
+
+  <%= f.fields_for :tv_owners, @tvowner_info do |builder| %>
+    <%= render 'tvownerform', f: builder %>
+  <% end %>
 
   <%# Submit %>
   <div class="form-group">
