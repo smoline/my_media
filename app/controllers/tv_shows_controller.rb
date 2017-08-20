@@ -8,6 +8,9 @@ class TvShowsController < ApplicationController
   # GET /tv_shows/1
   def show
     @tv_show = TvShow.find(params[:id])
+    @tv_season = @tv_show.tv_seasons.all
+    @tv_episode = @tv_season.tv_episodes.all
+    @tv_owner = @tv_episode.tv_owners.all
   end
 
   # GET /tv_shows/new
@@ -23,6 +26,7 @@ class TvShowsController < ApplicationController
     @tv_show.show_poster_path = params[:show_poster_path]
     @tv_season = @tv_show.tv_seasons.build
     @tv_episode = @tv_season.tv_episodes.build
+    @tv_owner = @tv_episode.tv_owners.build
   end
 
   # GET /tv_shows/1/edit

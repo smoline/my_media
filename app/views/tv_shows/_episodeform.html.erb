@@ -1,7 +1,7 @@
 
   <%# title %>
   <div class="form-group">
-    <%= f.label :title, class: "col-sm-3 control-label" %>
+    <%= f.label(:title, "TV Episode Title", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :title, class: "form-control" %>
     </div>
@@ -10,7 +10,7 @@
 
   <%# tmdb_episode_id %>
   <div class="form-group">
-    <%= f.label :tmdb_episode_id, class: "col-sm-3 control-label" %>
+    <%= f.label(:tmdb_episode_id, "TMDb Episode ID", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.number_field :tmdb_episode_id, class: "form-control" %>
     </div>
@@ -19,7 +19,7 @@
 
   <%# description %>
   <div class="form-group">
-    <%= f.label :description, class: "col-sm-3 control-label" %>
+    <%= f.label(:description, "Episode Description", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :description, class: "form-control" %>
     </div>
@@ -28,7 +28,7 @@
 
   <%# air_date %>
   <div class="form-group">
-    <%= f.label :air_date, class: "col-sm-3 control-label" %>
+    <%= f.label(:air_date, "Episode Air Date", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.text_field :air_date, class: "form-control" %>
     </div>
@@ -37,7 +37,7 @@
 
   <%# episode_number %>
   <div class="form-group">
-    <%= f.label :episode_number, class: "col-sm-3 control-label" %>
+    <%= f.label(:episode_number, "Episode Number", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.number_field :episode_number, class: "form-control" %>
     </div>
@@ -46,7 +46,7 @@
 
   <%# season_number %>
   <div class="form-group">
-    <%= f.label :season_number, class: "col-sm-3 control-label" %>
+    <%= f.label(:season_number, "Season Number", class: "col-sm-3 control-label") %>
     <div class="col-sm-9">
       <%= f.number_field :season_number, class: "form-control" %>
     </div>
