@@ -6,11 +6,12 @@ Rails.application.routes.draw do
       post :get_tv_show_info
       post :get_tv_shows
       post :get_tv_season_info
+      post :get_tv_seasons
     end
   end
 
   resources :tv_seasons
-  resources :tv_episodes 
+  resources :tv_episodes
 
   resources :games do
     collection do

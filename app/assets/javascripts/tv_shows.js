@@ -42,6 +42,17 @@ $(document).on('turbolinks:load', function() {
       type: "POST",
       url: '/tv_shows/get_tv_show_info',
       data: { tmdb_show_id: tmdb_show_id }
+    })
+  })
+
+  $('#tv-show-input').on('focus', function() {
+    let tmdb_show_id = $('#tv-show-input').val()
+    console.log(`the show id is ${tmdb_show_id}`)
+
+    $.ajax({
+      type: "POST",
+      url: '/tv_shows/get_tv_seasons',
+      data: { tmdb_show_id: tmdb_show_id }
     }).then(function(tvseasonInfo) {
       process_tv_season_choices(tvseasonInfo)
     });
@@ -49,6 +60,7 @@ $(document).on('turbolinks:load', function() {
 
   $('#tv-seasons-info').on('click', 'li', function() {
     let season_number = $(this).data('tmdb-season-number')
+    let tmdb_show_id =
 
     console.log(`The tmdb season number is ${season_number}`)
     $.ajax({
