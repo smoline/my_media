@@ -6,7 +6,16 @@ function process_tv_show_choices(tvshowInfo) {
   tvshowInfo.forEach(function(tv_show) {
     console.log(tv_show)
     $('#choose-tv-modal').modal('show')
-    $('#tv-shows-info').append(`<li data-tmdb-id="${tv_show.id}">${tv_show.name}</li>`)
+    $('#tv-shows-info').append(`<li data-tmdb-show-id="${tv_show.id}">${tv_show.name}</li>`)
+  })
+}
+
+function process_tv_season_choices(tvseasonInfo) {
+  $('#tv-seasons-info').html('')
+  tvseasonInfo.forEach(function(tv_season) {
+    console.log(tv_season)
+    $('#choose-season-modal').modal('show')
+    $('#tv-seasons-info').append(`<li data-tmdb-season-number="${tv_season.season_number}">Season ${tv_season.season_number} - ${tv_season.air_date}</li>`)
   })
 }
 
@@ -33,6 +42,19 @@ $(document).on('turbolinks:load', function() {
       type: "POST",
       url: '/tv_shows/get_tv_show_info',
       data: { tmdb_show_id: tmdb_show_id }
+    }).then(function(tvseasonInfo) {
+      process_tv_season_choices(tvseasonInfo)
+    });
+  })
+
+  $('#tv-seasons-info').on('click', 'li', function() {
+    let season_number = $(this).data('tmdb-season-number')
+
+    console.log(`The tmdb season number is ${season_number}`)
+    $.ajax({
+      type: "POST",
+      url: '/tv_shows/get_tv_season_info',
+      data: { season_number: season_number }
     })
   })
 })

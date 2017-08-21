@@ -9,8 +9,6 @@ class TvShowsController < ApplicationController
   def show
     @tv_show = TvShow.find(params[:id])
     @tv_season = @tv_show.tv_seasons.all
-    @tv_episode = @tv_season.tv_episodes.all
-    @tv_owner = @tv_episode.tv_owners.all
   end
 
   # GET /tv_shows/new
@@ -82,7 +80,7 @@ class TvShowsController < ApplicationController
       else
         show_poster_path = "http://image.tmdb.org/t/p/w185/#{more_tv_show_info["poster_path"]}"
       end
-      tv_show_params = more_tv_show_info.merge(
+      @tv_show_params1 = more_tv_show_info.merge(
                     tmdb_show_id: params[:tmdb_show_id],
                     overview: more_tv_show_info["overview"],
                     first_air_date: more_tv_show_info["first_air_date"],
@@ -90,6 +88,35 @@ class TvShowsController < ApplicationController
                     number_of_seasons: more_tv_show_info["number_of_seasons"],
                     number_of_episodes: more_tv_show_info["number_of_episodes"],
                     show_poster_path: show_poster_path)
+      @tv_season_info = more_tv_show_info["seasons"]
+      render json: @tv_season_info
+      # Can only render or redirect once
+      # redirect_to new_tv_show_path(tv_show_params)
+    else
+      # @tv_show.owners.create(user_id: current_user.id, tv_show_id: @tv_show.id, notes: params[:notes])
+      redirect_to @tv_show
+    end
+  end
+
+  def get_tv_season_info
+    more_tv_season_info = TvSeason.find_more_tv_season_info(season_number: params[:season_number], tmdb_show_id: @tv_show_params1.tmdb_show_id)
+    @tv_season = TvSeason.find_or_initialize_by(tmdb_season_id: params[:tmdb_season_id])
+    if @tv_season.new_record?
+      if more_tv_season_info["poster_path"].nil?
+        season_poster_path = more_tv_season_info["poster_path"]
+      else
+        season_poster_path = "http://image.tmdb.org/t/p/w185/#{more_tv_season_info["poster_path"]}"
+      end
+      tv_show_params2 = more_tv_season_info.merge(
+                    tmdb_season_id: params[:tmdb_season_id],
+                    overview: more_tv_season_info["overview"],
+                    air_date: more_tv_season_info["air_date"],
+                    season_number: more_tv_season_info["season_number"],
+                    season_poster_path: season_poster_path)
+      # @tv_episode_info = more_tv_season_info["episodes"]
+      # render json: @tv_episode_info
+      tv_show_params = @tv_show_params1.merge(tv_show_params2)
+      p tv_show_params
       redirect_to new_tv_show_path(tv_show_params)
     else
       # @tv_show.owners.create(user_id: current_user.id, tv_show_id: @tv_show.id, notes: params[:notes])
@@ -97,11 +124,10 @@ class TvShowsController < ApplicationController
     end
   end
 
-
   private
 
   # Only allow a trusted parameter "white list" through.
   def tv_show_params
-    params.require(:tv_show).permit(:name, :tmdb_show_id, :overview, :first_air_date, :last_air_date, :number_of_seasons, :number_of_episodes, :show_poster_path, :tv_seasons_attributes [:name, :tmdb_season_id, :tv_show_id, :overview, :air_date, :season_number, :season_poster_path, :tv_episodes_attributes [:title, :tmdb_episode_id, :description, :air_date, :episode_number, :season_number, :tvshow_image_url, :tv_owners_attributes [:id, :user_id, :tv_episode_id, :notes, :watched]]])
+    params.require(:tv_show).permit(:name, :tmdb_show_id, :overview, :first_air_date, :last_air_date, :number_of_seasons, :number_of_episodes, :show_poster_path, :tv_seasons_attributes [:id, :name, :tmdb_season_id, :tv_show_id, :overview, :air_date, :season_number, :season_poster_path, :tv_episodes_attributes [:id, :title, :tmdb_episode_id, :description, :air_date, :episode_number, :season_number, :tvshow_image_url, :tv_owners_attributes [:id, :user_id, :tv_episode_id, :notes, :watched]]])
   end
 end

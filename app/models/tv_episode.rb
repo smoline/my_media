@@ -1,5 +1,5 @@
 class TvEpisode < ApplicationRecord
-  belongs_to :tv_season, inverse_of: :tv_episode
+  belongs_to :tv_season
 
   has_many :tv_guest_stars, dependent: :destroy
   has_many :people, through: :tv_guest_stars
