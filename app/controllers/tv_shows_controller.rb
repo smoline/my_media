@@ -2,7 +2,7 @@ class TvShowsController < ApplicationController
   before_action :authenticate_user!
   # GET /tv_shows
   def index
-    @tv_shows = TvShow.all.page(params[:page]).per(24).order('name')
+    @tv_shows = current_user.tv_shows.all.page(params[:page]).per(24).order('name')
   end
 
   # GET /tv_shows/1
@@ -30,6 +30,7 @@ class TvShowsController < ApplicationController
   # GET /tv_shows/1/edit
   def edit
     @tv_show = TvShow.find(params[:id])
+    @tv_owner_info = @tv_show.tv_owners.find_by(user_id: current_user.id)
   end
 
   # POST /tv_shows
