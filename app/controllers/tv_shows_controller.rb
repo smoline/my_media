@@ -89,45 +89,40 @@ class TvShowsController < ApplicationController
                     number_of_seasons: more_tv_show_info["number_of_seasons"],
                     number_of_episodes: more_tv_show_info["number_of_episodes"],
                     show_poster_path: show_poster_path)
-      # @tv_season_info = more_tv_show_info["seasons"]
-      # render json: @tv_season_info
-      # Can only render or redirect once
-      @more_tv_show_info = more_tv_show_info
       redirect_to new_tv_show_path(tv_show_params)
     else
-      # @tv_show.tv_season.tv_episode.tv_owners.create(user_id: current_user.id, tv_show_id: @tv_show.id, notes: params[:notes])
+      # tv_show.tv_owner.create(user_id: current_user.id, tv_show_id: @tv_show.id, notes: params[:notes])
       redirect_to @tv_show
     end
   end
 
   def get_tv_seasons
     more_tv_show_info = TvShow.find_more_tv_show_info(params[:tmdb_show_id])
-    @tv_season_info = more_tv_show_info["seasons"]
+    @tv_season_info = more_tv_show_info
     render json: @tv_season_info
   end
 
   def get_tv_season_info
-    more_tv_season_info = TvSeason.find_more_tv_season_info(tmdb_show_id: @tv_show_params["id"], season_number: params[:season_number])
-    @tv_season = TvSeason.find_or_initialize_by(tmdb_season_id: params[:tmdb_season_id])
+    tmdb_show_id = params[:tmdb_show_id]
+    season_number = params[:season_number]
+    more_tv_season_info = TvSeason.find_more_tv_season_info(tmdb_show_id, season_number)
+    @tv_season = TvSeason.find_or_initialize_by(tmdb_season_id: more_tv_season_info["id"])
     if @tv_season.new_record?
       if more_tv_season_info["poster_path"].nil?
         season_poster_path = more_tv_season_info["poster_path"]
       else
         season_poster_path = "http://image.tmdb.org/t/p/w185/#{more_tv_season_info["poster_path"]}"
       end
-      tv_show_params2 = more_tv_season_info.merge(
-                    tmdb_season_id: params[:tmdb_season_id],
+      @tv_season_info = Hash.new
+      @tv_season_info = @tv_season_info.merge(
+                    name: more_tv_season_info["name"],
+                    tmdb_season_id: more_tv_season_info["id"],
                     overview: more_tv_season_info["overview"],
                     air_date: more_tv_season_info["air_date"],
                     season_number: more_tv_season_info["season_number"],
                     season_poster_path: season_poster_path)
-      # @tv_episode_info = more_tv_season_info["episodes"]
-      # render json: @tv_episode_info
-      tv_show_params = @tv_show_params1.merge(tv_show_params2)
-      p tv_show_params
-      redirect_to new_tv_show_path(tv_show_params)
+      redirect_to new_tv_show_path(@tv_season_info)
     else
-      # @tv_show.owners.create(user_id: current_user.id, tv_show_id: @tv_show.id, notes: params[:notes])
       redirect_to @tv_show
     end
   end

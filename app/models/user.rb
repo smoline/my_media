@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
   has_many :tv_owners, dependent: :destroy
   has_many :tv_episodes, through: :tv_owners
+  has_many :tv_seasons, through: :tv_episodes
+  has_many :tv_shows, through: :tv_seasons
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
