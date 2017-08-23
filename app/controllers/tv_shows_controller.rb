@@ -116,12 +116,12 @@ class TvShowsController < ApplicationController
       end
       @tv_season_info = Hash.new
       @tv_season_info = @tv_season_info.merge(
-                    name: more_tv_season_info["name"],
-                    tmdb_season_id: more_tv_season_info["id"],
-                    overview: more_tv_season_info["overview"],
-                    air_date: more_tv_season_info["air_date"],
-                    season_number: more_tv_season_info["season_number"],
-                    season_poster_path: season_poster_path)
+                    tv_seasons_attributes: [name: more_tv_season_info["name"]],
+                    tv_seasons_attributes: [tmdb_season_id: more_tv_season_info["id"]],
+                    tv_seasons_attributes: [overview: more_tv_season_info["overview"]],
+                    tv_seasons_attributes: [air_date: more_tv_season_info["air_date"]],
+                    tv_seasons_attributes: [season_number: more_tv_season_info["season_number"]],
+                    tv_seasons_attributes: [season_poster_path: season_poster_path])
       redirect_to new_tv_show_path(@tv_season_info)
     else
       redirect_to @tv_show

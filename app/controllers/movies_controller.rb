@@ -90,7 +90,7 @@ class MoviesController < ApplicationController
 
   def get_barcode
     upc = params[:upc]
-    @owned_movie = Movie.owners.find_or_initialize_by(upc: params[:upc], user_id: current_user.id)
+    @owned_movie = Owner.find_or_initialize_by(upc: params[:upc], user_id: current_user.id)
     # @movie = Movie.find_or_initialize_by(upc: params[:upc], created_by_id: current_user.id)
     if @owned_movie.new_record?
       title = Movie.find_movie_title(upc)
@@ -113,6 +113,7 @@ class MoviesController < ApplicationController
   end
 
   def get_movie_info
+    upc = params[:upc]
     more_movie_info = Movie.find_more_movie_info(params[:tmdb_id])
     @movie = Movie.find_or_initialize_by(tmdb_id: params[:tmdb_id])
     if @movie.new_record?
@@ -122,6 +123,7 @@ class MoviesController < ApplicationController
         movie_image_url = "http://image.tmdb.org/t/p/w185/#{more_movie_info["poster_path"]}"
       end
       movie_params = more_movie_info.merge(
+                    owners_attributes: [upc: params[:upc]],
                     tmdb_id: params[:tmdb_id],
                     description: more_movie_info["overview"],
                     movie_image_url: movie_image_url)
