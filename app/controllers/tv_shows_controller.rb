@@ -82,17 +82,11 @@ class TvShowsController < ApplicationController
         show_poster_path = "http://image.tmdb.org/t/p/w185/#{more_tv_show_info["poster_path"]}"
       end
       tv_show_params = more_tv_show_info.merge(
-                    name: more_tv_show_info["name"],
                     tmdb_show_id: params[:tmdb_show_id],
-                    overview: more_tv_show_info["overview"],
-                    first_air_date: more_tv_show_info["first_air_date"],
-                    last_air_date: more_tv_show_info["last_air_date"],
-                    number_of_seasons: more_tv_show_info["number_of_seasons"],
-                    number_of_episodes: more_tv_show_info["number_of_episodes"],
                     show_poster_path: show_poster_path)
       redirect_to new_tv_show_path(tv_show_params)
     else
-      # tv_show.tv_owner.create(user_id: current_user.id, tv_show_id: @tv_show.id, notes: params[:notes])
+      # @tv_show.tv_owner.create(user_id: current_user.id, tv_show_id: @tv_show.id, notes: params[:notes])
       redirect_to @tv_show
     end
   end
@@ -116,12 +110,12 @@ class TvShowsController < ApplicationController
       end
       @tv_season_info = Hash.new
       @tv_season_info = @tv_season_info.merge(
-                    tv_seasons_attributes: [name: more_tv_season_info["name"]],
-                    tv_seasons_attributes: [tmdb_season_id: more_tv_season_info["id"]],
-                    tv_seasons_attributes: [overview: more_tv_season_info["overview"]],
-                    tv_seasons_attributes: [air_date: more_tv_season_info["air_date"]],
-                    tv_seasons_attributes: [season_number: more_tv_season_info["season_number"]],
-                    tv_seasons_attributes: [season_poster_path: season_poster_path])
+                    tv_seasons_attributes: [name: more_tv_season_info["name"],
+                    tmdb_season_id: more_tv_season_info["id"],
+                    overview: more_tv_season_info["overview"],
+                    air_date: more_tv_season_info["air_date"],
+                    season_number: more_tv_season_info["season_number"],
+                    season_poster_path: season_poster_path]])
       redirect_to new_tv_show_path(@tv_season_info)
     else
       redirect_to @tv_show

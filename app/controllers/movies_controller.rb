@@ -37,6 +37,7 @@ class MoviesController < ApplicationController
     @movie.tagline = params[:tagline]
     @movie.movie_image_url = params[:movie_image_url]
     @owner_info = @movie.owners.new
+    @owner_info.upc = params[:upc]
   end
 
   # GET /movies/1/edit
@@ -83,15 +84,14 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @owner = @movie.owners.find_by(user_id: current_user.id)
-    # @movie.destroy
-    @owner.destroy
+    @movie.destroy
+    # @owner.destroy
     redirect_to movies_url, notice: 'Movie was successfully removed from your list.'
   end
 
   def get_barcode
     upc = params[:upc]
     @owned_movie = Owner.find_or_initialize_by(upc: params[:upc], user_id: current_user.id)
-    # @movie = Movie.find_or_initialize_by(upc: params[:upc], created_by_id: current_user.id)
     if @owned_movie.new_record?
       title = Movie.find_movie_title(upc)
       @movie_info = Movie.find_initial_movie_info(title)
@@ -123,7 +123,7 @@ class MoviesController < ApplicationController
         movie_image_url = "http://image.tmdb.org/t/p/w185/#{more_movie_info["poster_path"]}"
       end
       movie_params = more_movie_info.merge(
-                    owners_attributes: [upc: params[:upc]],
+                    upc: params[:upc],
                     tmdb_id: params[:tmdb_id],
                     description: more_movie_info["overview"],
                     movie_image_url: movie_image_url)
