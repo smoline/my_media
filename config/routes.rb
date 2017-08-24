@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   resources :tv_shows do
     collection do
-      post :get_tv_show_info
       post :get_tv_shows
+      post :get_tv_show_info
       post :get_tv_season_info
       post :get_tv_episode_info
     end
