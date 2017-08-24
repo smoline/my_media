@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     collection do
       post :get_tv_show_info
       post :get_tv_shows
-      post :get_tv_seasons
       post :get_tv_season_info
+      post :get_tv_episode_info
     end
   end
 
