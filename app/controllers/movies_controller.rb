@@ -84,8 +84,8 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @owner = @movie.owners.find_by(user_id: current_user.id)
-    @movie.destroy
-    # @owner.destroy
+    # @movie.destroy
+    @owner.destroy
     redirect_to movies_url, notice: 'Movie was successfully removed from your list.'
   end
 

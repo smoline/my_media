@@ -5,15 +5,15 @@ one:
   tmdb_id: 1
   description: MyString
   release_date: MyString
-  upc: 1
   runtime: 1
   tagline: MyString
+  movie_image_url: MyString
 
 two:
   title: MyString
   tmdb_id: 1
   description: MyString
   release_date: MyString
-  upc: 1
   runtime: 1
   tagline: MyString
+  movie_image_url: MyString

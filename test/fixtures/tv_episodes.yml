@@ -7,8 +7,6 @@ one:
   air_date: MyString
   episode_number: 1
   season_number: 1
-  tvshow_image_url: MyString
-  created_by_id: 1
 
 two:
   title: MyString
@@ -17,5 +15,3 @@ two:
   air_date: MyString
   episode_number: 1
   season_number: 1
-  tvshow_image_url: MyString
-  created_by_id: 1

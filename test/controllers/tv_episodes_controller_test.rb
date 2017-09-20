@@ -17,7 +17,7 @@ class TvEpisodesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create tv_episode" do
     assert_difference('TvEpisode.count') do
-      post tv_episodes_url, params: { tv_episode: { air_date: @tv_episode.air_date, created_by_id: @tv_episode.created_by_id, description: @tv_episode.description, episode_number: @tv_episode.episode_number, season_number: @tv_episode.season_number, title: @tv_episode.title, tmdb_episode_id: @tv_episode.tmdb_episode_id, tvshow_image_url: @tv_episode.tvshow_image_url } }
+      post tv_episodes_url, params: { tv_episode: { air_date: @tv_episode.air_date, created_by_id: @tv_episode.created_by_id, description: @tv_episode.description, episode_number: @tv_episode.episode_number, season_number: @tv_episode.season_number, title: @tv_episode.title, tmdb_episode_id: @tv_episode.tmdb_episode_id } }
     end
 
     assert_redirected_to tv_episode_url(TvEpisode.last)
@@ -34,7 +34,7 @@ class TvEpisodesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tv_episode" do
-    patch tv_episode_url(@tv_episode), params: { tv_episode: { air_date: @tv_episode.air_date, created_by_id: @tv_episode.created_by_id, description: @tv_episode.description, episode_number: @tv_episode.episode_number, season_number: @tv_episode.season_number, title: @tv_episode.title, tmdb_episode_id: @tv_episode.tmdb_episode_id, tvshow_image_url: @tv_episode.tvshow_image_url } }
+    patch tv_episode_url(@tv_episode), params: { tv_episode: { air_date: @tv_episode.air_date, created_by_id: @tv_episode.created_by_id, description: @tv_episode.description, episode_number: @tv_episode.episode_number, season_number: @tv_episode.season_number, title: @tv_episode.title, tmdb_episode_id: @tv_episode.tmdb_episode_id } }
     assert_redirected_to tv_episode_url(@tv_episode)
   end
 

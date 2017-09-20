@@ -28,7 +28,7 @@ class Movie < ApplicationRecord
     title = JSON.parse(response.body)
     if title.present?
       title = title["0"]["productname"]
-      title = title[/^[A-Za-z0-9\s\p.]+/i]
+      title = title[/^[A-Za-z0-9]+[^\-\(\[]+/i]
     else
       title = ""
     end

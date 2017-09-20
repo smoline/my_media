@@ -37,7 +37,7 @@ class TvShowsController < ApplicationController
     @tv_episode_info.episode_number = params[:episode_number]
     @tv_episode_info.season_number = params[:season_number]
     @tv_episode_info.episode_image_url = params[:episode_image_url]
-    @tv_owner = @tv_episode_info.tv_owners.new
+    @tv_owner_info = @tv_episode_info.tv_owners.new
   end
 
   # GET /tv_shows/1/edit
@@ -49,6 +49,10 @@ class TvShowsController < ApplicationController
   # POST /tv_shows
   def create
     @tv_show = TvShow.new(tv_show_params)
+    @tv_season_info = @tv_show.tv_seasons.new(tv_show_params["tv_seasons_attributes"]["0"])
+    @tv_episode_info = @tv_season_info.tv_episodes.new(tv_show_params["tv_episodes_attributes"]["0"])
+    @tv_owner_info = @tv_episode_info.tv_owners.new["tv_owners_attributes"]["0"]
+    @tv_show.tv_owners.first.user_id = current_user.id
 
     if @tv_show.save
       redirect_to @tv_show, notice: 'Tv show was successfully created.'
