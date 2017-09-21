@@ -1,7 +1,13 @@
 require 'test_helper'
 
 class MoviesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
+    get new_user_session_path
+    assert_equal 200, status
+    @someone = User.create(email: "someone@mail.com", password: "helloworld", password_confirmation: "helloworld", confirmed_at: Time.now)
+    sign_in @someone
     @movie = movies(:one)
   end
 

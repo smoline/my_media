@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class TvShowsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+  
   setup do
     @tv_show = tv_shows(:one)
   end
