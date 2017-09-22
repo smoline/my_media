@@ -5,9 +5,21 @@ one:
   title: MyString
   description: MyString
   created_by_id: 1
+  game_image_url: MyString
+  console_type: MyString
+  brand: MyString
+  image_data: 
+  release_date: MyString
+  igdb_id: 1
 
 two:
   upc: 1
   title: MyString
   description: MyString
   created_by_id: 1
+  game_image_url: MyString
+  console_type: MyString
+  brand: MyString
+  image_data:
+  release_date: MyString
+  igdb_id: 1

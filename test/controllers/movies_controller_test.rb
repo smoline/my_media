@@ -23,7 +23,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create movie" do
     assert_difference('Movie.count') do
-      post movies_url, params: { movie: { description: @movie.description, release_date: @movie.release_date, runtime: @movie.runtime, tagline: @movie.tagline, title: @movie.title, tmdb_id: @movie.tmdb_id } }
+      post movies_url, params: { movie: { description: @movie.description, release_date: @movie.release_date, runtime: @movie.runtime, tagline: @movie.tagline, title: @movie.title, tmdb_id: @movie.tmdb_id, owner_attributes: { user_id: @someone.id } } }
     end
 
     assert_redirected_to movie_url(Movie.last)
@@ -44,11 +44,11 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to movie_url(@movie)
   end
 
-  test "should destroy movie" do
-    assert_difference('Movie.count', -1) do
-      delete movie_url(@movie)
-    end
-
-    assert_redirected_to movies_url
-  end
+  # Test is not valid because a movie is never destroyed, only the owner record is
+  # test "should destroy movie" do
+  #   assert_difference('Movie.count', -1) do
+  #     delete movie_url(@movie)
+  #   end
+  #   assert_redirected_to movies_url
+  # end
 end
