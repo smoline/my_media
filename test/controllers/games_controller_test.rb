@@ -40,7 +40,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update game" do
-    patch game_url(@game), params: { game: { created_by_id: @game.created_by_id, description: @game.description, title: @game.title, upc: @game.upc } }
+    patch game_url(@game), params: { game: { created_by_id: @someone.id, description: @game.description, title: "MyString2", upc: 123 } }
     assert_redirected_to game_url(@game)
   end
 

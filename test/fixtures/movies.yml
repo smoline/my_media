@@ -4,7 +4,7 @@ one:
   title: MyString
   tmdb_id: 1
   description: MyString
-  release_date: MyString
+  release_date: "1989-11-17"
   runtime: 1
   tagline: MyString
   movie_image_url: MyString
@@ -13,7 +13,7 @@ two:
   title: MyString
   tmdb_id: 2
   description: MyString
-  release_date: MyString
+  release_date: "2017-05-09"
   runtime: 1
   tagline: MyString
   movie_image_url: MyString
