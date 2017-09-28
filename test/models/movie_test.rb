@@ -19,6 +19,9 @@ class MovieTest < ActiveSupport::TestCase
     assert_not @movie.save, "Saved the movie without tmdb_id"
   end
 
-  # validates_uniqueness_of :tmdb_id
-
+  # write test for validates_uniqueness_of :tmdb_id
+  test "should validates uniqueness of tmdb id" do
+    @movie = Movie.new(title: "MyString", tmdb_id: 1, description: "MyString", release_date: "1989-11-17", runtime: 1, tagline: "MyString", movie_image_url: "MyString")
+    assert_not @movie.save, "Saved the movie without a unique tmdb_id"
+  end
 end

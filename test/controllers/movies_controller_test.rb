@@ -24,6 +24,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create movie" do
     assert_difference('Movie.count') do
+      binding.pry
       post movies_url, params: { movie: { description: @movie.description, release_date: @movie.release_date, runtime: @movie.runtime, tagline: @movie.tagline, title: @movie.title, tmdb_id: 123, owners_attributes: [ user_id: @someone.id ] } }
     end
 

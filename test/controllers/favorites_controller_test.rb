@@ -3,7 +3,7 @@ require 'test_helper'
 class FavoritesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
-  # This is not a valid url
+  # Rewrite This is not a valid url and this process uses javascript
   # test "should create favorite" do
   #   get favorites_create_url
   #   assert_response :success

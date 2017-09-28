@@ -15,5 +15,4 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     get person_url(@person)
     assert_response :success
   end
-
 end
