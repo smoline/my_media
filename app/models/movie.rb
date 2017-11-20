@@ -1,5 +1,4 @@
 class Movie < ApplicationRecord
-
   validates :title, presence: true
   validates :release_date, presence: true
   validates :tmdb_id, presence: true
@@ -70,7 +69,12 @@ class Movie < ApplicationRecord
   end
 
   def self.search(search, user_id)
-    joins('LEFT JOIN "movie_crews" ON "movie_crews"."movie_id" = "movies"."id" LEFT JOIN "people" AS "people1" ON "people1"."id" = "movie_crews"."person_id" LEFT JOIN "movie_casts" ON "movie_casts"."movie_id" = "movies"."id" LEFT JOIN "people" AS "people2" ON "people2"."id" = "movie_casts"."person_id" LEFT JOIN "owners" ON "owners"."movie_id" = "movies"."id" LEFT JOIN "users" ON "users"."id" = "owners"."user_id"').where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ?) or (LOWER(people1.name) LIKE ? OR LOWER(people2.name) LIKE ?) AND owners.user_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", user_id).distinct
+    joins('LEFT JOIN "movie_crews" ON "movie_crews"."movie_id" = "movies"."id"
+           LEFT JOIN "people" AS "people1" ON "people1"."id" = "movie_crews"."person_id"
+           LEFT JOIN "movie_casts" ON "movie_casts"."movie_id" = "movies"."id"
+           LEFT JOIN "people" AS "people2" ON "people2"."id" = "movie_casts"."person_id"
+           LEFT JOIN "owners" ON "owners"."movie_id" = "movies"."id"
+           LEFT JOIN "users" ON "users"."id" = "owners"."user_id"').where("(LOWER(movies.title) LIKE ? or movies.release_date LIKE ? or LOWER(movies.description) LIKE ?) or (LOWER(people1.name) LIKE ? OR LOWER(people2.name) LIKE ?) AND owners.user_id = ?", "%#{search.downcase}%", "%#{search}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", user_id).distinct
   end
 
   def runtime_hours

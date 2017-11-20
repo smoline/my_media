@@ -32,7 +32,7 @@ gem 'sendgrid-ruby'
 # gem 'therubyracer', platforms: :ruby
 
 # Pagination
-gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'master'
+gem 'kaminari', git: "git://github.com/amatsuda/kaminari.git", branch: 'master'
 gem 'underscore-rails'
 
 # Use jquery as the JavaScript library
