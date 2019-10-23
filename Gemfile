@@ -42,11 +42,12 @@ gem 'httparty', '~> 0.15.2'
 gem 'json', '~> 2.1'
 
 # Image uploading support
-gem 'shrine', '~> 2.6', '>= 2.6.1'
-gem 'shrine-sql', '~> 1.1', '>= 1.1.2'
-gem 'roda', '~> 2.26'
-gem 'image_processing', '~> 0.4.1'
-gem 'mini_magick', '~> 4.3.5'
+gem "shrine", "~> 3.0"
+# gem 'shrine', '~> 2.6', '>= 2.6.1'
+# gem 'shrine-sql', '~> 1.1', '>= 1.1.2'
+# gem 'roda', '~> 2.26'
+gem 'image_processing', '~> 1.8'
+gem 'mini_magick', '~> 4.9.3'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
