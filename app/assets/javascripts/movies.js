@@ -31,7 +31,7 @@ function process_barcode(upc) {
       })
     } else {
       $('#refresh-modal').modal('show')
-      $('#went-wrong-notice').append(`<h3>Looks like something went wrong, click ok to try again</h3>`)
+      $('#went-wrong-notice').append('<h3>Looks like something went wrong, click ok to try again</h3>')
     }
   });
 }
