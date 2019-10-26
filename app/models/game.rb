@@ -1,16 +1,15 @@
 class Game < ApplicationRecord
-  include ImageUploader::Attachment.new(:image)
-
+  has_one_attached :image
   validates :title, presence: true
 
   belongs_to :created_by, class_name: "User"
   has_many :game_favorites, dependent: :destroy
 
-  has_many :game_genre_lists, through: :game_genres
   has_many :game_genres, dependent: :destroy
+  has_many :game_genre_lists, through: :game_genres
 
-  has_many :game_companies, through: :developers
   has_many :developers, dependent: :destroy
+  has_many :game_companies, through: :developers
 
 # Use this one if upcitemdb has problems
   # def self.find_game_title(upc)

@@ -19,7 +19,6 @@ The purpose of this Ruby on Rails app is to create a place to document, organize
 * Clicking on the number of Mins for the movie will switch to Hours via jQuery
 * emails sent via SendGrid and customized with premailer-rails & nokogiri
 * Facebook, twitter, and linked in sharing with social-share-button
-* Shrine. Image Processing, and MiniMagick for image uploading
 * Customized Bootstrap, HTML, Sass and solar theme used for design
 
 ### Plans for future updates

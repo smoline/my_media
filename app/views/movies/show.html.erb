@@ -34,8 +34,8 @@
   <% if current_user.owned_movies.include?(@movie) %>
   <div class="media">
     <div class="media-left col-md-3 text-center col-xs-12">
-        <% if @owner_info.image.present? %>
-          <%= image_tag @owner_info.image_url(:small), class:'mainimage' %>
+        <% if @owner_info.image.attached? %>
+          <%= image_tag @owner_info.image, class:'mainimage', width: '185px' %>
         <%elsif @movie.movie_image_url.nil? || @movie.movie_image_url.empty? %>
           <%= image_tag("genericperson.png") %>
         <% else %>

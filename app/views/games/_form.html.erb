@@ -83,7 +83,6 @@
   <div class="form-group">
     <%= f.label :image, class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
-      <%= f.hidden_field :image, value: @game.cached_image_data %>
       <%= f.file_field :image %>
     </div>
   </div>

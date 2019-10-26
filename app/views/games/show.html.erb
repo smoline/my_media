@@ -33,8 +33,8 @@
 <div class="container">
   <div class="media">
     <div class="media-left col-md-5 text-center col-xs-12">
-      <% if @game.image.present? %>
-        <%= image_tag @game.image_url(:medium) %>
+      <% if @game.image.attached? %>
+        <%= image_tag @game.image %>
       <%else %>
         <%= image_tag @game.game_image_url, class: "gameimage", width: '300px' %>
       <% end %>
