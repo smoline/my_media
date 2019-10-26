@@ -1,8 +1,8 @@
 <% if game.created_by_id == current_user.id %>
   <li class="box">
-    <% if game.image.present? %>
+    <% if game.image.attached? %>
       <%= link_to game do %>
-        <%= image_tag game.image_url(:small) %>
+        <%= image_tag game.image, class:'gameimage', width: '185px' %>
       <% end %>
     <%else %>
       <%= link_to game do %>
@@ -10,7 +10,9 @@
       <% end %>
     <% end %>
     <div class="textline">
-      <p class="s-text firsttextline"><%= game.title %></p>
+      <%= link_to game do %>
+        <p class="s-text firsttextline"><%= game.title %></p>
+      <% end %>
     </div>
     <div class="textline">
       <p class="s-text secondtextline"><%= game.console_type %></p>
