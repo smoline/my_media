@@ -8,7 +8,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -17,6 +17,8 @@ gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+
+gem 'bootsnap', require: false
 
 gem 'turbolinks', '~> 5.0.0'
 
@@ -42,9 +44,8 @@ gem 'httparty', '~> 0.15.2'
 gem 'json', '~> 2.1'
 
 # Image uploading support
-gem "shrine", "~> 3.0"
-# gem 'shrine', '~> 2.6', '>= 2.6.1'
-# gem 'shrine-sql', '~> 1.1', '>= 1.1.2'
+gem 'shrine', '~> 3.0'
+gem 'shrine-sql', '~> 2.2.0'
 # gem 'roda', '~> 2.26'
 gem 'image_processing', '~> 1.8'
 gem 'mini_magick', '~> 4.9.3'

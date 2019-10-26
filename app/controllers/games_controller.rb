@@ -124,7 +124,7 @@ class GamesController < ApplicationController
                     igdb_id: params[:igdb_id],
                     title: more_game_info["name"],
                     description: more_game_info["deck"],
-                    release_date: more_game_info["original_release_date"].to_date.to_s,
+                    release_date: more_game_info["original_release_date"].to_date.to_s || "",
                     game_image_url: more_game_info["image"]["small_url"]
                     )
       redirect_to new_game_path(game_params)

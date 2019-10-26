@@ -55,7 +55,8 @@ Rails.application.routes.draw do
 
   mount Resque::Server.new, at: "/resque"
 
+  # mount Shrine.upload_endpoint(:cache) => "/attachments"
   # mount ImageUploader.download_endpoint => "/attachments"
-  # mount Shrine::DownloadEndpoint => "/attachments"
+  mount Shrine.download_endpoint => "/attachments"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
