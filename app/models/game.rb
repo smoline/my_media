@@ -1,6 +1,4 @@
 class Game < ApplicationRecord
-  include ImageUploader::Attachment.new(:image)
-
   validates :title, presence: true
 
   belongs_to :created_by, class_name: "User"

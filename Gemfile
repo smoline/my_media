@@ -43,13 +43,6 @@ gem 'jquery-rails'
 gem 'httparty', '~> 0.15.2'
 gem 'json', '~> 2.1'
 
-# Image uploading support
-gem 'shrine', '~> 3.0'
-gem 'shrine-sql', '~> 2.2.0'
-# gem 'roda', '~> 2.26'
-gem 'image_processing', '~> 1.8'
-gem 'mini_magick', '~> 4.9.3'
-
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 gem 'resque', '~> 1.25', '>= 1.25.2'
