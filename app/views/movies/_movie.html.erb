@@ -1,8 +1,8 @@
 
   <li class="box">
-    <% if movie.owners.find_by(user_id: current_user.id).image.present? %>
+    <% if movie.owners.find_by(user_id: current_user.id).image.attached? %>
       <%= link_to movie do %>
-        <%= image_tag movie.owners.find_by(user_id: current_user.id).image_url(:small) %>
+        <%= image_tag movie.owners.find_by(user_id: current_user.id).image, width: '185px' %>
       <% end %>
     <% elsif movie.movie_image_url.nil? || movie.movie_image_url.empty? %>
       <%= link_to movie do %>
@@ -15,7 +15,9 @@
     <% end %>
     <div class="textline">
       <div class="firsttextline">
-        <p class="s-text"><%= truncate(movie.title, length: 44, seperator: ' ') %></p>
+        <%= link_to movie do %>
+          <p class="s-text"><%= truncate(movie.title, length: 44, seperator: ' ') %></p>
+        <% end %>
       </div>
     </div>
     <div class="textline">
