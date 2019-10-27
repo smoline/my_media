@@ -34,7 +34,7 @@
   <div class="media">
     <div class="media-left col-md-5 text-center col-xs-12">
       <% if @game.image.attached? %>
-        <%= image_tag @game.image %>
+        <%= image_tag @game.image, class:'gameimage', width: '350px' %>
       <%else %>
         <%= image_tag @game.game_image_url, class: "gameimage", width: '300px' %>
       <% end %>

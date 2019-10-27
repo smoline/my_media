@@ -26,6 +26,7 @@ gem 'social-share-button', '~> 0.10.0'
 
 # image stoarge and manipulation
 gem 'active_storage-postgresql', '~> 0.2.0'
+gem 'image_processing', '~> 1.9.3'
 
 # Automatically inline mail CSS styles
 gem 'premailer-rails', '~> 1.9', '>= 1.9.6'
