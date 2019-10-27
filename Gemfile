@@ -67,6 +67,13 @@ gem 'devise', '~> 4.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bootstrap-generators', git: 'https://github.com/gstark/bootstrap-generators', branch: 'includes-simplified-controller-scaffold'
+gem 'bootstrap-social-rails'
+gem 'font-awesome-rails'
+gem 'jquery-ui-rails'
+gem 'refile', github: 'gstark/refile', branch: 'updates-for-rails-5', require: 'refile/rails'
+gem 'refile-postgres'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -83,22 +90,13 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
-end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'bootstrap-generators', git: 'https://github.com/gstark/bootstrap-generators', branch: 'includes-simplified-controller-scaffold'
-gem 'bootstrap-social-rails'
-gem 'font-awesome-rails'
-gem 'jquery-ui-rails'
-group :development do
   gem 'awesome_print'
   gem 'dotenv-rails'
 end
 
-gem 'refile', github: 'gstark/refile', branch: 'updates-for-rails-5', require: 'refile/rails'
-gem 'refile-postgres'
 group :production do
   gem 'rails_12factor'
 end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

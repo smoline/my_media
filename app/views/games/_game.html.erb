@@ -1,14 +1,16 @@
 <% if game.created_by_id == current_user.id %>
   <li class="box">
-    <% if game.image.attached? %>
-      <%= link_to game do %>
-        <%= image_tag game.image, class:'gameimage', width: '185px' %>
+    <div class="game-image-box-medium">
+      <% if game.image.attached? %>
+        <%= link_to game do %>
+          <%= image_tag game.image, class:'gameimage', width: '185px' %>
+        <% end %>
+      <%else %>
+        <%= link_to game do %>
+          <%= image_tag game.game_image_url, class:'gameimage', width: '185px' %>
+        <% end %>
       <% end %>
-    <%else %>
-      <%= link_to game do %>
-        <%= image_tag game.game_image_url, class:'gameimage', width: '185px' %>
-      <% end %>
-    <% end %>
+    </div>
     <div class="textline">
       <%= link_to game do %>
         <p class="s-text firsttextline"><%= game.title %></p>
