@@ -24,7 +24,7 @@ gem 'turbolinks', '~> 5.0.0'
 
 gem 'social-share-button', '~> 0.10.0'
 
-# image stoarge and manipulation
+# Active Storage image storage and manipulation
 gem 'active_storage-postgresql', '~> 0.2.0'
 gem 'image_processing', '~> 1.9.3'
 
