@@ -45,7 +45,7 @@ gem 'underscore-rails'
 gem 'jquery-rails'
 
 gem 'httparty', '~> 0.15.2'
-gem 'json', '~> 2.1'
+gem 'json', '~> 2.3'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
